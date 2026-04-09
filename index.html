@@ -204,6 +204,7 @@
       z-index: 1;
       box-shadow: 0 4px 20px rgba(201,168,124,0.35);
       cursor: pointer;
+      text-transform: none; /* Uniform Sentence Case */
     }
     .btn-gold::before, .btn-primary::before, .pkg-card-btn::before {
       content: '';
@@ -280,9 +281,12 @@
     .logo-wrap {
       flex: 0 0 auto;
       z-index: 10;
-      padding: 5px 0; /* Removed background box to fix broken design */
+      padding: 8px 15px;
+      background: rgba(0,0,0,0.1); /* Added subtle background for visibility on light banners */
+      border-radius: 8px;
       transition: all 0.3s;
     }
+    #site-header.scrolled .logo-wrap { background: transparent; }
     .logo-wrap img {
       height: 62px;
       width: auto;
@@ -853,25 +857,26 @@
       background: var(--beige);
     }
     .therapies-inner { max-width: 1400px; margin: 0 auto; overflow: visible; }
+    .therapies-swiper { padding: 40px 0 80px; }
     .therapy-card {
       background: var(--white);
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: var(--shadow-sm);
-      border: 1px solid var(--border);
+      box-shadow: var(--shadow-md);
       transition: var(--transition);
-      height: 100%; /* Ensure equal height */
+      height: 100%; /* Equal height */
       display: flex;
       flex-direction: column;
+      border: 1px solid var(--border);
     }
     .therapy-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
-    .th-img-wrap { height: 260px; overflow: hidden; position: relative; }
-    .th-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .th-img-wrap { height: 260px; overflow: hidden; }
+    .th-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s; }
     .therapy-card:hover .th-img-wrap img { transform: scale(1.1); }
-    .th-content { padding: 32px; }
-    .th-title { font-family: var(--ff-serif); font-size: 1.8rem; color: var(--teal-dark); margin-bottom: 12px; }
-    .th-desc { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
-    .th-link { font-size: 0.85rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; }
+    .th-content { padding: 30px; flex: 1; display: flex; flex-direction: column; }
+    .th-title { font-family: var(--ff-serif); font-size: 1.6rem; color: var(--teal-dark); margin-bottom: 12px; }
+    .th-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.6; margin-bottom: 25px; flex: 1; }
+    .th-link { font-weight: 600; color: var(--gold); display: flex; align-items: center; gap: 8px; font-size: 0.9rem; }
 
     /* ============================================================
        DIRECTOR'S MESSAGE
@@ -1311,7 +1316,7 @@
   <header id="site-header">
     <div class="header-inner">
       <a href="#" class="logo-wrap">
-        <img src="Images/logo.webp" alt="Ayur Health Logo" />
+        <img src="Images/logo.webp" alt="Ayur Health Logo" style="filter: brightness(0) invert(1);" />
       </a>
 
       <nav>
@@ -1344,20 +1349,41 @@
               </div>
               <div class="mega-menu-col">
                 <span class="mega-menu-col-title">Wellness Programs</span>
-                <a href="#packages" class="mega-menu-link"><i data-lucide="wind"></i> Stress Management</a>
-                <a href="#packages" class="mega-menu-link"><i data-lucide="coffee"></i> Detox Packages</a>
-                <a href="#packages" class="mega-menu-link"><i data-lucide="activity"></i> Weight Loss</a>
+        <ul class="nav-links">
+          <li><a href="#">Home</a></li>
+          <li class="has-mega">
+            <a href="#about">About <i data-lucide="chevron-down"></i></a>
+            <div class="mega-menu">
+              <div class="mega-inner">
+                <div class="mega-col">
+                  <h4>The Center</h4>
+                  <ul>
+                    <li><a href="#about">Our Story</a></li>
+                    <li><a href="#mission">Mission & Vision</a></li>
+                    <li><a href="#core-values">Core Values</a></li>
+                    <li><a href="#director">Doctor's Profile</a></li>
+                  </ul>
+                </div>
+                <div class="mega-col">
+                  <h4>Experience</h4>
+                  <ul>
+                    <li><a href="#facilities">Facilities</a></li>
+                    <li><a href="#journey">Patient Journey</a></li>
+                    <li><a href="#faq">Frequently Asked Questions</a></li>
+                  </ul>
+                </div>
               </div>
             </div>
           </li>
+          <li><a href="#therapies">Therapies</a></li>
           <li><a href="#conditions">Conditions</a></li>
           <li><a href="#packages">Wellness</a></li>
           <li><a href="#blogs">Blog</a></li>
         </ul>
       </nav>
 
-      <div class="header-cta">
-        <a href="tel:0551292579" class="header-phone">
+      <div class="header-actions">
+        <a href="tel:0551292579" class="phone-link">
           <i data-lucide="phone-call"></i>
           <span>055 129 2579</span>
         </a>
@@ -1388,32 +1414,32 @@
             </div>
           </div>
           <!-- Slide 2 -->
-          <div class="swiper-slide">
-            <div class="hero-bg">
-              <img src="Images/kerala_herbs.png" alt="Ayurvedic Herbs" />
-            </div>
+          <div class="swiper-slide hero-slide" style="background-image: url('Images/1552693673-1bf958298935.jpg');">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-              <div class="hero-eyebrow">Natural Purity · Science Driven</div>
-              <h1 class="hero-title">Healing Through <br /><em>Nature's Essence</em></h1>
-              <p class="hero-desc">Our medicines and oils are prepared from the highest quality organic herbs, ensuring every drop carries the potent healing power of classical Ayurvedic formulations.</p>
-              <div class="hero-actions">
-                <a href="#cta-banner" class="btn-gold">Consult Our Doctors</a>
-                <a href="#packages" class="btn-secondary" style="border-color: white; color: white;">Our Wellness Plans <i data-lucide="arrow-right"></i></a>
+              <div class="hero-content-inner">
+                <span class="hero-tagline">Natural Purity · Science Driven</span>
+                <h1 class="hero-title">Healing Through <br /><em>Nature's Essence</em></h1>
+                <p class="hero-desc">Our medicines and oils are prepared from the highest quality organic herbs, ensuring every drop carries the potent healing power of classical Ayurvedic formulations.</p>
+                <div class="hero-actions">
+                  <a href="#cta-banner" class="btn-gold">Consult Our Doctors</a>
+                  <a href="#packages" class="btn-secondary" style="border-color: white; color: white;">Our Wellness Plans <i data-lucide="arrow-right"></i></a>
+                </div>
               </div>
             </div>
           </div>
           <!-- Slide 3 -->
-          <div class="swiper-slide">
-            <div class="hero-bg">
-              <img src="Images/kerala_abhyangam.png" alt="Ayurvedic Massage" />
-            </div>
+          <div class="swiper-slide hero-slide" style="background-image: url('Images/1600334089648-b0d9d3028eb2.jpg');">
+            <div class="hero-overlay"></div>
             <div class="hero-content">
-              <div class="hero-eyebrow">Expert Care · Personalized Touch</div>
-              <h1 class="hero-title">Revitalize Your <br /><em>Mind & Body</em></h1>
-              <p class="hero-desc">From stress relief to chronic pain management, our specialized therapies are designed to restore your inner balance and lead you to a life of sustained wellness.</p>
-              <div class="hero-actions">
-                <a href="#cta-banner" class="btn-gold">Start Your Journey</a>
-                <a href="#facilities" class="btn-secondary" style="border-color: white; color: white;">View Our Center <i data-lucide="arrow-right"></i></a>
+              <div class="hero-content-inner">
+                <span class="hero-tagline">Expert Care · Personalized Touch</span>
+                <h1 class="hero-title">Revitalize Your <br /><em>Mind & Body</em></h1>
+                <p class="hero-desc">From stress relief to chronic pain management, our specialized therapies are designed to restore your inner balance and lead you to a life of sustained wellness.</p>
+                <div class="hero-actions">
+                  <a href="#cta-banner" class="btn-gold">Start Your Journey</a>
+                  <a href="#facilities" class="btn-secondary" style="border-color: white; color: white;">View Our Center <i data-lucide="arrow-right"></i></a>
+                </div>
               </div>
             </div>
           </div>
@@ -1466,34 +1492,27 @@
       <div class="about-inner">
         <div class="about-image-wrap">
           <img src="Images/kerala_hero.png" alt="Clinical Setting" class="about-img-main" />
-          <div class="about-img-badge">
-            <div class="badge-num">15+</div>
-            <div class="badge-label">Years of clinical excellence</div>
+          <div class="about-stats-box">
+            <div class="asp-title">Specialized Care</div>
+            <div class="asp-text">Personalized Prakriti Analysis</div>
           </div>
-          <img src="Images/kerala_herbs.png" alt="Herbs" class="about-img-accent" />
         </div>
-
-        <div class="about-text">
-          <div class="section-reveal">
-            <span class="section-label">About Ayur Health</span>
-            <h2 class="section-title">Where Ancient Ayurveda <br />Meets <em>Modern Clinical Care</em></h2>
-            <div class="section-body">
-              <p>At Ayur Health, we combine the ancient knowledge of Ayurveda with modern medical care. Our treatments are specially made to match your unique body type (Prakriti).</p>
-            </div>
+        <div class="about-content">
+          <span class="section-label">About Ayur Health</span>
+          <h2 class="section-title">Where Ancient Knowledge Meets <em>Modern Medical Care</em></h2>
+          <div class="section-body">
+            <p>At Ayur Health clinic, we combine the ancient knowledge of Ayurveda with modern medical care. When you visit us, you are not just a patient; you become a part of our family. We know that real healing takes time. That is why our treatments are specially made to match your unique body type (Prakriti).</p>
+            <p>Your journey starts with a detailed and caring consultation. Our expert doctors take the time to truly listen to your problems. They check your pulse (Nadi Pariksha) to understand the balance of Vata, Pitta, and Kapha doshas inside you.</p>
           </div>
 
           <div class="about-points">
             <div class="about-point">
-              <div class="about-point-icon"><i data-lucide="heart-pulse"></i></div>
-              <div class="about-point-text">Nadi Pariksha <br>Pulse Diagnosis</div>
+              <div class="about-point-icon"><i data-lucide="pulse"></i></div>
+              <div class="about-point-text">Authentic <br>Nadi Pariksha</div>
             </div>
             <div class="about-point">
-              <div class="about-point-icon"><i data-lucide="user-check"></i></div>
-              <div class="about-point-text">Personalized <br>Prakriti Analysis</div>
-            </div>
-            <div class="about-point">
-              <div class="about-point-icon"><i data-lucide="sparkles"></i></div>
-              <div class="about-point-text">Authentic <br>Panchakarma</div>
+              <div class="about-point-icon"><i data-lucide="leaf"></i></div>
+              <div class="about-point-text">Personalized <br>Panchakarma</div>
             </div>
             <div class="about-point">
               <div class="about-point-icon"><i data-lucide="shield-check"></i></div>
@@ -1501,7 +1520,102 @@
             </div>
           </div>
 
-          <a href="#journey" class="btn-primary">Begin Your Healing Journey <i data-lucide="arrow-right"></i></a>
+          <button class="btn-primary open-modal">Begin Your Healing Journey <i data-lucide="arrow-right"></i></button>
+        </div>
+      </div>
+    </section>
+
+    <!-- BLOG SECTION -->
+    <section id="blogs">
+      <div class="blogs-inner">
+        <div class="section-reveal">
+          <span class="section-label">Ayurvedic Wisdom</span>
+          <h2 class="section-title">Latest from Our <em>Health Blog</em></h2>
+        </div>
+        <div class="blog-grid" style="margin-top: 50px;">
+          <div class="blog-card" style="background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+            <img src="Images/1544367567-0f2fcb009e0b.jpg" alt="Doshas" style="width: 100%; height: 250px; object-fit: cover;">
+            <div style="padding: 30px;">
+              <h4 style="font-family: var(--ff-serif); font-size: 1.6rem; color: var(--teal); margin-bottom: 15px;">Know Your Body Type</h4>
+              <p style="color: var(--text-mid); line-height: 1.6; margin-bottom: 20px;">Your mind and body are made of three main energies: Vata, Pitta, and Kapha. Balance is the key to energy and happiness.</p>
+              <a href="#" style="color: var(--gold); font-weight: 600;">Read More <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-card" style="background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+            <img src="Images/1552693673-1bf958298935.jpg" alt="Joints" style="width: 100%; height: 250px; object-fit: cover;">
+            <div style="padding: 30px;">
+              <h4 style="font-family: var(--ff-serif); font-size: 1.6rem; color: var(--teal); margin-bottom: 15px;">Why Do Your Joints Ache?</h4>
+              <p style="color: var(--text-mid); line-height: 1.6; margin-bottom: 20px;">Understanding the Vata dosha and how it affects joint lubrication. Discover natural ways to reclaim your mobility.</p>
+              <a href="#" style="color: var(--gold); font-weight: 600;">Read More <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+          <div class="blog-card" style="background: white; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-md);">
+            <img src="Images/1555252333-9f8e92e65df9.jpg" alt="Digestion" style="width: 100%; height: 250px; object-fit: cover;">
+            <div style="padding: 30px;">
+              <h4 style="font-family: var(--ff-serif); font-size: 1.6rem; color: var(--teal); margin-bottom: 15px;">Deep Body Cleaning</h4>
+              <p style="color: var(--text-mid); line-height: 1.6; margin-bottom: 20px;">The magic of Panchakarma detox: flushing toxins from your blood, organs, and tissues for true rejuvenation.</p>
+              <a href="#" style="color: var(--gold); font-weight: 600;">Read More <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CORE VALUES SECTION -->
+    <section id="core-values" style="background: var(--white); padding: 100px 5%;">
+      <div class="mission-inner">
+        <div class="section-label">Core Values</div>
+        <h2 class="section-title">Built on <em>Three Standards</em></h2>
+        <div class="mission-grid" style="margin-top: 50px;">
+          <div class="mission-card">
+            <i data-lucide="award"></i>
+            <h3>Clinical Authority</h3>
+            <p>We blend deep, traditional Ayurvedic wisdom with modern clinical rigour, ensuring every treatment is accurate and highly effective.</p>
+          </div>
+          <div class="mission-card">
+            <i data-lucide="focus"></i>
+            <h3>Holistic Precision</h3>
+            <p>We treat you as a unique individual (Prakriti), customizing every therapy—from Panchakarma to lifestyle guidance—for maximum benefit.</p>
+          </div>
+          <div class="mission-card">
+            <i data-lucide="refresh-cw"></i>
+            <h3>Sustained Restoration</h3>
+            <p>We focus on long-term wellness equipping you with the internal balance needed to maintain perfect health independently.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- SPECIALTIES SECTION -->
+    <section id="specialties" style="background: var(--gold-pale); padding: 100px 5%;">
+      <div class="mission-inner">
+        <div class="section-label">Medical Authority</div>
+        <h2 class="section-title">Our Clinical <em>Specialties</em></h2>
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; margin-top: 50px;">
+          <div style="background: white; padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h4 style="color: var(--teal); font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 20px;">Women's Health</h4>
+            <ul style="color: var(--text-mid); line-height: 2;">
+              <li>Pre/Post-natal Care</li>
+              <li>Hormonal Balance</li>
+              <li>Natural Fertility Support</li>
+            </ul>
+          </div>
+          <div style="background: white; padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h4 style="color: var(--teal); font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 20px;">Chronic Diseases</h4>
+            <ul style="color: var(--text-mid); line-height: 2;">
+              <li>Joint & Spine Health</li>
+              <li>Skin Disorders (Psoriasis)</li>
+              <li>Metabolic Disorders</li>
+            </ul>
+          </div>
+          <div style="background: white; padding: 40px; border-radius: var(--radius-md); box-shadow: var(--shadow-sm);">
+            <h4 style="color: var(--teal); font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 20px;">Wellness Practices</h4>
+            <ul style="color: var(--text-mid); line-height: 2;">
+              <li>Panchakarma Detox</li>
+              <li>Nadi Pariksha Diagnosis</li>
+              <li>Lifestyle Management</li>
+            </ul>
+          </div>
         </div>
       </div>
     </section>
@@ -1613,8 +1727,8 @@
         <div class="director-image-wrap">
           <img src="Images/Dr Chitra.png" alt="Dr. Chitra" class="director-img" />
           <div class="director-badge">
-            <div class="director-badge-title">Dr. Chitra</div>
-            <div class="director-badge-sub">Medical Director & Senior Consultant</div>
+            <div class="director-badge-title">Dr. Chitra Menon</div>
+            <div class="director-badge-sub">BAMS, MD · Medical Director</div>
           </div>
         </div>
         <div class="director-content">
@@ -1622,11 +1736,46 @@
           <h2 class="section-title">A Vision for <em>Holistic Health</em></h2>
           <p class="director-quote">"Our mission is to bring the authentic healing traditions of Kerala to Dubai, providing a sanctuary where modern clinical standards meet ancient wisdom."</p>
           <div class="section-body" style="margin-top: 24px;">
-            <p>At Ayur Health, we believe that true wellness is not just the absence of disease, but a state of complete physical, mental, and spiritual harmony.</p>
+            <p>Dr. Chitra Menon is a highly skilled and experienced Ayurvedic physician known for her integrative, patient-centered approach to holistic healing. With extensive experience in classical ayurveda, therapeutic panchakarma, and natural wellness, she combines traditional principles with evidence-based practices.</p>
           </div>
           <div class="director-sig">
-            <div class="sig-name">Dr. Chitra Ramakrishnan</div>
-            <div class="sig-title">BAMS, MD (Ayurveda)</div>
+            <div class="sig-name">Dr. Chitra Menon</div>
+            <div class="sig-title">Senior Consultant Surgeon (Ayurveda)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" style="background: var(--white); padding: 100px 5%;">
+      <div class="faq-inner" style="max-width: 900px; margin: 0 auto;">
+        <span class="section-label" style="text-align: center; display: block;">General Questions</span>
+        <h2 class="section-title" style="text-align: center;">Frequently Asked <em>Questions</em></h2>
+        <p style="text-align: center; color: var(--text-mid); margin-bottom: 50px;">We understand that starting a new healing journey can bring up many questions. Below, we have answered some of the most common doubts.</p>
+        
+        <div class="faq-list">
+          <div class="faq-item">
+            <div class="faq-question">What should I expect during my first consultation? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">Your first visit is all about understanding you deeply. Our expert Ayurvedic doctors will have a detailed, relaxed conversation with you about your health, daily routine, and past medical history. They will carefully check your pulse (Nadi Pariksha) to understand your unique body type (Dosha).</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Are Ayurvedic treatments safe, and do they have side effects? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">Yes, authentic Ayurvedic treatments are completely safe. Because we use only the purest, highest-quality herbal medicines and medicated oils, there are no harmful side effects. Our therapies are guided by clinical experts who ensure that your body heals gently and naturally.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How long will it take to see the results? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">Ayurveda aims to permanently cure the root cause of the disease. Depending on how old or severe your ailment is, you may start feeling better in a few days, while complete healing may take a few weeks. Trusting the process brings lifelong rewards.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Do I need to follow a very strict diet during my treatment? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">In Ayurveda, food is considered medicine. Our doctors will suggest a simple, nourishing diet plan that matches your body type (Prakriti). We do not believe in starving you; instead, we guide you on making healthy food choices that speed up your recovery.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">Can I take Ayurvedic medicines along with your regular medicines? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">Yes, in most cases, you can safely continue both. However, it is important to share your current medical prescriptions with our doctors. Our specialists will guide you on how to balance both, usually by keeping a simple time gap between them.</div>
+          </div>
+          <div class="faq-item">
+            <div class="faq-question">How can I book an appointment with your specialists? <i data-lucide="plus"></i></div>
+            <div class="faq-answer">Booking your visit is very easy. You can click the floating "Book Appointment" button on our website, send us a quick WhatsApp message, or call our clinic directly. Our staff will personally assist you in choosing a date and time.</div>
           </div>
         </div>
       </div>
@@ -1639,12 +1788,12 @@
           <div class="mission-card">
             <i data-lucide="target"></i>
             <h3>Our Mission</h3>
-            <p>To provide high-quality, authentic Ayurvedic healthcare that integrates traditional wisdom with modern clinical excellence, helping our patients achieve sustainable wellbeing.</p>
+            <p>To expertly deliver curative, root-cause therapies that treat complex conditions and restore sustained vitality for every patient.</p>
           </div>
           <div class="mission-card">
             <i data-lucide="eye"></i>
             <h3>Our Vision</h3>
-            <p>To be the leading global center for Ayurvedic excellence, recognized for our commitment to purity, personalized care, and the successful treatment of chronic conditions.</p>
+            <p>To be the definitive centre of excellence for clinical ayurveda and holistic recovery in the GCC, recognized for clinical authority.</p>
           </div>
         </div>
       </div>
@@ -1722,7 +1871,21 @@
             <div class="fac-item-icon">🛋️</div>
             <div class="fac-item-content">
               <h4 class="fac-item-title">Private Treatment Rooms</h4>
-              <p class="fac-item-desc">Spacious, germ-free rooms with traditional wooden Dronis.</p>
+              <p class="fac-item-desc">Spacious, germ-free, premium suites with traditional wooden Dronis.</p>
+            </div>
+          </div>
+          <div class="fac-item">
+            <div class="fac-item-icon">👩‍🦰</div>
+            <div class="fac-item-content">
+              <h4 class="fac-item-title">Ladies Waiting Area</h4>
+              <p class="fac-item-desc">A private, safe, and comfortable sanctuary designed for our female guests.</p>
+            </div>
+          </div>
+          <div class="fac-item">
+            <div class="fac-item-icon">🕌</div>
+            <div class="fac-item-content">
+              <h4 class="fac-item-title">Prayer Room</h4>
+              <p class="fac-item-desc">A dedicated peaceful space for quiet reflection and spiritual practice.</p>
             </div>
           </div>
           <div class="fac-item">
