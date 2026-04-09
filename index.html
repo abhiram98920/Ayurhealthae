@@ -285,155 +285,6 @@
     .nav-links { display: flex; gap: 30px; list-style: none; align-items: center; }
     .nav-links a { 
       font-family: var(--ff-sans);
-      font-weight: 600;
-      color: var(--white);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .mega-menu {
-      position: absolute;
-    /* ============================================================
-       HEADER / NAVIGATION
-    ============================================================ */
-    #site-header {
-      position: fixed;
-      top: 0; left: 0; right: 0;
-      z-index: 2000;
-      transition: all 0.5s ease;
-      padding: 0 5%;
-    }
-    #site-header.scrolled {
-      background: rgba(8, 26, 26, 0.95);
-      backdrop-filter: blur(15px);
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-    }
-    .header-inner {
-      height: 100px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      max-width: 1400px;
-      margin: 0 auto;
-    }
-    #site-header.scrolled .header-inner { height: 80px; }
-
-    .logo-wrap img {
-      height: 60px;
-      width: auto;
-      display: block;
-      transition: all 0.4s;
-    }
-    #site-header.scrolled .logo-wrap img { height: 50px; }
-
-    .nav-links { display: flex; gap: 30px; list-style: none; }
-    .nav-links a { 
-      font-weight: 600;
-      color: var(--white);
-      text-decoration: none;
-      font-size: 0.85rem;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      transition: color 0.3s;
-    }
-    .nav-links a:hover { color: var(--gold); }
-
-    .mega-menu {
-      position: absolute;
-      top: 100%; left: 0; width: 100%;
-      background: rgba(8, 26, 26, 0.98);
-      backdrop-filter: blur(30px);
-      padding: 60px 0;
-      opacity: 0; visibility: hidden;
-      transform: translateY(10px);
-      transition: all 0.4s ease;
-      border-top: 1px solid rgba(255,255,255,0.1);
-    }
-    .has-mega:hover .mega-menu { opacity: 1; visibility: visible; transform: translateY(0); }
-    .mega-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 40px;
-    }
-
-    /* ============================================================
-       HERO SLIDER
-    ============================================================ */
-    #hero { height: 100vh; width: 100%; overflow: hidden; position: relative; }
-    .hero-slide {
-      height: 100vh;
-      width: 100%;
-      background-size: cover;
-      background-position: center;
-      background-repeat: no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-    }
-    .hero-slide::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(to bottom, rgba(8, 26, 26, 0.7) 0%, rgba(8, 26, 26, 0.3) 50%, rgba(8, 26, 26, 0.8) 100%);
-      z-index: 1;
-    }
-    .hero-content {
-      position: relative;
-      z-index: 5;
-      width: 90%;
-      max-width: 1400px;
-      margin: 0 auto;
-      color: white;
-    }
-    .hero-tagline { 
-      font-size: 0.85rem; 
-      letter-spacing: 0.25em; 
-      text-transform: uppercase; 
-      color: var(--gold); 
-      margin-bottom: 25px; 
-      display: block; 
-    }
-    .hero-title { 
-      font-size: clamp(3rem, 8vw, 6rem); 
-      font-family: var(--ff-serif); 
-      line-height: 1.1; 
-      margin-bottom: 30px; 
-    }
-    .hero-title em { font-style: italic; color: var(--gold); }
-    .hero-desc { 
-      font-size: 1.15rem; 
-      line-height: 1.7; 
-      color: rgba(255,255,255,0.8); 
-      margin-bottom: 50px; 
-      max-width: 650px; 
-    }
-    .hero-actions { display: flex; gap: 20px; }
-
-    .hero-stats {
-      margin-top: 100px;
-      padding-top: 40px;
-      border-top: 1px solid rgba(255,255,255,0.2);
-      display: flex;
-      gap: 100px;
-      z-index: 10;
-    }
-    .stat-num { font-family: var(--ff-serif); font-size: 3.5rem; color: white; line-height: 1; }
-    .stat-label { font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; }
-    .stat-item { display: flex; flex-direction: column; gap: 5px; }
-    .stat-num { font-family: var(--ff-serif); font-size: 3rem; color: white; line-height: 1; }
-    .stat-label { font-size: 0.8rem; text-transform: uppercase; color: rgba(255,255,255,0.6); letter-spacing: 0.1em; }
-    
-    @media (max-width: 991px) {
-      .header-inner { height: 80px; }
-      .nav-links, .header-actions .phone-link, .header-actions .btn-gold { display: none; }
-      #menu-toggle { display: block; color: white; background: none; border: none; font-size: 1.5rem; }
       
       .hero-title { font-size: 3.5rem; }
       .hero-stats { gap: 40px; overflow-x: auto; padding-bottom: 20px; }
@@ -1179,16 +1030,16 @@
   <header id="site-header">
     <div class="header-inner">
       <a href="#" class="logo-wrap">
-        <img src="Images/logo.webp" alt="Ayur Health Logo" />
+        <img src="Images/logo.webp" alt="Ayur Health" />
       </a>
 
-      <nav>
-        <ul class="nav-links">
-          <li><a href="#">Home</a></li>
-          <li class="has-mega">
-            <a href="#about">About <i data-lucide="chevron-down"></i></a>
+      <nav class="main-nav">
+        <ul style="display: flex; gap: 35px; align-items: center;">
+          <li><a href="#" class="nav-link">Home</a></li>
+          <li class="has-mega-item">
+            <a href="#about" class="nav-link">About <i data-lucide="chevron-down"></i></a>
             <div class="mega-menu">
-              <div class="mega-inner">
+              <div class="mega-grid">
                 <div class="mega-col">
                   <h4>The Center</h4>
                   <ul>
@@ -1203,68 +1054,46 @@
                   <ul>
                     <li><a href="#facilities">Facilities</a></li>
                     <li><a href="#journey">Patient Journey</a></li>
-                    <li><a href="#faq">Frequently Asked Questions</a></li>
+                    <li><a href="#frequently-asked-questions">Frequently Asked Questions</a></li>
                   </ul>
                 </div>
               </div>
             </div>
           </li>
-          <li><a href="#therapies">Therapies</a></li>
-          <li><a href="#conditions">Conditions</a></li>
-          <li><a href="#packages">Wellness</a></li>
-          <li><a href="#blogs">Blog</a></li>
+          <li><a href="#therapies" class="nav-link">Therapies</a></li>
+          <li><a href="#conditions" class="nav-link">Conditions</a></li>
+          <li><a href="#packages" class="nav-link">Wellness</a></li>
+          <li><a href="#blogs" class="nav-link">Blog</a></li>
         </ul>
       </nav>
 
-      <div class="header-actions">
-        <a href="tel:0551292579" class="phone-link">
-          <i data-lucide="phone-call"></i>
-          <span>055 129 2579</span>
+      <div class="header-actions" style="display: flex; align-items: center; gap: 20px;">
+        <a href="tel:0551292579" style="color: white; font-weight: 700; display: flex; align-items: center; gap: 8px;">
+          <i data-lucide="phone"></i> 055 129 2579
         </a>
-        <a href="#cta-banner" class="btn-gold">Book Consultation</a>
-        <button id="menu-toggle"><i data-lucide="menu"></i></button>
+        <button class="btn-gold open-modal">Book Consultation</button>
       </div>
+
+      <button id="menu-toggle"><i data-lucide="menu"></i></button>
     </div>
   </header>
 
   <main>
-    <!-- HERO SLIDER SECTION -->
     <section id="hero">
       <div class="swiper hero-swiper">
         <div class="swiper-wrapper">
-          <!-- Slide 1 -->
-          <div class="swiper-slide">
-            <div class="hero-bg">
-              <img src="Images/premium_center.png" alt="Clinical Ayurveda" />
-            </div>
+          <div class="swiper-slide hero-slide" style="background-image: url('Images/premium_center.png');">
             <div class="hero-content">
               <div class="hero-content-inner">
-                <span class="hero-tagline">Authentic Ayurveda · Dubai, UAE</span>
+                <span class="hero-tag">Authentic Kerala Ayurveda · Dubai</span>
                 <h1 class="hero-title">Ancient Wisdom, <br /><em>Modern Healing</em></h1>
-                <p class="hero-desc">Experience the purest traditions of Kerala Ayurveda at Dubai's most trusted Medical Centre. Personalized therapies rooted in 5,000 years of wisdom — crafted for your unique body.</p>
+                <p class="hero-desc">Experience the purest traditions of Kerala at Dubai's most trusted Medical Centre. Crafting lasting health for your unique body.</p>
                 <div class="hero-actions">
-                  <a href="#cta-banner" class="btn-gold">Book Free Consultation</a>
-                  <a href="#therapies" class="btn-secondary" style="border-color: white; color: white;">Explore Therapies <i data-lucide="arrow-right"></i></a>
+                  <button class="btn-gold open-modal">Book Now</button>
+                  <a href="#therapies" class="btn-secondary">Explore Therapies</a>
                 </div>
-                
                 <div class="hero-stats">
                   <div class="stat-item">
-                    <span class="stat-num">5000+</span>
-                    <span class="stat-label">Years of Wisdom</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-num">30+</span>
-                    <span class="stat-label">Specialists</span>
-                  </div>
-                  <div class="stat-item">
-                    <span class="stat-num">100%</span>
-                    <span class="stat-label">Natural Healing</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- Slide 2 -->
           <div class="swiper-slide hero-slide" style="background-image: url('Images/1552693673-1bf958298935.jpg');">
             <div class="hero-overlay"></div>
             <div class="hero-content">
@@ -1316,29 +1145,28 @@
       </div>
     </section>
 
-    <!-- ABOUT SECTION -->
-    <section id="about" style="padding: 100px 5%; background: var(--white);">
-      <div class="about-inner" style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; margin: 0 auto;">
-        <div class="about-image-wrap">
-          <img src="Images/kerala_hero.png" alt="Clinical Setting" style="width: 100%; border-radius: 20px; box-shadow: var(--shadow-lg);" />
+    <section id="about">
+      <div class="grid-2">
+        <div class="img-box">
+          <img src="Images/kerala_hero.png" alt="Clinical Setting" />
         </div>
-        <div class="about-content">
-          <span class="section-label">Medical Authority</span>
-          <h2 class="section-title">Where Ancient Knowledge Meets <em>Modern Care</em></h2>
-          <p style="font-size: 1.1rem; line-height: 1.7; color: var(--text-mid); margin: 30px 0;">At Ayur Health clinic, we combine the ancient knowledge of Ayurveda with modern medical care. Our expert doctors take the time to truly listen to your problems, checking your pulse (Nadi Pariksha) to understand the balance of Vata, Pitta, and Kapha doshas inside you.</p>
-          
-          <div class="about-points" style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
+        <div class="info-content">
+          <span class="section-label">Our Philosophy</span>
+          <h2 class="section-title">Where Science Meets <em>Spiritual Balance</em></h2>
+          <p style="color: var(--text-mid); font-size: 1.15rem; line-height: 1.8; margin-bottom: 30px;">
+            At Ayur Health, healing is a journey, not a destination. We combine ancient Nadi Pariksha with modern clinical evidence to create a personalized blueprint for your vitality.
+          </p>
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-bottom: 40px;">
             <div style="display: flex; align-items: center; gap: 15px;">
-              <div style="width: 40px; height: 40px; background: var(--gold-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold);"><i data-lucide="pulse"></i></div>
-              <span style="font-weight: 600;">Nadi Pariksha</span>
+              <div style="width: 50px; height: 50px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--teal);"><i data-lucide="crosshair"></i></div>
+              <h4 style="font-size: 1.1rem;">Nadi Pariksha</h4>
             </div>
             <div style="display: flex; align-items: center; gap: 15px;">
-              <div style="width: 40px; height: 40px; background: var(--gold-pale); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--gold);"><i data-lucide="leaf"></i></div>
-              <span style="font-weight: 600;">Custom Detox</span>
+              <div style="width: 50px; height: 50px; background: var(--bg-light); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: var(--teal);"><i data-lucide="heart"></i></div>
+              <h4 style="font-size: 1.1rem;">Holistic Detox</h4>
             </div>
           </div>
-          
-          <button class="btn-primary open-modal">Begin Your Journey <i data-lucide="arrow-right"></i></button>
+          <button class="btn-primary open-modal">Start Your Journey <i data-lucide="arrow-right"></i></button>
         </div>
       </div>
     </section>
