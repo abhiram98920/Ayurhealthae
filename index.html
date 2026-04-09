@@ -256,17 +256,39 @@ h1,h2,h3,h4 {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  margin-right: auto;   /* pushes everything else right */
+  margin-right: auto;
 }
-.nav-logo img {
-  height: 44px;
+/* default: full colour webp (shows over hero bg) */
+.nav-logo .logo-default {
+  height: 80px;
   width: auto;
   object-fit: contain;
   display: block;
-  background: transparent;
-  /* SVG is transparent — invert to white for dark header */
+  filter: brightness(0) invert(1); /* invert to white on dark hero */
+}
+/* sticky: SVG icon (compact, transparent) */
+.nav-logo .logo-sticky {
+  height: 44px;
+  width: auto;
+  object-fit: contain;
+  display: none;
   filter: brightness(0) invert(1);
 }
+/* swap when scrolled */
+.site-header.scrolled .logo-default { display: none; }
+.site-header.scrolled .logo-sticky  { display: block; }
+
+/* ── Hamburger toggle (hidden on desktop) ── */
+.ham-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 8px;
+  color: white;
+  margin-left: auto;
+}
+.ham-btn i { width: 26px; height: 26px; }
 
 /* Nav — centred via margin auto on both sides */
 nav[aria-label="Primary"] {
@@ -1206,6 +1228,143 @@ footer {
 .stagger.up > *:nth-child(5) { opacity:1; transform:none; transition-delay:.45s; }
 
 /* =========================================================
+   BOOKING POPUP MODAL
+========================================================= */
+.popup-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(5,40,32,.72);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  z-index: 999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .4s var(--ease);
+}
+.popup-overlay.open {
+  opacity: 1;
+  pointer-events: all;
+}
+.popup-box {
+  background: var(--white);
+  border-radius: var(--r-lg);
+  width: 100%;
+  max-width: 580px;
+  overflow: hidden;
+  box-shadow: var(--shadow-lg);
+  transform: translateY(32px) scale(.97);
+  transition: transform .45s var(--ease);
+}
+.popup-overlay.open .popup-box {
+  transform: translateY(0) scale(1);
+}
+.popup-header {
+  background: linear-gradient(135deg, var(--green-900), var(--green-700));
+  padding: 32px 36px 28px;
+  position: relative;
+}
+.popup-header h3 {
+  color: var(--white);
+  font-size: 1.6rem;
+  margin-bottom: 6px;
+}
+.popup-header p {
+  color: rgba(255,255,255,.72);
+  font-size: .9rem;
+}
+.popup-close {
+  position: absolute;
+  top: 16px; right: 16px;
+  background: rgba(255,255,255,.15);
+  border: none;
+  border-radius: 50%;
+  width: 36px; height: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease);
+}
+.popup-close:hover { background: rgba(255,255,255,.28); }
+.popup-close i { width:18px; height:18px; }
+.popup-body { padding: 32px 36px; }
+.popup-form { display: grid; gap: 16px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label {
+  font-size: .78rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .1em;
+  color: var(--ink-muted);
+}
+.form-group input,
+.form-group select,
+.form-group textarea {
+  padding: 12px 16px;
+  border: 1.5px solid rgba(10,61,48,.15);
+  border-radius: var(--r-sm);
+  font-family: var(--ff-sans);
+  font-size: .93rem;
+  color: var(--ink);
+  background: var(--cream);
+  outline: none;
+  transition: border-color var(--dur) var(--ease);
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--gold);
+}
+.form-group textarea { resize: vertical; min-height: 80px; }
+.popup-submit {
+  width: 100%;
+  padding: 16px;
+  background: var(--green-800);
+  color: white;
+  border: none;
+  border-radius: 100px;
+  font-family: var(--ff-sans);
+  font-weight: 700;
+  font-size: 1rem;
+  cursor: pointer;
+  margin-top: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+  box-shadow: 0 8px 28px rgba(10,61,48,.22);
+}
+.popup-submit:hover {
+  background: var(--green-900);
+  transform: translateY(-2px);
+}
+.popup-submit i { width:18px; height:18px; }
+.popup-wa {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 13px;
+  background: #f0faf5;
+  border: 1.5px solid #c3e6d6;
+  border-radius: 100px;
+  color: #1a7a4a;
+  font-weight: 700;
+  font-size: .9rem;
+  margin-top: 12px;
+  transition: background var(--dur) var(--ease);
+}
+.popup-wa:hover { background: #d4f0e3; }
+.popup-wa i { width:18px; height:18px; }
+
+/* =========================================================
    RESPONSIVE
 ========================================================= */
 @media (max-width: 1024px) {
@@ -1228,11 +1387,90 @@ footer {
   .timeline::before { display:none; }
   .tl-step          { flex: 0 0 calc(33% - 16px); }
 }
+
+/* ── MOBILE NAV ── */
+@media (max-width: 900px) {
+  /* show hamburger, hide desktop nav */
+  .ham-btn { display: flex; }
+  nav[aria-label="Primary"] { display: none; }
+  .nav-phone { display: none; }
+  .nav-actions .btn { display: none; }
+  .nav-actions { margin-left: 0; }
+
+  /* Mobile nav drawer */
+  nav[aria-label="Primary"].open {
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: var(--green-900);
+    z-index: 200;
+    padding: 100px 32px 40px;
+    overflow-y: auto;
+    gap: 0;
+  }
+  nav[aria-label="Primary"].open .nav-links {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
+  }
+  nav[aria-label="Primary"].open .nav-links > li {
+    width: 100%;
+    border-bottom: 1px solid rgba(255,255,255,.08);
+  }
+  nav[aria-label="Primary"].open .nav-links a {
+    font-size: 1.2rem;
+    padding: 18px 0;
+    width: 100%;
+  }
+  /* hide mega menus on mobile */
+  .mega { display: none !important; }
+
+  /* mobile close button inside nav */
+  .nav-close-btn {
+    position: fixed;
+    top: 24px; right: 24px;
+    background: rgba(255,255,255,.12);
+    border: none;
+    border-radius: 50%;
+    width: 44px; height: 44px;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    z-index: 201;
+  }
+  .nav-close-btn.show { display: flex; }
+  .nav-close-btn i { width:22px; height:22px; }
+
+  /* mobile Book Now at bottom of drawer */
+  .mobile-book-btn {
+    display: flex;
+    margin-top: 32px;
+    width: 100%;
+    justify-content: center;
+  }
+  .mobile-book-btn .btn {
+    width: 100%;
+    justify-content: center;
+  }
+}
+
 @media (max-width: 640px) {
   section { padding: 72px 0; }
   .container { padding: 0 18px; }
   .hero-h1  { font-size: 2.4rem; }
-  .hero-btns { flex-direction:column; align-items:flex-start; }
+  /* Full-width CTAs on mobile */
+  .hero-btns {
+    flex-direction: column;
+    align-items: stretch;
+    width: 100%;
+  }
+  .hero-btns .btn {
+    width: 100%;
+    justify-content: center;
+  }
   .hero-trust { gap:14px; }
   .cards-grid,
   .blog-grid,
@@ -1241,6 +1479,13 @@ footer {
   .fac-grid { grid-template-columns:1fr; grid-template-rows:auto; }
   .why-img img { height:280px; }
   .tl-step { flex: 0 0 calc(50% - 16px); }
+  /* Full-width CTA section buttons */
+  .cta-btns { flex-direction: column; align-items: stretch; }
+  .cta-btns .btn { width:100%; justify-content:center; }
+  /* Popup form row stacks on mobile */
+  .form-row { grid-template-columns: 1fr; }
+  .popup-header { padding: 24px 24px 20px; }
+  .popup-body   { padding: 24px; }
 }
 </style>
 </head>
@@ -1269,9 +1514,20 @@ footer {
   <div class="nav-inner">
 
     <a href="/" class="nav-logo" aria-label="Ayur Health Home">
-      <!-- Use SVG for transparency; fallback to webp if SVG not found -->
-      <img src="Images/logo.svg" onerror="this.src='Images/logo.webp'" alt="Ayur Health" />
+      <!-- default: full webp logo (hero / transparent header) -->
+      <img src="Images/logo.webp" alt="Ayur Health" class="logo-default" />
+      <!-- sticky only: compact SVG icon -->
+      <img src="Images/logo.svg" alt="Ayur Health" class="logo-sticky" />
     </a>
+
+    <!-- Hamburger (mobile only) -->
+    <button class="ham-btn" id="ham-btn" aria-label="Open menu" aria-expanded="false">
+      <i data-lucide="menu"></i>
+    </button>
+    <!-- Mobile close button (rendered outside nav for z-index) -->
+    <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">
+      <i data-lucide="x"></i>
+    </button>
 
     <nav aria-label="Primary">
       <ul class="nav-links">
@@ -1346,6 +1602,11 @@ footer {
         <li><a href="#conditions">Conditions</a></li>
         <li><a href="#blogs">Journal</a></li>
       </ul>
+
+      <!-- Mobile Book Now (inside drawer) -->
+      <div class="mobile-book-btn">
+        <button class="btn btn-gold" onclick="openBooking()">Book Appointment <i data-lucide="calendar"></i></button>
+      </div>
     </nav>
 
     <div class="nav-actions">
@@ -1353,7 +1614,7 @@ footer {
         <i data-lucide="phone"></i>
         <span>055 129 2579</span>
       </div>
-      <a href="#cta" class="btn btn-gold">Book Appointment</a>
+      <button class="btn btn-gold" onclick="openBooking()">Book Appointment</button>
     </div>
 
   </div>
@@ -1443,16 +1704,16 @@ footer {
 <section id="about" class="about-section">
   <div class="container">
     <div class="about-grid reveal">
-      <!-- Left: image collage -->
+      <!-- Left: image collage — using clean clinical images only -->
       <div class="about-images">
         <div class="img-tall">
-          <img src="Images/panchakarma.jpeg" alt="Panchakarma treatment" />
+          <img src="Images/abhyangam.jpeg" alt="Abhyangam — warm oil therapy" />
         </div>
         <div class="img-sq">
           <img src="Images/kerala_herbs.png" alt="Medicinal herbs" />
         </div>
         <div class="img-sq">
-          <img src="Images/karna pooranam.jpeg" alt="Karna Pooranam" />
+          <img src="Images/shirodhara.jpeg" alt="Shirodhara therapy" />
         </div>
       </div>
 
@@ -1975,7 +2236,7 @@ footer {
       </div>
 
       <div class="cta-btns">
-        <a href="tel:971551292579" class="btn btn-gold">Book Your Consultation <i data-lucide="calendar"></i></a>
+        <button class="btn btn-gold" onclick="openBooking()">Book Your Consultation <i data-lucide="calendar"></i></button>
         <a href="https://wa.me/971551292579" class="btn btn-outline-white" target="_blank" rel="noopener">WhatsApp Us <i data-lucide="message-circle"></i></a>
       </div>
     </div>
@@ -1992,7 +2253,8 @@ footer {
     <div class="footer-top">
 
       <div class="footer-brand">
-        <img src="Images/logo.webp" alt="Ayur Health" />
+        <!-- Footer logo: webp inverted white -->
+        <img src="Images/logo.webp" alt="Ayur Health" style="height:70px;width:auto;object-fit:contain;filter:brightness(0) invert(1);" />
         <p>Leading Ayurvedic Medical Centre in Dubai. Authentic Kerala traditions, personalised clinical care, DHA-licensed excellence.</p>
         <div class="social-row">
           <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
@@ -2049,6 +2311,69 @@ footer {
   </button>
 </div>
 
+<!-- ══════════════════════════════════════════════
+     BOOKING POPUP MODAL
+══════════════════════════════════════════════ -->
+<div class="popup-overlay" id="booking-popup" role="dialog" aria-modal="true" aria-label="Book Appointment">
+  <div class="popup-box">
+    <div class="popup-header">
+      <h3>Book Your Consultation</h3>
+      <p>Our team will confirm your appointment within 2 hours.</p>
+      <button class="popup-close" onclick="closeBooking()" aria-label="Close">
+        <i data-lucide="x"></i>
+      </button>
+    </div>
+    <div class="popup-body">
+      <form class="popup-form" id="booking-form" onsubmit="handleBooking(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="b-name">Full Name</label>
+            <input type="text" id="b-name" placeholder="Your full name" required />
+          </div>
+          <div class="form-group">
+            <label for="b-phone">Phone / WhatsApp</label>
+            <input type="tel" id="b-phone" placeholder="+971 55 000 0000" required />
+          </div>
+        </div>
+        <div class="form-group">
+          <label for="b-email">Email Address</label>
+          <input type="email" id="b-email" placeholder="your@email.com" />
+        </div>
+        <div class="form-group">
+          <label for="b-treatment">Treatment of Interest</label>
+          <select id="b-treatment">
+            <option value="">Select a therapy...</option>
+            <option>General Consultation / Nadi Pariksha</option>
+            <option>Panchakarma Detox Programme</option>
+            <option>Abhyangam (Full Body Oil Massage)</option>
+            <option>Shirodhara (Stress & Sleep)</option>
+            <option>Kati Vasti (Back Pain)</option>
+            <option>Women's Health Programme</option>
+            <option>Skin & Hair Care</option>
+            <option>Other / Not Sure Yet</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="b-date">Preferred Date</label>
+          <input type="date" id="b-date" />
+        </div>
+        <div class="form-group">
+          <label for="b-msg">Any Additional Notes</label>
+          <textarea id="b-msg" placeholder="Brief description of your health concern..."></textarea>
+        </div>
+        <button type="submit" class="popup-submit">
+          <i data-lucide="calendar-check"></i>
+          Confirm Appointment Request
+        </button>
+      </form>
+      <a href="https://wa.me/971551292579?text=Hi%2C%20I%27d%20like%20to%20book%20a%20consultation%20at%20Ayur%20Health." class="popup-wa" target="_blank" rel="noopener">
+        <i data-lucide="message-circle"></i>
+        Or book instantly via WhatsApp
+      </a>
+    </div>
+  </div>
+</div>
+
 <!-- ════════════════════════════════════
      SCRIPTS
 ════════════════════════════════════ -->
@@ -2059,8 +2384,8 @@ document.addEventListener('DOMContentLoaded', () => {
   lucide.createIcons();
 
   /* ── Sticky header ── */
-  const header  = document.getElementById('site-header');
-  const fabTop  = document.getElementById('fab-top');
+  const header = document.getElementById('site-header');
+  const fabTop = document.getElementById('fab-top');
 
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
@@ -2068,7 +2393,65 @@ document.addEventListener('DOMContentLoaded', () => {
     fabTop.classList.toggle('show',    y > 500);
   }, { passive: true });
 
-  /* ── Scroll-reveal (IntersectionObserver) ── */
+  /* ── Hamburger / mobile nav ── */
+  const hamBtn    = document.getElementById('ham-btn');
+  const navClose  = document.getElementById('nav-close-btn');
+  const primaryNav = document.querySelector('nav[aria-label="Primary"]');
+
+  function openNav() {
+    primaryNav.classList.add('open');
+    navClose.classList.add('show');
+    hamBtn.setAttribute('aria-expanded', 'true');
+    document.body.style.overflow = 'hidden';
+    lucide.createIcons(); // re-render icons inside drawer
+  }
+  function closeNav() {
+    primaryNav.classList.remove('open');
+    navClose.classList.remove('show');
+    hamBtn.setAttribute('aria-expanded', 'false');
+    document.body.style.overflow = '';
+  }
+
+  if (hamBtn)   hamBtn.addEventListener('click', openNav);
+  if (navClose) navClose.addEventListener('click', closeNav);
+
+  // Close drawer when any nav link is clicked
+  primaryNav.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', closeNav);
+  });
+
+  /* ── Booking popup ── */
+  const popup = document.getElementById('booking-popup');
+
+  window.openBooking = function() {
+    popup.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    lucide.createIcons();
+  };
+  window.closeBooking = function() {
+    popup.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+  // Close on overlay click
+  popup.addEventListener('click', e => {
+    if (e.target === popup) closeBooking();
+  });
+  // Close on Escape
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape') { closeBooking(); closeNav(); }
+  });
+
+  window.handleBooking = function(e) {
+    e.preventDefault();
+    const name = document.getElementById('b-name').value;
+    const phone = document.getElementById('b-phone').value;
+    const treatment = document.getElementById('b-treatment').value || 'General Consultation';
+    const msg = `Hi, I'd like to book a consultation at Ayur Health.%0AName: ${encodeURIComponent(name)}%0APhone: ${encodeURIComponent(phone)}%0ATreatment: ${encodeURIComponent(treatment)}`;
+    window.open(`https://wa.me/971551292579?text=${msg}`, '_blank');
+    closeBooking();
+  };
+
+  /* ── Scroll-reveal ── */
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
@@ -2077,7 +2460,6 @@ document.addEventListener('DOMContentLoaded', () => {
       }
     });
   }, { threshold: 0.1 });
-
   document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
 
   /* ── FAQ accordion ── */
@@ -2085,11 +2467,7 @@ document.addEventListener('DOMContentLoaded', () => {
     btn.addEventListener('click', () => {
       const item   = btn.closest('.faq-item');
       const isOpen = item.classList.contains('open');
-
-      // close all
       document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
-
-      // open clicked if it was closed
       if (!isOpen) item.classList.add('open');
     });
   });
@@ -2097,13 +2475,12 @@ document.addEventListener('DOMContentLoaded', () => {
   /* ── Smooth anchor scroll ── */
   document.querySelectorAll('a[href^="#"]').forEach(a => {
     a.addEventListener('click', e => {
-      const hash   = a.getAttribute('href');
+      const hash = a.getAttribute('href');
       if (!hash || hash === '#') return;
       const target = document.querySelector(hash);
       if (!target) return;
       e.preventDefault();
-      const offset = parseInt(getComputedStyle(document.documentElement).getPropertyValue('--nav-h') || '80', 10);
-      window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+      window.scrollTo({ top: target.offsetTop - 80, behavior: 'smooth' });
     });
   });
 
