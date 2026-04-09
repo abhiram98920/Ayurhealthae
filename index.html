@@ -378,7 +378,19 @@ nav[aria-label="Primary"] {
 .mega-visual { background:var(--sand); border-radius:var(--r-sm); padding:20px; }
 .mega-visual img { border-radius:8px; height:100px; object-fit:cover; margin-bottom:12px; }
 .mega-visual p { font-size:.82rem; color:var(--ink-muted); margin-bottom:12px; }
-.link-gold { color:var(--gold); font-weight:700; font-size:.8rem; display:inline-flex; align-items:center; gap:6px; }
+.link-gold {
+  color: var(--gold) !important;   /* override any inherited nav white */
+  font-weight: 700;
+  font-size: .85rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-transform: none !important;
+  letter-spacing: 0 !important;
+  transition: gap var(--dur) var(--ease);
+}
+.link-gold:hover { gap: 10px; }
+.link-gold i { width:14px; height:14px; }
 
 /* Actions — fixed right zone */
 .nav-actions {
@@ -635,7 +647,7 @@ nav[aria-label="Primary"] {
 .apoint p  { font-size:.83rem; color:var(--ink-muted); line-height:1.5; }
 
 /* =========================================================
-   THERAPY CARDS (3 col)
+   THERAPY CAROUSEL
 ========================================================= */
 .therapies-section { background: var(--sand); }
 .section-hdr {
@@ -648,13 +660,24 @@ nav[aria-label="Primary"] {
 }
 .section-hdr .body-text { margin-bottom:0; }
 
-.cards-grid {
-  display: grid;
-  grid-template-columns: repeat(3,1fr);
-  gap: 28px;
+/* Carousel wrapper */
+.carousel-wrap {
+  position: relative;
 }
-
+.carousel-track-outer {
+  overflow: hidden;
+  border-radius: var(--r-md);
+}
+.cards-grid {
+  display: flex;
+  gap: 28px;
+  transition: transform .55s cubic-bezier(.22,1,.36,1);
+  will-change: transform;
+}
+/* Each card: fixed width so 3 show at once */
 .t-card {
+  flex: 0 0 calc((100% - 56px) / 3); /* (100% - 2 gaps) / 3 */
+  min-width: 0;
   background: var(--white);
   border-radius: var(--r-md);
   overflow: hidden;
@@ -667,6 +690,66 @@ nav[aria-label="Primary"] {
 .t-card:hover {
   transform: translateY(-8px) scale(1.01);
   box-shadow: var(--shadow-md);
+}
+
+/* Carousel navigation arrows */
+.carousel-nav {
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  margin-top: 36px;
+}
+.carousel-btn {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  border: 2px solid var(--green-800);
+  background: var(--white);
+  color: var(--green-800);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), color var(--dur) var(--ease), transform var(--dur) var(--ease);
+  box-shadow: var(--shadow-xs);
+}
+.carousel-btn:hover {
+  background: var(--green-800);
+  color: var(--white);
+  transform: scale(1.08);
+}
+.carousel-btn i { width:18px; height:18px; }
+.carousel-btn:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  transform: none;
+}
+/* Carousel dots */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 20px;
+}
+.c-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(10,61,48,.18);
+  cursor: pointer;
+  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
+}
+.c-dot.active {
+  background: var(--gold);
+  transform: scale(1.35);
+}
+
+/* Mobile: show 1 card */
+@media (max-width: 900px) {
+  .t-card { flex: 0 0 calc(100% - 56px); }
+}
+@media (max-width: 640px) {
+  .t-card { flex: 0 0 100%; }
 }
 
 .t-card-img {
@@ -768,9 +851,21 @@ nav[aria-label="Primary"] {
   transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
   box-shadow: var(--shadow-xs);
 }
-.tl-circle i { width:26px; height:26px; color:var(--gold); transition: color var(--dur) var(--ease); }
-.tl-step:hover .tl-circle { background:var(--green-800); border-color:var(--green-800); }
-.tl-step:hover .tl-circle i { color:var(--white); }
+/* Lucide icons in circle: use stroke via currentColor */
+.tl-circle i {
+  width: 26px;
+  height: 26px;
+  color: var(--gold);
+  transition: color var(--dur) var(--ease);
+}
+.tl-step:hover .tl-circle {
+  background: var(--green-800);
+  border-color: var(--green-800);
+}
+.tl-step:hover .tl-circle i {
+  color: var(--gold) !important;    /* gold on dark bg = premium look */
+  stroke: var(--gold);              /* belt + suspenders for SVG */
+}
 .tl-step h4 { font-size:1rem; margin-bottom:8px; }
 .tl-step p  { font-size:.82rem; color:var(--ink-muted); line-height:1.5; padding:0 6px; }
 
@@ -1778,7 +1873,9 @@ footer {
       <a href="#cta" class="btn btn-outline-green">View All Treatments</a>
     </div>
 
-    <div class="cards-grid stagger">
+    <div class="carousel-wrap">
+      <div class="carousel-track-outer" id="therapy-outer">
+        <div class="cards-grid stagger" id="therapy-track">
 
       <article class="t-card">
         <div class="t-card-img">
@@ -1870,7 +1967,20 @@ footer {
         </div>
       </article>
 
-    </div><!-- /cards-grid -->
+        </div><!-- /cards-grid -->
+      </div><!-- /carousel-track-outer -->
+
+      <!-- Carousel controls -->
+      <div class="carousel-nav">
+        <button class="carousel-btn" id="therapy-prev" aria-label="Previous treatments" disabled>
+          <i data-lucide="arrow-left"></i>
+        </button>
+        <button class="carousel-btn" id="therapy-next" aria-label="Next treatments">
+          <i data-lucide="arrow-right"></i>
+        </button>
+      </div>
+      <div class="carousel-dots" id="therapy-dots"></div>
+    </div><!-- /carousel-wrap -->
   </div>
 </section>
 
@@ -2461,6 +2571,52 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }, { threshold: 0.1 });
   document.querySelectorAll('.reveal, .stagger').forEach(el => io.observe(el));
+
+  /* ── Therapy Carousel ── */
+  (function() {
+    const track   = document.getElementById('therapy-track');
+    const outer   = document.getElementById('therapy-outer');
+    const prevBtn = document.getElementById('therapy-prev');
+    const nextBtn = document.getElementById('therapy-next');
+    const dotsWrap = document.getElementById('therapy-dots');
+    if (!track || !outer) return;
+
+    const cards      = Array.from(track.querySelectorAll('.t-card'));
+    const visibleCnt = window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    const totalSlides = Math.ceil(cards.length / visibleCnt);
+    let   current    = 0;
+
+    /* build dots */
+    for (let i = 0; i < totalSlides; i++) {
+      const dot = document.createElement('span');
+      dot.className = 'c-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => goTo(i));
+      dotsWrap.appendChild(dot);
+    }
+
+    function cardWidth() {
+      const gap  = 28;
+      const vis  = window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+      return (outer.offsetWidth + gap) / vis;
+    }
+
+    function goTo(idx) {
+      current = Math.max(0, Math.min(idx, totalSlides - 1));
+      track.style.transform = `translateX(-${current * cardWidth() * visibleCnt}px)`;
+      prevBtn.disabled = current === 0;
+      nextBtn.disabled = current === totalSlides - 1;
+      dotsWrap.querySelectorAll('.c-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
+
+    /* recalc on resize */
+    window.addEventListener('resize', () => goTo(current), { passive: true });
+    lucide.createIcons();
+  })();
 
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-trigger').forEach(btn => {
