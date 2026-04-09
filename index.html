@@ -260,7 +260,7 @@ h1,h2,h3,h4 {
 }
 /* default: full colour webp (shows over hero bg) */
 .nav-logo .logo-default {
-  height: 70px;
+  height: 46px; /* Made smaller as requested */
   width: auto;
   object-fit: contain;
   display: block;
@@ -280,7 +280,7 @@ h1,h2,h3,h4 {
 
 /* ── Hamburger toggle (hidden on desktop) ── */
 .ham-btn {
-  display: none;
+  display: none !important;
   background: none;
   border: none;
   cursor: pointer;
@@ -291,7 +291,10 @@ h1,h2,h3,h4 {
 .ham-btn i { width: 26px; height: 26px; }
 
 /* nav-close-btn: hidden by default (shown only via JS on mobile) */
-.nav-close-btn { display: none; }
+.nav-close-btn { display: none !important; }
+
+/* Mobile Book Now (hidden on desktop) */
+.mobile-book-btn { display: none; }
 
 /* Nav — centred via margin auto on both sides */
 nav[aria-label="Primary"] {
@@ -1184,7 +1187,6 @@ footer {
 .footer-brand img {
   height: 52px;
   width: auto;
-  filter: brightness(0) invert(1);
   margin-bottom: 18px;
 }
 .footer-brand p { font-size:.88rem; line-height:1.7; margin-bottom:22px; }
@@ -1472,7 +1474,7 @@ footer {
 /* ── MOBILE NAV ── */
 @media (max-width: 900px) {
   /* show hamburger, hide desktop nav */
-  .ham-btn { display: flex; }
+  .ham-btn { display: flex !important; }
   nav[aria-label="Primary"] { display: none; }
   .nav-phone { display: none; }
   .nav-actions .btn { display: none; }
@@ -1521,7 +1523,7 @@ footer {
     cursor: pointer;
     z-index: 201;
   }
-  .nav-close-btn.show { display: flex; }
+  .nav-close-btn.show { display: flex !important; }
   .nav-close-btn i { width:22px; height:22px; }
 
   /* mobile Book Now at bottom of drawer */
