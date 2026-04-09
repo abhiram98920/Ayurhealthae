@@ -1,0 +1,1963 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ayur Health | Premium Ayurveda Medical Centre Dubai</title>
+  <link rel="icon" type="image/svg+xml" href="Images/logo.svg">
+  
+  <!-- Fonts: Outfit (Body) & Cormorant Garamond (Serif) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Swiper.js CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  
+  <!-- Icons: Lucide via CDN -->
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+
+  <style>
+    /* ============================================================
+       DESIGN TOKENS & RESET
+    ============================================================ */
+    :root {
+      /* ... same variables ... */
+      --teal: #1B5C5C;
+      --teal-dark: #0F3838;
+      --teal-pale: #F0F7F7;
+      --gold: #C9A87C;
+      --gold-dark: #A68B63;
+      --gold-light: #D4B896;
+      --gold-pale: #F9F5F0;
+      --beige: #F5F1EB;
+      --white: #FFFFFF;
+      --text-dark: #1A1A1A;
+      --text-mid: #4A4A4A;
+      --text-muted: #7A7A7A;
+      --border: #E5E0D8;
+      
+      --ff-sans: 'Outfit', sans-serif;
+      --ff-serif: 'Cormorant Garamond', serif;
+      
+      --transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      --shadow-sm: 0 4px 20px rgba(0,0,0,0.03);
+      --shadow-md: 0 10px 30px rgba(27,92,92,0.08);
+      --shadow-lg: 0 20px 50px rgba(27,92,92,0.12);
+      
+      --radius-sm: 8px;
+      --radius-md: 16px;
+      --radius-lg: 24px;
+      --radius-xl: 40px;
+    }
+
+    * { margin:0; padding:0; box-sizing:border-box; -webkit-font-smoothing: antialiased; }
+    html { scroll-behavior: smooth; }
+    body { 
+      font-family: var(--ff-sans); 
+      background-color: var(--white); 
+      color: var(--text-dark); 
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+    
+    ul { list-style: none; }
+    a { text-decoration: none; color: inherit; }
+    img { max-width: 100%; display: block; }
+    
+    section { position: relative; width: 100%; padding: 80px 5%; overflow: hidden; } /* Added overflow hidden for watermarks */
+    #hero { padding: 0; margin-top: 0; } /* Hero must be full width */
+    
+    .bg-watermark {
+      position: relative;
+    }
+    .bg-watermark::after {
+      content: '';
+      position: absolute;
+      bottom: -100px;
+      right: -100px;
+      width: 600px;
+      height: 600px;
+      background: url('Images/logo.svg') no-repeat center center;
+      background-size: contain;
+      opacity: 0.04;
+      pointer-events: none;
+      z-index: 0;
+    }
+    .bg-watermark-left::after {
+      left: -100px;
+      right: auto;
+    }
+
+    /* ============================================================
+       TYPOGRAPHY SYSTEM
+    ============================================================ */
+    .section-label {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-dark);
+      margin-bottom: 20px;
+      position: relative;
+      padding-left: 45px;
+    }
+    .section-label::before {
+      content: '';
+      position: absolute;
+      left: 0; top: 50%;
+      width: 35px; height: 1px;
+      background: var(--gold);
+    }
+    .section-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      font-weight: 500;
+      color: var(--teal-dark);
+      line-height: 1.1;
+      margin-bottom: 24px;
+    }
+    .section-title em { font-style: italic; color: var(--gold); }
+    .section-body { font-size: 1.1rem; color: var(--text-mid); max-width: 700px; }
+
+    /* ============================================================
+       BUTTONS
+    ============================================================ */
+    .btn-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: var(--teal);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: var(--teal-dark);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+    .btn-primary:hover::before { width: 100%; }
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 35px rgba(27,92,92,0.3);
+    }
+    .btn-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 15px 32px;
+      background: transparent;
+      color: var(--teal);
+      border-radius: var(--radius-xl);
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      border: 2px solid var(--teal);
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+    }
+    .btn-secondary::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: var(--teal);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+    .btn-secondary:hover::before { width: 100%; }
+    .btn-secondary:hover {
+      color: white;
+      transform: translateY(-4px);
+    }
+    .btn-gold, .btn-primary, .pkg-card-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--gold) 0%, var(--gold-dark) 100%);
+      color: var(--white);
+      border-radius: var(--radius-xl);
+      font-family: var(--ff-sans);
+      font-size: 0.95rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      border: none;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      box-shadow: 0 4px 20px rgba(201,168,124,0.35);
+      cursor: pointer;
+    }
+    .btn-gold::before, .btn-primary::before, .pkg-card-btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 0; height: 100%;
+      background: rgba(255,255,255,0.2);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: -1;
+    }
+    .btn-gold:hover::before, .btn-primary:hover::before, .pkg-card-btn:hover::before { width: 100%; }
+    .btn-gold:hover, .btn-primary:hover, .pkg-card-btn:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 0 15px 40px rgba(201,168,124,0.5);
+      color: white;
+    }
+
+    /* ============================================================
+       FLOATING ACTIONS
+    ============================================================ */
+    #floating-actions {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .float-btn {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.15);
+      transition: var(--transition);
+    }
+    .float-call { background: var(--teal); }
+    .float-whatsapp { background: #25D366; }
+    .float-btn:hover { transform: scale(1.1) rotate(5deg); }
+
+    /* ============================================================
+       HEADER / NAVIGATION
+    ============================================================ */
+    #site-header {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 1000;
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      padding: 0 5%;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3) 0%, transparent 100%); /* Added dark fade for menu visibility */
+    }
+    #site-header.scrolled {
+      background: var(--teal);
+      border-bottom: 1px solid var(--teal-dark);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.15);
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start; /* Changed to flex-start to control nav centering manually */
+      height: 95px;
+      max-width: 1400px;
+      margin: 0 auto;
+      transition: height 0.4s ease;
+      position: relative;
+    }
+    #site-header.scrolled .header-inner {
+      height: 75px;
+    }
+    .logo-wrap {
+      flex: 0 0 auto;
+      z-index: 10;
+      padding: 5px 0; /* Removed background box to fix broken design */
+      transition: all 0.3s;
+    }
+    .logo-wrap img {
+      height: 62px;
+      width: auto;
+      display: block;
+      transition: height 0.4s ease, filter 0.4s ease;
+    }
+    #site-header:not(.scrolled) .logo-wrap img {
+      filter: brightness(0) invert(1);
+    }
+    #site-header.scrolled .logo-wrap img {
+      height: 52px;
+      filter: none;
+    }
+    #site-header.scrolled .logo-wrap {
+      background: transparent;
+    }
+    
+    nav {
+      flex: 1; /* Makes nav take available space */
+      display: flex;
+      justify-content: center; /* Centers the menu in the middle */
+    }
+    nav ul { display: flex; gap: 15px; align-items: center; } /* Increased gap */
+    nav ul li { position: relative; }
+    nav ul li a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: white;
+      padding: 10px 18px;
+      border-radius: 100px;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      white-space: nowrap;
+    }
+    #site-header.scrolled nav ul li a {
+      color: white;
+    }
+    nav ul li a:hover {
+      background: rgba(255,255,255,0.15);
+    }
+    #site-header.scrolled nav ul li a:hover {
+      background: rgba(255,255,255,0.1);
+      color: var(--gold-light);
+    }
+
+    /* MEGA MENU */
+    .has-dropdown:hover .mega-menu {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+    .mega-menu {
+      position: absolute;
+      top: 100%;
+      left: 0; /* Align to the start of the menu item */
+      transform: translateY(20px);
+      width: 500px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      box-shadow: 0 20px 80px rgba(0,0,0,0.15);
+      border: 1px solid var(--border);
+      padding: 30px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+      z-index: 1001;
+    }
+    .mega-menu-col-title {
+      font-family: var(--ff-serif);
+      font-size: 1.1rem;
+      color: var(--teal);
+      margin-bottom: 15px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--gold-pale);
+      display: block;
+    }
+    .mega-menu-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 8px 0;
+      font-size: 0.85rem;
+      color: var(--text-mid) !important;
+      transition: all 0.3s ease;
+      background: none !important;
+    }
+    .mega-menu-link:hover {
+      color: var(--teal) !important;
+      transform: translateX(5px);
+    }
+    .mega-menu-link i { font-size: 1rem; color: var(--gold); }
+
+    .header-cta { 
+      display: flex; 
+      align-items: center; 
+      gap: 30px; 
+      flex: 0 0 auto;
+      z-index: 10;
+    }
+    .header-phone {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      transition: color 0.3s;
+    }
+    #site-header.scrolled .header-phone {
+      color: white;
+    }
+    .header-phone i {
+      font-size: 1.2rem;
+      color: var(--gold-light);
+    }
+    #menu-toggle { display: none; }
+    .nav-arrow { font-size: 0.7rem; transition: transform 0.3s; }
+    .has-dropdown:hover .nav-arrow { transform: rotate(180deg); }
+
+    /* ============================================================
+       HERO SLIDER
+    ============================================================ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      width: 100%;
+      overflow: hidden;
+    }
+    .swiper { width: 100%; height: 100%; }
+    .swiper-slide { position: relative; overflow: hidden; }
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      transform: scale(1.1);
+      transition: transform 8s ease;
+    }
+    .swiper-slide-active .hero-bg {
+      transform: scale(1);
+    }
+    .hero-bg img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center;
+    }
+    /* LUXURY GOLD OVERLAY */
+    .hero-bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        110deg,
+        rgba(27,92,92,0.85) 0%,
+        rgba(201,168,124,0.3) 60%,
+        rgba(201,168,124,0.1) 100%
+      );
+    }
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 0 5%;
+      max-width: 1400px;
+      margin: 0 auto;
+      width: 100%;
+      color: white;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(201,168,124,0.25);
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 100px;
+      padding: 10px 24px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 30px;
+      backdrop-filter: blur(10px);
+      width: fit-content;
+      transform: translateY(30px);
+      opacity: 0;
+      transition: all 0.8s 0.2s ease;
+    }
+    .swiper-slide-active .hero-eyebrow { transform: translateY(0); opacity: 1; }
+    
+    .hero-title {
+      font-family: var(--ff-serif);
+      font-size: clamp(3rem, 8vw, 6.5rem);
+      font-weight: 400;
+      line-height: 1.05;
+      margin-bottom: 30px;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s 0.4s ease;
+    }
+    .swiper-slide-active .hero-title { transform: translateY(0); opacity: 1; }
+    
+    .hero-title em {
+      font-style: italic;
+      color: var(--gold-light);
+    }
+    .hero-desc {
+      font-size: clamp(1.1rem, 1.8vw, 1.25rem);
+      color: rgba(255,255,255,0.9);
+      max-width: 600px;
+      line-height: 1.8;
+      margin-bottom: 45px;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s 0.6s ease;
+    }
+    .swiper-slide-active .hero-desc { transform: translateY(0); opacity: 1; }
+    
+    .hero-actions {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      transform: translateY(40px);
+      opacity: 0;
+      transition: all 0.8s 0.8s ease;
+    }
+    .swiper-slide-active .hero-actions { transform: translateY(0); opacity: 1; }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 40px;
+      left: 5%;
+      display: flex;
+      gap: 60px;
+      z-index: 10;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+    @media (max-height: 800px) {
+      .hero-stats { display: none; } /* Hide stats on short screens to prevent overlap */
+      .hero-title { font-size: 3.5rem; }
+    }
+    .hero-stat-num {
+      font-family: var(--ff-serif);
+      font-size: 3.5rem;
+      font-weight: 600;
+      color: var(--gold-light);
+      line-height: 1;
+    }
+    .hero-stat-label {
+      font-size: 0.85rem;
+      color: rgba(255,255,255,0.7);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-top: 8px;
+    }
+    .hero-scroll-btn {
+      position: absolute;
+      bottom: 40px;
+      right: 5%;
+      width: 100px;
+      height: 100px;
+      border: 1px solid rgba(255,255,255,0.3);
+      border-radius: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: white;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      transition: all 0.4s ease;
+      z-index: 10;
+      cursor: pointer;
+    }
+    .hero-scroll-btn:hover {
+      background: var(--gold);
+      border-color: var(--gold);
+      transform: translateY(-5px);
+    }
+    .hero-scroll-btn svg { width: 20px; height: 20px; animation: bounce 2s infinite; }
+
+    /* ============================================================
+       MARQUEE STRIP
+    ============================================================ */
+    #marquee-strip {
+      padding: 24px 0;
+      background: var(--teal-dark);
+      color: var(--gold-light);
+      overflow: hidden;
+      border-top: 1px solid rgba(201,168,124,0.3);
+      border-bottom: 1px solid rgba(201,168,124,0.3);
+    }
+    .marquee-track {
+      display: flex;
+      white-space: nowrap;
+      animation: marquee 30s linear infinite;
+      gap: 60px;
+    }
+    .marquee-item {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+    }
+    .marquee-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--gold);
+      border-radius: 50%;
+    }
+
+    /* ============================================================
+       ABOUT SECTION
+    ============================================================ */
+    #about {
+      padding: 60px 5%; /* Reduced padding */
+      background: var(--white);
+    }
+    .about-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .about-image-wrap {
+      position: relative;
+    }
+    .about-img-main {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-accent {
+      position: absolute;
+      bottom: -20px;
+      right: -20px;
+      width: 45%;
+      border-radius: var(--radius-md);
+      border: 6px solid var(--white);
+      box-shadow: var(--shadow-lg);
+    }
+    .about-img-badge {
+      position: absolute;
+      top: 20px;
+      left: 20px;
+      background: var(--gold);
+      color: white;
+      padding: 15px 20px;
+      border-radius: var(--radius-md);
+      text-align: center;
+      box-shadow: var(--shadow-md);
+      z-index: 2;
+    }
+    .badge-num { font-size: 1.8rem; font-weight: 700; font-family: var(--ff-serif); line-height: 1; }
+    .badge-label { font-size: 0.6rem; text-transform: uppercase; letter-spacing: 0.1em; margin-top: 2px; }
+    
+    .about-points {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+      margin: 32px 0;
+    }
+    .about-point {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 0; /* Removed boxes */
+      background: transparent;
+      border: none;
+      transition: all 0.4s ease;
+    }
+    .about-point-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--gold-pale);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      color: var(--gold);
+    }
+    .about-point:hover .about-point-icon {
+      background: var(--teal);
+      color: white;
+    }
+    .about-point-text { font-size: 1rem; font-weight: 600; color: var(--teal-dark); line-height: 1.2; }
+
+    /* ============================================================
+       VALUES / CORE PRINCIPLES
+    ============================================================ */
+    #values {
+      padding: 100px 5%;
+      background: var(--gold-pale);
+    }
+    .values-inner { max-width: 1400px; margin: 0 auto; text-align: center; }
+    .values-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      margin-top: 60px;
+    }
+    .value-card {
+      background: var(--white);
+      padding: 50px 30px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+    }
+    .value-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .value-icon { font-size: 2.5rem; margin-bottom: 24px; display: block; }
+    .value-title { font-family: var(--ff-serif); font-size: 1.6rem; color: var(--teal-dark); margin-bottom: 12px; }
+    .value-desc { font-size: 0.9rem; color: var(--text-mid); }
+
+    /* ============================================================
+       HEALING JOURNEY (TREATMENT STEPS)
+    ============================================================ */
+    #journey {
+      padding: 80px 5%;
+      background: var(--white);
+      position: relative;
+    }
+    /* ... journey styles ... */
+    .step-card.active .step-circle {
+      transform: scale(1.1);
+      border-color: var(--teal);
+      background: var(--teal-pale);
+    }
+    .step-card.active .step-num {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+    .step-card.active .step-icon-inner {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+    .journey-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .journey-header {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px;
+    }
+    .journey-steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 30px;
+      position: relative;
+    }
+    .journey-steps::before {
+      content: '';
+      position: absolute;
+      top: 100px;
+      left: 10%;
+      right: 10%;
+      height: 2px;
+      background: linear-gradient(90deg, transparent, var(--gold) 20%, var(--gold) 80%, transparent);
+      z-index: 0;
+    }
+    .step-card {
+      text-align: center;
+      position: relative;
+      z-index: 2;
+    }
+    .step-num-wrap {
+      width: 200px;
+      height: 200px;
+      margin: 0 auto 40px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-slide {
+      position: relative;
+      height: 100vh;
+      width: 100vw; /* Forced full width */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-align: center;
+      background-size: cover;
+      background-position: center;
+      overflow: hidden;
+    }
+    .step-circle {
+      position: absolute;
+      inset: 0;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      transition: all 0.6s ease;
+    }
+    .step-card:hover .step-circle {
+      transform: scale(1.1);
+      border-color: var(--teal);
+      background: var(--teal-pale);
+    }
+    .step-num {
+      font-family: var(--ff-serif);
+      font-size: 4rem;
+      font-weight: 600;
+      color: var(--teal);
+      line-height: 1;
+      opacity: 0.15;
+      transition: all 0.6s ease;
+    }
+    .step-card:hover .step-num {
+      opacity: 1;
+      transform: translateY(-10px);
+    }
+    .step-icon-inner {
+      position: absolute;
+      width: 60px;
+      height: 60px;
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--gold);
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.6s ease;
+      border: 1px solid var(--border);
+    }
+    .step-card:hover .step-icon-inner {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+    .step-title {
+      font-family: var(--ff-serif);
+      font-size: 1.6rem;
+      font-weight: 500;
+      color: var(--teal-dark);
+      margin-bottom: 15px;
+    }
+    .step-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.7; max-width: 250px; margin: 0 auto; }
+
+    /* ============================================================
+       THERAPIES GRID
+    ============================================================ */
+    #therapies {
+      padding: 80px 5%;
+      background: var(--beige);
+    }
+    .therapies-inner { max-width: 1400px; margin: 0 auto; overflow: visible; }
+    .therapy-card {
+      background: var(--white);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: var(--transition);
+      height: 100%; /* Ensure equal height */
+      display: flex;
+      flex-direction: column;
+    }
+    .therapy-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); }
+    .th-img-wrap { height: 260px; overflow: hidden; position: relative; }
+    .th-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .therapy-card:hover .th-img-wrap img { transform: scale(1.1); }
+    .th-content { padding: 32px; }
+    .th-title { font-family: var(--ff-serif); font-size: 1.8rem; color: var(--teal-dark); margin-bottom: 12px; }
+    .th-desc { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 24px; line-height: 1.6; }
+    .th-link { font-size: 0.85rem; font-weight: 700; color: var(--gold-dark); text-transform: uppercase; letter-spacing: 0.1em; display: flex; align-items: center; gap: 8px; }
+
+    /* ============================================================
+       DIRECTOR'S MESSAGE
+    ============================================================ */
+    #director {
+      padding: 120px 5%;
+      background: var(--white);
+    }
+    .director-inner {
+      display: grid;
+      grid-template-columns: 40% 1fr;
+      gap: 100px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .director-image-wrap { position: relative; padding-bottom: 28px; }
+    .director-img {
+      width: 100%;
+      border-radius: var(--radius-lg);
+      aspect-ratio: 3/4;
+      object-fit: cover;
+      object-position: top center;
+      box-shadow: var(--shadow-lg);
+    }
+    .director-badge {
+      position: absolute;
+      bottom: 0;
+      left: 20px;
+      background: var(--gold);
+      color: white;
+      padding: 20px 30px;
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-md);
+      max-width: calc(100% - 40px);
+    }
+    .director-badge-title { font-size: 1rem; font-weight: 700; }
+    .director-badge-sub { font-size: 0.8rem; opacity: 0.9; margin-top: 4px; }
+    .director-quote { font-family: var(--ff-serif); font-size: 2rem; color: var(--teal); line-height: 1.3; margin-top: 32px; font-weight: 500; }
+    .director-sig { margin-top: 40px; }
+    .sig-name { font-family: var(--ff-serif); font-size: 1.8rem; font-weight: 600; color: var(--teal-dark); }
+    .sig-title { font-size: 0.9rem; color: var(--gold-dark); font-weight: 600; letter-spacing: 0.05em; margin-top: 4px; }
+
+    /* ============================================================
+       MISSION / VISION
+    ============================================================ */
+    #mission {
+      padding: 120px 5%;
+      background: linear-gradient(rgba(10, 32, 32, 0.85), rgba(10, 32, 32, 0.85)), url('Images/kerala_hero.png');
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+      color: white;
+    }
+    .mission-inner { max-width: 1200px; margin: 0 auto; position: relative; z-index: 2; }
+    .mission-grid {
+      display: flex;
+      background: rgba(255,255,255,0.03);
+      backdrop-filter: blur(15px);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .mission-card {
+      padding: 80px 60px;
+      flex: 1;
+      position: relative;
+      transition: var(--transition);
+    }
+    .mission-card:first-child { border-right: 1px solid rgba(255,255,255,0.1); }
+    .mission-card:hover { background: rgba(255,255,255,0.05); }
+    .mission-card i { 
+      font-size: 2.5rem; 
+      color: var(--gold); 
+      margin-bottom: 24px; 
+      display: block; 
+    }
+    .mission-card h3 { 
+      font-family: var(--ff-serif); 
+      font-size: 2.2rem; 
+      color: var(--white); 
+      margin-bottom: 20px; 
+      position: relative;
+    }
+    .mission-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: -10px; left: 0; width: 40px; height: 2px;
+      background: var(--gold);
+    }
+    .mission-card p { color: rgba(255,255,255,0.7); line-height: 1.8; font-size: 1.05rem; }
+
+    /* ============================================================
+       WELLNESS PACKAGES
+    ============================================================ */
+    #packages {
+      padding: 120px 5%;
+      background: var(--white);
+    }
+    .packages-inner { max-width: 1400px; margin: 0 auto; }
+    .packages-header { text-align: center; margin-bottom: 80px; }
+    .packages-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 40px;
+      align-items: center;
+    }
+    .package-card {
+      background: var(--white);
+      border-radius: var(--radius-lg);
+      padding: 0;
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      display: flex;
+      flex-direction: column;
+    }
+    .pkg-img-wrap {
+      height: 220px;
+      overflow: hidden;
+      position: relative;
+    }
+    .pkg-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .package-card:hover .pkg-img-wrap img { transform: scale(1.1); }
+    .pkg-content { padding: 40px 30px; }
+    .package-card:hover { transform: translateY(-15px); box-shadow: var(--shadow-lg); border-color: var(--gold-light); }
+    .package-card.featured {
+      background: var(--teal-dark);
+      color: white;
+      transform: scale(1.05);
+      z-index: 2;
+      border: none;
+    }
+    .package-card.featured .pkg-content { padding-top: 50px; }
+    .featured-label {
+      position: absolute;
+      top: 20px; right: 20px;
+      background: var(--gold);
+      color: white;
+      padding: 6px 15px;
+      border-radius: 100px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      z-index: 10;
+    }
+    .pkg-title { font-family: var(--ff-serif); font-size: 2.2rem; margin-bottom: 8px; }
+    .pkg-subtitle { font-size: 0.85rem; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 25px; color: var(--gold); }
+    .package-card.featured .pkg-subtitle { color: var(--gold-light); }
+    .pkg-price-wrap { display: flex; align-items: baseline; gap: 8px; margin-bottom: 10px; }
+    .pkg-currency { font-size: 1.2rem; font-weight: 500; }
+    .pkg-price { font-family: var(--ff-serif); font-size: 3rem; font-weight: 600; line-height: 1; }
+    .pkg-duration { font-size: 0.9rem; opacity: 0.7; margin-bottom: 30px; }
+    .pkg-features { display: flex; flex-direction: column; gap: 18px; margin-bottom: 40px; }
+    .pkg-feature { display: flex; align-items: center; gap: 12px; font-size: 0.95rem; }
+    .pkg-feature i { color: var(--gold); font-size: 1.1rem; }
+    .package-card.featured .pkg-feature i { color: var(--gold-light); }
+    .pkg-card-btn {
+      width: 100%;
+      text-transform: uppercase;
+      font-size: 0.85rem;
+      padding: 14px;
+    }
+    .package-card.featured .pkg-card-btn { background: var(--teal); }
+    .package-card.featured .pkg-card-btn:hover { background: var(--teal-dark); }
+
+    /* ============================================================
+       FACILITIES
+    ============================================================ */
+    #facilities {
+      padding: 120px 5%;
+      background: var(--beige);
+    }
+    .facilities-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 100px;
+      align-items: center;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .facilities-images {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto auto;
+      gap: 20px;
+    }
+    .fac-img {
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      box-shadow: var(--shadow-md);
+    }
+    .fac-img-tall { grid-row: 1 / span 2; aspect-ratio: 4/7; }
+    .fac-img-small { aspect-ratio: 1/1; }
+    .fac-img img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s ease; }
+    .fac-item {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+      padding: 30px;
+      background: var(--white);
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border);
+      transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+      margin-bottom: 20px;
+    }
+    .fac-item:hover { transform: translateX(10px) translateY(-5px); box-shadow: 0 15px 35px rgba(27,92,92,0.1); border-color: var(--gold-light); }
+    .fac-item-icon {
+      width: 65px;
+      height: 65px;
+      background: linear-gradient(135deg, var(--teal-pale), var(--gold-pale));
+      border-radius: 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      font-size: 1.8rem;
+      transition: all 0.5s ease;
+    }
+    .fac-item:hover .fac-item-icon { background: var(--teal); transform: rotate(-10deg); color: white; }
+    .fac-item-title { font-family: var(--ff-serif); font-size: 1.4rem; font-weight: 600; color: var(--teal-dark); margin-bottom: 5px; }
+    .fac-item-desc { font-size: 0.95rem; color: var(--text-mid); line-height: 1.6; }
+
+    /* CTA MODERN */
+    .contact-card-modern {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    .contact-modern-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 24px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-md);
+      transition: all 0.3s ease;
+    }
+    .contact-modern-item:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateX(10px);
+    }
+    .cmi-icon {
+      width: 50px; height: 50px;
+      background: var(--gold);
+      color: white;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .cmi-content h5 { color: white; font-size: 1.1rem; margin-bottom: 4px; }
+    .cmi-content p { color: rgba(255,255,255,0.7); font-size: 0.9rem; }
+
+    /* ============================================================
+       FOOTER
+    ============================================================ */
+    #site-footer {
+      background: #081A1A;
+      padding: 120px 5% 40px;
+      color: rgba(255,255,255,0.6);
+      position: relative;
+      overflow: hidden;
+    }
+    .footer-shape {
+      position: absolute;
+      top: 0; left: 0; width: 100%; line-height: 0;
+      color: var(--white);
+    }
+    .footer-shape svg { width: 100%; height: 80px; fill: currentColor; }
+    #site-footer::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 800px;
+      height: 800px;
+      background: url('Images/logo.svg') no-repeat center center;
+      background-size: contain;
+      opacity: 0.02;
+      filter: invert(1);
+      pointer-events: none;
+    }
+    .footer-inner {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1.5fr 1fr 1fr 1.5fr;
+      gap: 60px;
+      padding-bottom: 60px;
+    }
+    .footer-brand img { height: 62px; filter: brightness(1.2); margin-bottom: 24px; }
+    .footer-brand p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 24px; }
+    .footer-col h4 {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: white;
+      margin-bottom: 24px;
+    }
+    .footer-col ul li { margin-bottom: 12px; }
+    .footer-col ul li a { font-size: 0.95rem; transition: color 0.3s; }
+    .footer-col ul li a:hover { color: var(--gold); }
+    
+    .footer-newsletter p { font-size: 0.9rem; margin-bottom: 20px; }
+    .newsletter-form {
+      display: flex;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 100px;
+      padding: 6px;
+    }
+    .newsletter-form input {
+      background: none;
+      border: none;
+      padding: 10px 20px;
+      color: white;
+      flex: 1;
+      font-family: inherit;
+      outline: none;
+      font-size: 0.9rem;
+    }
+    .newsletter-submit {
+      width: 44px; height: 44px;
+      background: var(--gold);
+      color: white;
+      border-radius: 50%;
+      border: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    .newsletter-submit:hover { background: var(--teal); transform: scale(1.1); }
+
+    .footer-bottom {
+      border-top: 1px solid rgba(255,255,255,0.08);
+      padding: 30px 0;
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.85rem;
+    }
+    .footer-credit a { color: var(--gold); font-weight: 600; }
+
+    /* MODAL STYLES */
+    .modal {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: rgba(15, 56, 56, 0.85);
+      backdrop-filter: blur(10px);
+      z-index: 2000;
+      display: none;
+      align-items: center; justify-content: center;
+      padding: 20px;
+    }
+    .modal.active { display: flex; }
+    .modal-content {
+      background: var(--white);
+      width: 100%; max-width: 500px;
+      border-radius: var(--radius-lg);
+      padding: 40px;
+      position: relative;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.3);
+      animation: modalFadeUp 0.5s ease;
+    }
+    @keyframes modalFadeUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .modal-close {
+      position: absolute;
+      top: 20px; right: 20px;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      background: var(--gold-pale);
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; transition: 0.3s;
+    }
+    .modal-close:hover { background: var(--teal); color: white; }
+    .modal-title { font-family: var(--ff-serif); font-size: 2rem; color: var(--teal); margin-bottom: 20px; text-align: center; }
+    .form-group { margin-bottom: 20px; }
+    .form-group label { display: block; font-size: 0.85rem; font-weight: 600; margin-bottom: 8px; color: var(--text-dark); }
+    .form-group input, .form-group select {
+      width: 100%; padding: 12px 20px; border: 1px solid var(--border); border-radius: var(--radius-sm); font-family: inherit; font-size: 1rem;
+    }
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 0.8s ease;
+    }
+    .section-reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ============================================================
+       RESPONSIVE
+    ============================================================ */
+    @media (max-width: 1024px) {
+      .header-inner { height: 80px; }
+      #hero { height: auto; min-height: 100vh; }
+      .hero-stats { position: relative; bottom: 0; left: 0; padding: 40px 5%; background: var(--teal-dark); width: 100%; border-top: none; }
+      .about-inner, .director-inner, .facilities-inner, .mission-grid { grid-template-columns: 1fr; gap: 60px; }
+      .therapies-grid, .packages-grid { grid-template-columns: repeat(2, 1fr); }
+      .journey-steps { grid-template-columns: repeat(2, 1fr); }
+      .journey-steps::before { display: none; }
+      .footer-inner { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      nav, .header-cta .header-phone { display: none; }
+      #menu-toggle { display: block; background: none; border: none; color: white; cursor: pointer; }
+      #site-header.scrolled #menu-toggle { color: var(--teal); }
+      .therapies-grid, .packages-grid, .journey-steps, .footer-inner { grid-template-columns: 1fr; }
+      .hero-title { font-size: 3rem; }
+      .section-title { font-size: 2.5rem; }
+      .about-img-accent { display: none; }
+      .footer-bottom { flex-direction: column; gap: 15px; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- FLOATING ACTIONS -->
+  <div id="floating-actions">
+    <a href="tel:0551292579" class="float-btn float-call"><i data-lucide="phone"></i></a>
+    <a href="https://wa.me/971551292579" class="float-btn float-whatsapp"><i data-lucide="message-circle"></i></a>
+  </div>
+
+  <!-- SITE HEADER -->
+  <header id="site-header">
+    <div class="header-inner">
+      <a href="#" class="logo-wrap">
+        <img src="Images/logo.webp" alt="Ayur Health Logo" />
+      </a>
+
+      <nav>
+        <ul>
+          <li><a href="#" class="active">Home</a></li>
+          <li class="has-dropdown">
+            <a href="#about">About <i data-lucide="chevron-down" class="nav-arrow"></i></a>
+            <div class="mega-menu">
+              <div class="mega-menu-col">
+                <span class="mega-menu-col-title">Our Practice</span>
+                <a href="#about" class="mega-menu-link"><i data-lucide="award"></i> Clinical Care</a>
+                <a href="#director" class="mega-menu-link"><i data-lucide="user"></i> Director's Message</a>
+                <a href="#mission" class="mega-menu-link"><i data-lucide="target"></i> Mission & Vision</a>
+              </div>
+              <div class="mega-menu-col">
+                <span class="mega-menu-col-title">Our Center</span>
+                <a href="#facilities" class="mega-menu-link"><i data-lucide="hospital"></i> Facilities</a>
+                <a href="#faq" class="mega-menu-link"><i data-lucide="help-circle"></i> Care FAQ</a>
+              </div>
+            </div>
+          </li>
+          <li class="has-dropdown">
+            <a href="#therapies">Therapies <i data-lucide="chevron-down" class="nav-arrow"></i></a>
+            <div class="mega-menu">
+              <div class="mega-menu-col">
+                <span class="mega-menu-col-title">Core Treatments</span>
+                <a href="#therapies" class="mega-menu-link"><i data-lucide="sparkles"></i> Panchakarma</a>
+                <a href="#therapies" class="mega-menu-link"><i data-lucide="droplet"></i> Shirodhara</a>
+                <a href="#therapies" class="mega-menu-link"><i data-lucide="heart"></i> Abhyangam</a>
+              </div>
+              <div class="mega-menu-col">
+                <span class="mega-menu-col-title">Wellness Programs</span>
+                <a href="#packages" class="mega-menu-link"><i data-lucide="wind"></i> Stress Management</a>
+                <a href="#packages" class="mega-menu-link"><i data-lucide="coffee"></i> Detox Packages</a>
+                <a href="#packages" class="mega-menu-link"><i data-lucide="activity"></i> Weight Loss</a>
+              </div>
+            </div>
+          </li>
+          <li><a href="#conditions">Conditions</a></li>
+          <li><a href="#packages">Wellness</a></li>
+          <li><a href="#blogs">Blog</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-cta">
+        <a href="tel:0551292579" class="header-phone">
+          <i data-lucide="phone-call"></i>
+          <span>055 129 2579</span>
+        </a>
+        <a href="#cta-banner" class="btn-gold">Book Consultation</a>
+        <button id="menu-toggle"><i data-lucide="menu"></i></button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SLIDER SECTION -->
+    <section id="hero">
+      <div class="swiper hero-swiper">
+        <div class="swiper-wrapper">
+          <!-- Slide 1 -->
+          <div class="swiper-slide">
+            <div class="hero-bg">
+              <img src="Images/premium_center.png" alt="Clinical Ayurveda" />
+            </div>
+            <div class="hero-content">
+              <div class="hero-eyebrow">Authentic Ayurveda · Dubai, UAE</div>
+              <h1 class="hero-title">Ancient Wisdom, <br /><em>Modern Healing</em></h1>
+              <p class="hero-desc">Experience the purest traditions of Kerala Ayurveda at Dubai's most trusted Medical Centre. Personalized therapies rooted in 5,000 years of wisdom — crafted for your unique body.</p>
+              <div class="hero-actions">
+                <a href="#cta-banner" class="btn-gold">Book Free Consultation</a>
+                <a href="#therapies" class="btn-secondary" style="border-color: white; color: white;">Explore Therapies <i data-lucide="arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 2 -->
+          <div class="swiper-slide">
+            <div class="hero-bg">
+              <img src="Images/kerala_herbs.png" alt="Ayurvedic Herbs" />
+            </div>
+            <div class="hero-content">
+              <div class="hero-eyebrow">Natural Purity · Science Driven</div>
+              <h1 class="hero-title">Healing Through <br /><em>Nature's Essence</em></h1>
+              <p class="hero-desc">Our medicines and oils are prepared from the highest quality organic herbs, ensuring every drop carries the potent healing power of classical Ayurvedic formulations.</p>
+              <div class="hero-actions">
+                <a href="#cta-banner" class="btn-gold">Consult Our Doctors</a>
+                <a href="#packages" class="btn-secondary" style="border-color: white; color: white;">Our Wellness Plans <i data-lucide="arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+          <!-- Slide 3 -->
+          <div class="swiper-slide">
+            <div class="hero-bg">
+              <img src="Images/kerala_abhyangam.png" alt="Ayurvedic Massage" />
+            </div>
+            <div class="hero-content">
+              <div class="hero-eyebrow">Expert Care · Personalized Touch</div>
+              <h1 class="hero-title">Revitalize Your <br /><em>Mind & Body</em></h1>
+              <p class="hero-desc">From stress relief to chronic pain management, our specialized therapies are designed to restore your inner balance and lead you to a life of sustained wellness.</p>
+              <div class="hero-actions">
+                <a href="#cta-banner" class="btn-gold">Start Your Journey</a>
+                <a href="#facilities" class="btn-secondary" style="border-color: white; color: white;">View Our Center <i data-lucide="arrow-right"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="hero-stat-num" data-target="5000">0</div>
+          <div class="hero-stat-label">Years of Wisdom</div>
+        </div>
+        <div class="stat-item">
+          <div class="hero-stat-num" data-target="30" data-suffix="+">0</div>
+          <div class="hero-stat-label">Therapies Offered</div>
+        </div>
+        <div class="stat-item">
+          <div class="hero-stat-num" data-target="100" data-suffix="%">0</div>
+          <div class="hero-stat-label">Natural Healing</div>
+        </div>
+      </div>
+
+      <div class="hero-scroll-btn" id="scroll-trigger">
+        <i data-lucide="mouse"></i>
+        <span>Scroll</span>
+        <i data-lucide="chevron-down"></i>
+      </div>
+    </section>
+
+    <!-- MARQUEE STRIP -->
+    <section id="marquee-strip">
+      <div class="marquee-track">
+        <div class="marquee-item"><span class="marquee-dot"></span> ABHYANGA MASSAGE</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> KIZHI THERAPIES</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> WOMEN'S HEALTH</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> PAIN MANAGEMENT</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> STRESS & SLEEP</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> WEIGHT MANAGEMENT</div>
+        <!-- Repeat for continuous loop -->
+        <div class="marquee-item"><span class="marquee-dot"></span> ABHYANGA MASSAGE</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> KIZHI THERAPIES</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> WOMEN'S HEALTH</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> PAIN MANAGEMENT</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> STRESS & SLEEP</div>
+        <div class="marquee-item"><span class="marquee-dot"></span> WEIGHT MANAGEMENT</div>
+      </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="about" class="bg-watermark">
+      <div class="about-inner">
+        <div class="about-image-wrap">
+          <img src="Images/kerala_hero.png" alt="Clinical Setting" class="about-img-main" />
+          <div class="about-img-badge">
+            <div class="badge-num">15+</div>
+            <div class="badge-label">Years of clinical excellence</div>
+          </div>
+          <img src="Images/kerala_herbs.png" alt="Herbs" class="about-img-accent" />
+        </div>
+
+        <div class="about-text">
+          <div class="section-reveal">
+            <span class="section-label">About Ayur Health</span>
+            <h2 class="section-title">Where Ancient Ayurveda <br />Meets <em>Modern Clinical Care</em></h2>
+            <div class="section-body">
+              <p>At Ayur Health, we combine the ancient knowledge of Ayurveda with modern medical care. Our treatments are specially made to match your unique body type (Prakriti).</p>
+            </div>
+          </div>
+
+          <div class="about-points">
+            <div class="about-point">
+              <div class="about-point-icon"><i data-lucide="heart-pulse"></i></div>
+              <div class="about-point-text">Nadi Pariksha <br>Pulse Diagnosis</div>
+            </div>
+            <div class="about-point">
+              <div class="about-point-icon"><i data-lucide="user-check"></i></div>
+              <div class="about-point-text">Personalized <br>Prakriti Analysis</div>
+            </div>
+            <div class="about-point">
+              <div class="about-point-icon"><i data-lucide="sparkles"></i></div>
+              <div class="about-point-text">Authentic <br>Panchakarma</div>
+            </div>
+            <div class="about-point">
+              <div class="about-point-icon"><i data-lucide="shield-check"></i></div>
+              <div class="about-point-text">Women's Health <br>Specialist Care</div>
+            </div>
+          </div>
+
+          <a href="#journey" class="btn-primary">Begin Your Healing Journey <i data-lucide="arrow-right"></i></a>
+        </div>
+      </div>
+    </section>
+
+    <!-- HEALING JOURNEY SECTION -->
+    <section id="journey">
+      <div class="journey-inner">
+        <div class="journey-header">
+          <span class="section-label">Your Experience</span>
+          <h2 class="section-title">The Main Steps of <br /><em>Your Healing Journey</em></h2>
+          <p class="section-body" style="margin: 0 auto;">We have crafted a seamless, deeply caring pathway that takes you from consultation through to lasting wellness.</p>
+        </div>
+
+        <div class="journey-steps">
+          <div class="step-card">
+            <div class="step-num-wrap">
+              <div class="step-circle"></div>
+              <div class="step-num">01</div>
+              <div class="step-icon-inner"><i data-lucide="message-square"></i></div>
+            </div>
+            <h3 class="step-title">Detailed Consultation</h3>
+            <p class="step-desc">Our expert Vaidyas listen intently to your concerns and history.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-wrap">
+              <div class="step-circle"></div>
+              <div class="step-num">02</div>
+              <div class="step-icon-inner"><i data-lucide="search"></i></div>
+            </div>
+            <h3 class="step-title">Nadi Pariksha</h3>
+            <p class="step-desc">Pulse diagnosis reveals your unique Dosha balance.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-wrap">
+              <div class="step-circle"></div>
+              <div class="step-num">03</div>
+              <div class="step-icon-inner"><i data-lucide="sparkles"></i></div>
+            </div>
+            <h3 class="step-title">Personalized Therapies</h3>
+            <p class="step-desc">Authentic Panchakarma and curative therapies for your Prakriti.</p>
+          </div>
+          <div class="step-card">
+            <div class="step-num-wrap">
+              <div class="step-circle"></div>
+              <div class="step-num">04</div>
+              <div class="step-icon-inner"><i data-lucide="sun"></i></div>
+            </div>
+            <h3 class="step-title">Ongoing Wellness</h3>
+            <p class="step-desc">Lifestyle and diet guidance for sustained vitality.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- THERAPIES SECTION -->
+    <section id="therapies" class="bg-watermark bg-watermark-left">
+      <div class="therapies-inner">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 50px;">
+          <div class="section-reveal">
+            <span class="section-label">Our Treatments</span>
+            <h2 class="section-title">Specialized <em>Ayurvedic Therapies</em></h2>
+          </div>
+          <a href="#" class="btn-secondary">View All Treatments</a>
+        </div>
+
+        <div class="swiper therapies-swiper">
+          <div class="swiper-wrapper">
+            <div class="swiper-slide">
+              <div class="therapy-card">
+                <div class="th-img-wrap"><img src="Images/pizhichil.jpeg" alt="Panchakarma" /></div>
+                <div class="th-content">
+                  <h3 class="th-title">Panchakarma</h3>
+                  <p class="th-desc">The ultimate detoxification process to cleanse the body of deep-seated toxins and restore balance.</p>
+                  <a href="#" class="th-link">Learn More <i data-lucide="chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="therapy-card">
+                <div class="th-img-wrap"><img src="Images/shirodhara.jpeg" alt="Shirodhara" /></div>
+                <div class="th-content">
+                  <h3 class="th-title">Shirodhara</h3>
+                  <p class="th-desc">A continuous stream of warm medicated oil on the forehead, perfect for stress, anxiety, and sleep disorders.</p>
+                  <a href="#" class="th-link">Learn More <i data-lucide="chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="swiper-slide">
+              <div class="therapy-card">
+                <div class="th-img-wrap"><img src="Images/kerala_abhyangam.png" alt="Abhyangam" /></div>
+                <div class="th-content">
+                  <h3 class="th-title">Abhyangam</h3>
+                  <p class="th-desc">Full body massage with medicated oils, improving circulation, immunity, and skin health.</p>
+                  <a href="#" class="th-link">Learn More <i data-lucide="chevron-right"></i></a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="swiper-pagination therapies-pagination" style="position: static; margin-top: 30px;"></div>
+          <div class="swiper-button-next therapy-next" style="color: var(--teal); top: 50%; width: 40px; height: 40px; background: white; border-radius: 50%; box-shadow: var(--shadow-sm);"></div>
+          <div class="swiper-button-prev therapy-prev" style="color: var(--teal); top: 50%; width: 40px; height: 40px; background: white; border-radius: 50%; box-shadow: var(--shadow-sm);"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- DIRECTOR'S MESSAGE SECTION -->
+    <section id="director">
+      <div class="director-inner">
+        <div class="director-image-wrap">
+          <img src="Images/Dr Chitra.png" alt="Dr. Chitra" class="director-img" />
+          <div class="director-badge">
+            <div class="director-badge-title">Dr. Chitra</div>
+            <div class="director-badge-sub">Medical Director & Senior Consultant</div>
+          </div>
+        </div>
+        <div class="director-content">
+          <span class="section-label">Director's Message</span>
+          <h2 class="section-title">A Vision for <em>Holistic Health</em></h2>
+          <p class="director-quote">"Our mission is to bring the authentic healing traditions of Kerala to Dubai, providing a sanctuary where modern clinical standards meet ancient wisdom."</p>
+          <div class="section-body" style="margin-top: 24px;">
+            <p>At Ayur Health, we believe that true wellness is not just the absence of disease, but a state of complete physical, mental, and spiritual harmony.</p>
+          </div>
+          <div class="director-sig">
+            <div class="sig-name">Dr. Chitra Ramakrishnan</div>
+            <div class="sig-title">BAMS, MD (Ayurveda)</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- MISSION / VISION SECTION -->
+    <section id="mission">
+      <div class="mission-inner">
+        <div class="mission-grid">
+          <div class="mission-card">
+            <i data-lucide="target"></i>
+            <h3>Our Mission</h3>
+            <p>To provide high-quality, authentic Ayurvedic healthcare that integrates traditional wisdom with modern clinical excellence, helping our patients achieve sustainable wellbeing.</p>
+          </div>
+          <div class="mission-card">
+            <i data-lucide="eye"></i>
+            <h3>Our Vision</h3>
+            <p>To be the leading global center for Ayurvedic excellence, recognized for our commitment to purity, personalized care, and the successful treatment of chronic conditions.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WELLNESS PACKAGES SECTION -->
+    <section id="packages">
+      <div class="packages-inner">
+        <div class="packages-header">
+          <span class="section-label">Healing Packages</span>
+          <h2 class="section-title">Your Journey to <em>Total Wellness</em></h2>
+        </div>
+
+        <div class="packages-grid">
+          <div class="package-card">
+            <div class="pkg-img-wrap"><img src="Images/shirodhara.jpeg" alt="Go Calm" /></div>
+            <div class="pkg-content">
+              <span class="pkg-subtitle">Stress & Anxiety</span>
+              <h3 class="pkg-title">Go Calm</h3>
+              <div class="pkg-price-wrap"><span class="pkg-currency">AED</span> <span class="pkg-price">2,400</span></div>
+              <p class="pkg-duration">14-day program</p>
+              <div class="pkg-features">
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> 5 Shirodhara Sessions</div>
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> 5 Abhyangam Sessions</div>
+              </div>
+              <a href="#cta-banner" class="pkg-card-btn">Book Now</a>
+            </div>
+          </div>
+          <div class="package-card featured">
+            <span class="featured-label">Most Popular</span>
+            <div class="pkg-img-wrap"><img src="Images/pizhichil.jpeg" alt="Go Detox" /></div>
+            <div class="pkg-content">
+              <span class="pkg-subtitle">Panchakarma Detox</span>
+              <h3 class="pkg-title">Go Detox</h3>
+              <div class="pkg-price-wrap"><span class="pkg-currency">AED</span> <span class="pkg-price">2,700</span></div>
+              <p class="pkg-duration">12-day detox</p>
+              <div class="pkg-features">
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> Full Body Detox</div>
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> Herbal Medicine Kit</div>
+              </div>
+              <a href="#cta-banner" class="pkg-card-btn">Book Now</a>
+            </div>
+          </div>
+          <div class="package-card">
+            <div class="pkg-img-wrap"><img src="Images/udwarthanam.jpeg" alt="Go Slim" /></div>
+            <div class="pkg-content">
+              <span class="pkg-subtitle">Weight Loss</span>
+              <h3 class="pkg-title">Go Slim</h3>
+              <div class="pkg-price-wrap"><span class="pkg-currency">AED</span> <span class="pkg-price">3,500</span></div>
+              <p class="pkg-duration">Goal-based duration</p>
+              <div class="pkg-features">
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> 10 Udwarthanam Sessions</div>
+                <div class="pkg-feature"><i data-lucide="check-circle"></i> Diet Management</div>
+              </div>
+              <a href="#cta-banner" class="pkg-card-btn">Book Now</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FACILITIES SECTION -->
+    <section id="facilities">
+      <div class="facilities-inner">
+        <div class="facilities-images">
+          <div class="fac-img fac-img-tall"><img src="Images/kerala_hero.png" alt="Center" /></div>
+          <div class="fac-img fac-img-small"><img src="Images/kerala_herbs.png" alt="Herbs" /></div>
+          <div class="fac-img fac-img-small"><img src="Images/kerala_abhyangam.png" alt="Room" /></div>
+        </div>
+        <div class="facilities-content">
+          <span class="section-label">Our Facilities</span>
+          <h2 class="section-title">A Space <em>Designed for Healing</em></h2>
+          
+          <div class="fac-item">
+            <div class="fac-item-icon">🛋️</div>
+            <div class="fac-item-content">
+              <h4 class="fac-item-title">Private Treatment Rooms</h4>
+              <p class="fac-item-desc">Spacious, germ-free rooms with traditional wooden Dronis.</p>
+            </div>
+          </div>
+          <div class="fac-item">
+            <div class="fac-item-icon">🌿</div>
+            <div class="fac-item-content">
+              <h4 class="fac-item-title">Medicine Dispensary</h4>
+              <p class="fac-item-desc">High-quality Ayurvedic medicines and potent herbal oils.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA BANNER -->
+    <section id="cta-banner">
+      <div class="cta-inner">
+        <div class="cta-text">
+          <span class="section-label" style="color: var(--gold-light);">Join Our Wellness Family</span>
+          <h2 class="cta-title">Start Your Journey to <br /><em>Lasting Health</em></h2>
+          <p class="cta-desc">Book your detailed Prakriti consultation today and discover the root cause of your concerns. Experience authentic Kerala Ayurveda in the heart of Dubai.</p>
+          <div class="contact-actions" style="margin-top: 40px;">
+            <button class="btn-gold open-modal">Book Consultation Now</button>
+            <a href="https://wa.me/971551292579" class="btn-secondary" style="border-color:white; color:white;">Chat on WhatsApp</a>
+          </div>
+        </div>
+        <div class="contact-card-modern">
+          <div class="contact-modern-item">
+            <div class="cmi-icon"><i data-lucide="map-pin"></i></div>
+            <div class="cmi-content">
+              <h5>Our Location</h5>
+              <p>Jumeirah Road, Villa 12, Dubai, UAE</p>
+            </div>
+          </div>
+          <div class="contact-modern-item">
+            <div class="cmi-icon"><i data-lucide="clock"></i></div>
+            <div class="cmi-content">
+              <h5>Open Hours</h5>
+              <p>9:00 AM - 9:00 PM (Including Weekends)</p>
+            </div>
+          </div>
+          <div class="contact-modern-item">
+            <div class="cmi-icon"><i data-lucide="mail"></i></div>
+            <div class="cmi-content">
+              <h5>Contact Email</h5>
+              <p>appointments@ayurhealth.ae</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="booking-modal" class="modal">
+    <div class="modal-content">
+      <div class="modal-close"><i data-lucide="x"></i></div>
+      <h2 class="modal-title">Book Appointment</h2>
+      <form id="appointment-form">
+        <div class="form-group">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your Name" required>
+        </div>
+        <div class="form-group">
+          <label>Phone Number</label>
+          <input type="tel" placeholder="+971 -- --- ----" required>
+        </div>
+        <div class="form-group">
+          <label>Select Therapy</label>
+          <select required>
+            <option value="">Choose a treatment...</option>
+            <option>Panchakarma Detox</option>
+            <option>Shirodhara Therapy</option>
+            <option>Weight Loss Program</option>
+            <option>Clinical Consultation</option>
+          </select>
+        </div>
+        <button type="submit" class="btn-gold" style="width: 100%;">Submit Request</button>
+      </form>
+    </div>
+  </div>
+
+  <footer id="site-footer">
+    <div class="footer-shape">
+      <svg viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M1200 120L0 120L0 0L1200 120Z"></path>
+      </svg>
+    </div>
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="Images/logo.webp" alt="Ayur Health" />
+        <p>Leading Ayurvedic Medical Centre in Dubai, offering authentic Kerala traditions and personalized medical care.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Our Center</h4>
+        <ul>
+          <li><a href="#about">About Us</a></li>
+          <li><a href="#director">Doctor's Profile</a></li>
+          <li><a href="#facilities">Facilities</a></li>
+          <li><a href="#mission">Our Vision</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Quick Links</h4>
+        <ul>
+          <li><a href="#therapies">Therapies</a></li>
+          <li><a href="#packages">Wellness Plans</a></li>
+          <li><a href="#conditions">Conditions Treated</a></li>
+          <li><a href="#blogs">Health Blog</a></li>
+        </ul>
+      </div>
+      <div class="footer-col footer-newsletter">
+        <h4>Newsletter</h4>
+        <p>Stay updated with our latest health tips and Ayurvedic wisdom.</p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Email Address" required>
+          <button type="submit" class="newsletter-submit"><i data-lucide="send"></i></button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>&copy; 2024 Ayur Health Ayurvedic Medical Centre. All rights reserved.</p>
+      <div class="footer-credit">Designed and Developed By <a href="https://bten.in" target="_blank">Bten.in</a></div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+
+      // Swiper Hero
+      const heroSwiper = new Swiper('.hero-swiper', {
+        loop: true,
+        effect: 'fade',
+        speed: 1000,
+        autoplay: { delay: 5000, disableOnInteraction: false },
+      });
+
+      // Swiper Therapies
+      const therapySwiper = new Swiper('.therapies-swiper', {
+        slidesPerView: 1,
+        spaceBetween: 30,
+        loop: true,
+        autoplay: { delay: 4000 },
+        pagination: { el: '.therapies-pagination', clickable: true },
+        navigation: {
+          nextEl: '.therapy-next',
+          prevEl: '.therapy-prev',
+        },
+        breakpoints: {
+          768: { slidesPerView: 2 },
+          1024: { slidesPerView: 3 }
+        }
+      });
+
+      // Journey Auto-Animation
+      let stepIdx = 0;
+      const steps = document.querySelectorAll('.step-card');
+      setInterval(() => {
+        steps.forEach(s => s.classList.remove('active'));
+        steps[stepIdx].classList.add('active');
+        stepIdx = (stepIdx + 1) % steps.length;
+      }, 2500);
+
+      // Header
+      const header = document.getElementById('site-header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 50) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      // Scroll Button
+      document.getElementById('scroll-trigger').addEventListener('click', () => {
+        window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
+      });
+
+      // Counters
+      const animateCounters = () => {
+        document.querySelectorAll('.hero-stat-num').forEach(counter => {
+          const target = +counter.getAttribute('data-target');
+          const suffix = counter.getAttribute('data-suffix') || '';
+          let count = 0;
+          const update = () => {
+            const inc = target / 100;
+            if (count < target) {
+              count += inc;
+              counter.innerText = Math.ceil(count) + suffix;
+              setTimeout(update, 10);
+            } else counter.innerText = target + suffix;
+          };
+          update();
+        });
+      };
+
+      const observeCounters = new IntersectionObserver((entries) => {
+        if (entries[0].isIntersecting) {
+          animateCounters();
+          observeCounters.disconnect();
+        }
+      }, { threshold: 0.5 });
+      observeCounters.observe(document.querySelector('.hero-stats'));
+
+      // Reveals
+      const revealItems = document.querySelectorAll('.section-reveal');
+      const observeReveals = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) entry.target.classList.add('active');
+        });
+      }, { threshold: 0.1 });
+      revealItems.forEach(item => observeReveals.observe(item));
+      // Modal Logic
+      const modal = document.getElementById('booking-modal');
+      const openModalBtns = document.querySelectorAll('.open-modal, .pkg-card-btn');
+      const closeModalBtn = document.querySelector('.modal-close');
+
+      openModalBtns.forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          modal.classList.add('active');
+        });
+      });
+
+      closeModalBtn.addEventListener('click', () => {
+        modal.classList.remove('active');
+      });
+
+      window.addEventListener('click', (e) => {
+        if (e.target === modal) modal.classList.remove('active');
+      });
+
+      // Submit logic
+      document.getElementById('appointment-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('Thank you! Your request has been sent successfully. We will contact you shortly.');
+        modal.classList.remove('active');
+      });
+    });
+  </script>
+</body>
+</html>
