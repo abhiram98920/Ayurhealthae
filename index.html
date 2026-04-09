@@ -240,40 +240,59 @@ h1,h2,h3,h4 {
   box-shadow: 0 2px 32px rgba(0,0,0,.25);
 }
 
+/* ── 3-zone nav: logo | menu-center | actions ── */
 .nav-inner {
   display: flex;
   align-items: center;
-  justify-content: space-between;
   height: 80px;
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 24px;
-  gap: 24px;
+  gap: 0;
 }
 
+/* Logo — fixed left zone */
+.nav-logo {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  margin-right: auto;   /* pushes everything else right */
+}
 .nav-logo img {
-  height: 60px;
+  height: 44px;
   width: auto;
   object-fit: contain;
   display: block;
+  background: transparent;
+  /* SVG is transparent — invert to white for dark header */
+  filter: brightness(0) invert(1);
 }
-/* Invert to white on hero (always white bg on header) */
-.nav-logo img { filter: brightness(0) invert(1); }
 
+/* Nav — centred via margin auto on both sides */
+nav[aria-label="Primary"] {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
 .nav-links {
   display: flex;
   align-items: center;
   gap: 32px;
+  white-space: nowrap;
 }
 .nav-links > li { position: static; }
 .nav-links a {
-  font-size: .82rem;
+  font-size: .80rem;
   font-weight: 700;
   text-transform: uppercase;
-  letter-spacing: .08em;
+  letter-spacing: .07em;
   color: rgba(255,255,255,.88);
   padding: 4px 0;
   position: relative;
+  white-space: nowrap;
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
   transition: color var(--dur) var(--ease);
 }
 .nav-links a::after {
@@ -287,7 +306,7 @@ h1,h2,h3,h4 {
 }
 .nav-links a:hover         { color: var(--gold-light); }
 .nav-links a:hover::after  { right: 0; }
-.nav-links i { width:13px; height:13px; }
+.nav-links i { width:12px; height:12px; flex-shrink:0; }
 
 /* Mega Menu */
 .has-mega { position: static; }
@@ -339,16 +358,24 @@ h1,h2,h3,h4 {
 .mega-visual p { font-size:.82rem; color:var(--ink-muted); margin-bottom:12px; }
 .link-gold { color:var(--gold); font-weight:700; font-size:.8rem; display:inline-flex; align-items:center; gap:6px; }
 
-.nav-actions { display:flex; align-items:center; gap:20px; flex-shrink:0; }
+/* Actions — fixed right zone */
+.nav-actions {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-left: auto;   /* pushes to far right */
+}
 .nav-phone {
   display: flex;
   align-items: center;
   gap: 8px;
   color: rgba(255,255,255,.88);
   font-weight: 700;
-  font-size: .88rem;
+  font-size: .85rem;
+  white-space: nowrap;
 }
-.nav-phone i { width:15px; height:15px; color:var(--gold); }
+.nav-phone i { width:14px; height:14px; color:var(--gold); }
 
 /* =========================================================
    HERO
@@ -446,20 +473,52 @@ h1,h2,h3,h4 {
 }
 .trust-item i { color:var(--gold); width:18px; height:18px; }
 
-/* Hero right side image collage */
+/* ── Hero right-side: 2-image stacked composition ── */
 .hero-visual {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 220px 180px;
-  gap: 12px;
+  position: relative;
+  /* enough bottom padding for the overlay card to peek down */
+  padding-bottom: 64px;
 }
-.hero-img-card {
+
+/* Main image — large, rounded, full width */
+.hero-main-img {
+  display: block;
+  width: 100%;
+  height: 460px;
+  object-fit: cover;
+  border-radius: var(--r-lg);
+  box-shadow: 0 24px 64px rgba(0,0,0,.35);
+}
+
+/* Small overlay card — floats bottom-left over the main */
+.hero-overlay-card {
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  width: 190px;
   border-radius: var(--r-md);
   overflow: hidden;
-  position: relative;
+  box-shadow: 0 16px 40px rgba(0,0,0,.28);
+  border: 4px solid rgba(255,255,255,.15);
 }
-.hero-img-card img { width:100%; height:100%; object-fit:cover; }
-.hero-img-card:first-child { grid-column: span 2; border-radius: var(--r-lg); }
+.hero-overlay-card img {
+  display: block;
+  width: 100%;
+  height: 130px;
+  object-fit: cover;
+}
+
+/* Decorative ambient glow */
+.hero-glow {
+  position: absolute;
+  width: 340px;
+  height: 340px;
+  background: radial-gradient(circle, rgba(201,169,110,.22), transparent 70%);
+  border-radius: 50%;
+  top: 10%;
+  right: -10%;
+  pointer-events: none;
+}
 
 /* =========================================================
    STATS BAR
@@ -1210,7 +1269,8 @@ footer {
   <div class="nav-inner">
 
     <a href="/" class="nav-logo" aria-label="Ayur Health Home">
-      <img src="Images/logo.webp" alt="Ayur Health" />
+      <!-- Use SVG for transparency; fallback to webp if SVG not found -->
+      <img src="Images/logo.svg" onerror="this.src='Images/logo.webp'" alt="Ayur Health" />
     </a>
 
     <nav aria-label="Primary">
@@ -1331,15 +1391,21 @@ footer {
       </div>
     </div>
 
+    <!-- Right side: 2-image stacked composition -->
     <div class="hero-visual" aria-hidden="true">
-      <div class="hero-img-card">
-        <img src="Images/abhyangam.jpeg" alt="Abhyangam treatment" />
-      </div>
-      <div class="hero-img-card">
-        <img src="Images/shirodhara.jpeg" alt="Shirodhara therapy" />
-      </div>
-      <div class="hero-img-card">
-        <img src="Images/kerala_herbs.png" alt="Ayurvedic herbs" />
+      <!-- Ambient gold glow -->
+      <div class="hero-glow"></div>
+
+      <!-- Main featured therapy image -->
+      <img
+        src="Images/shirodhara.jpeg"
+        alt="Shirodhara — Kerala neurological therapy"
+        class="hero-main-img"
+      />
+
+      <!-- Small herbal authenticity overlay -->
+      <div class="hero-overlay-card">
+        <img src="Images/kerala_herbs.png" alt="Authentic Ayurvedic herbs" />
       </div>
     </div>
   </div>
