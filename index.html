@@ -7,12 +7,10 @@
   <title>Ayur Health | Premium Ayurveda Medical Centre Dubai</title>
   <link rel="icon" type="image/svg+xml" href="Images/logo.svg">
 
-  <!-- Fonts: Outfit (Body) & Cormorant Garamond (Serif) -->
+  <!-- Fonts: DM Sans (Body) & Playfair Display (Serif) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Outfit:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet">
 
   <!-- Swiper.js CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
@@ -23,28 +21,34 @@
 
   <style>
     /* ============================================================
-       MASTER LUXURY DESIGN SYSTEM (REFINED)
+       MASTER LUXURY DESIGN SYSTEM (V2 - ELITE)
     ============================================================ */
     :root {
       /* Palette */
-      --primary: #0a3d3d; /* Clinical Deep Teal */
-      --accent: #c0a070;  /* Premium Gold */
-      --bg-warm: #fdfaf5; /* Warm Beige Background */
+      --primary: #0a3d3d;    /* Clinical Deep Teal */
+      --primary-dark: #052626;
+      --accent: #c0a070;     /* Premium Gold */
+      --accent-light: #e0cca0;
+      --bg-warm: #fdfaf5;    /* Warm Beige Background */
+      --bg-layered: #f5f2eb;
       --white: #ffffff;
-      --text-dark: #1a1a1a;
-      --text-mid: #4a4a4a;
-      --text-muted: #888888;
+      --text-dark: #121212;
+      --text-mid: #2c2c2c;
+      --text-muted: #666666;
       
       /* Spacing & Shadow */
-      --shadow-soft: 0 10px 40px rgba(0,0,0,0.05);
-      --shadow-premium: 0 20px 60px rgba(10, 61, 61, 0.08);
-      --radius-lg: 24px;
-      --radius-md: 16px;
-      --transition: all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+      --gap: 32px;
+      --section-pad: 140px;
+      --shadow-sm: 0 10px 30px rgba(0,0,0,0.03);
+      --shadow-md: 0 20px 50px rgba(0,0,0,0.06);
+      --shadow-premium: 0 30px 80px rgba(10, 61, 61, 0.12);
+      --radius-lg: 32px;
+      --radius-md: 20px;
+      --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       
       /* Typography */
-      --ff-serif: 'Cormorant Garamond', serif;
-      --ff-sans: 'Outfit', sans-serif;
+      --ff-serif: 'Playfair Display', serif;
+      --ff-sans: 'DM Sans', sans-serif;
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; -webkit-font-smoothing: antialiased; }
@@ -53,100 +57,105 @@
       font-family: var(--ff-sans); 
       background: var(--bg-warm); 
       color: var(--text-dark); 
-      line-height: 1.6; 
+      line-height: 1.75; 
       overflow-x: hidden; 
     }
     
-    section { padding: 120px 5%; position: relative; }
-    .container { max-width: 1400px; margin: 0 auto; width: 100%; }
+    section { padding: var(--section-pad) 5%; position: relative; }
+    .container { max-width: 1440px; margin: 0 auto; width: 100%; }
 
     /* Typography Hierarchy */
-    h1, h2, h3, h4 { font-family: var(--ff-serif); font-weight: 500; color: var(--primary); }
+    h1, h2, h3, h4 { font-family: var(--ff-serif); font-weight: 600; color: var(--primary); line-height: 1.2; }
     
     .section-label {
       font-family: var(--ff-sans);
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      font-weight: 800;
       text-transform: uppercase;
-      letter-spacing: 0.2em;
+      letter-spacing: 0.3em;
       color: var(--accent);
       display: inline-flex;
       align-items: center;
       gap: 15px;
-      margin-bottom: 25px;
-    }
-    .section-label::before { content: ''; width: 35px; height: 1px; background: var(--accent); }
-
-    .section-title {
-      font-size: clamp(2.5rem, 6vw, 4.5rem);
-      line-height: 1.1;
       margin-bottom: 30px;
     }
-    .section-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+    .section-label::before { content: ''; width: 40px; height: 1.5px; background: var(--accent); }
+
+    .section-title {
+      font-size: clamp(3rem, 7vw, 5.5rem);
+      margin-bottom: 35px;
+      letter-spacing: -0.01em;
+    }
+    .section-title em { font-style: italic; color: var(--accent); font-weight: 400; font-family: var(--ff-serif); }
     
     .section-body {
-      font-size: 1.15rem;
+      font-size: 1.25rem;
       color: var(--text-mid);
-      max-width: 700px;
-      margin-bottom: 40px;
+      max-width: 750px;
+      margin-bottom: 50px;
+      line-height: 1.8;
     }
 
     /* Premium Interaction Tokens */
     .btn-gold {
       background: var(--primary);
       color: var(--white);
-      padding: 18px 42px;
+      padding: 22px 50px;
       border-radius: 100px;
-      font-weight: 600;
+      font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 12px;
+      gap: 15px;
       transition: var(--transition);
       border: none;
       cursor: pointer;
-      box-shadow: 0 10px 30px rgba(10, 61, 61, 0.15);
+      box-shadow: 0 15px 45px rgba(10, 61, 61, 0.2);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
     }
     .btn-gold:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 20px 40px rgba(10, 61, 61, 0.25);
-      background: var(--accent);
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 30px 60px rgba(10, 61, 61, 0.3);
+      background: var(--primary-dark);
     }
     
     .btn-outline {
       border: 2px solid var(--primary);
       color: var(--primary);
-      padding: 18px 42px;
+      padding: 20px 48px;
       border-radius: 100px;
-      font-weight: 600;
+      font-weight: 700;
       transition: var(--transition);
+      font-size: 1rem;
+      letter-spacing: 0.05em;
     }
-    .btn-outline:hover { background: var(--primary); color: var(--white); }
+    .btn-outline:hover { background: var(--primary); color: var(--white); transform: translateY(-5px); }
 
     /* Header Design & Ticker Integration */
     .top-ticker {
-      background: var(--primary); color: var(--accent); 
-      height: 40px; display: flex; align-items: center; overflow: hidden;
-      font-size: 0.75rem; font-weight: 700; letter-spacing: 0.1em;
+      background: var(--primary-dark); color: var(--accent-light); 
+      height: 44px; display: flex; align-items: center; overflow: hidden;
+      font-size: 0.8rem; font-weight: 700; letter-spacing: 0.15em;
       position: relative; z-index: 1002; text-transform: uppercase;
     }
-    .ticker-content { display: flex; white-space: nowrap; animation: ticker 40s linear infinite; }
-    .ticker-item { padding: 0 40px; display: flex; align-items: center; gap: 10px; }
-    .ticker-item i { width: 14px; height: 14px; color: var(--accent); }
+    .ticker-content { display: flex; white-space: nowrap; animation: ticker 50s linear infinite; }
+    .ticker-item { padding: 0 40px; display: flex; align-items: center; gap: 12px; }
+    .ticker-item i { width: 16px; height: 16px; color: var(--accent); }
     @keyframes ticker { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
     header {
-      position: absolute; top: 40px; left: 0; right: 0; z-index: 1001;
+      position: absolute; top: 44px; left: 0; right: 0; z-index: 1001;
       padding: 0 5%; transition: var(--transition);
-      background: linear-gradient(to bottom, rgba(0,0,0,0.6) 0%, transparent 100%);
+      background: linear-gradient(to bottom, rgba(0,0,0,0.5) 0%, transparent 100%);
     }
     header.scrolled {
       position: fixed; top: 0; background: var(--primary); 
-      box-shadow: var(--shadow-lg); height: 80px; padding: 0 5%;
+      box-shadow: var(--shadow-md); height: 90px; padding: 0 5%;
     }
     
-    .logo { background: transparent !important; display: flex; align-items: center; }
-    .logo img { height: 60px; width: auto; transition: var(--transition); object-fit: contain; }
-    header.scrolled .logo img { height: 50px; filter: brightness(0) invert(1); }
+    .logo { background: transparent !important; display: flex; align-items: center; text-decoration: none; }
+    .logo img { height: 75px; width: auto; transition: var(--transition); object-fit: contain; }
+    header.scrolled .logo img { height: 60px; filter: brightness(0) invert(1); }
     
     .header-inner {
       height: 100px; display: flex; align-items: center; justify-content: space-between;
@@ -208,45 +217,79 @@
     header.scrolled .header-phone { color: var(--white); }
 
     /* ============================================================
-       HERO
+       DYNAMIC HERO (ELITE)
     ============================================================ */
     #hero {
-      height: 100vh; padding: 0;
-      display: flex; align-items: center;
+      height: 90vh; 
+      min-height: 800px;
+      padding: 0;
+      position: relative;
       background: #000;
-    }
-    .hero-slider { width: 100%; height: 100%; }
-    .hero-slide { 
-      position: relative; height: 100%; width: 100%; 
-      display: flex; align-items: center; padding: 0 5%;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
     }
     .hero-bg {
       position: absolute; inset: 0; z-index: 0;
     }
-    .hero-bg img { width: 100%; height: 100%; object-fit: cover; }
+    .hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: 0.8; }
     .hero-overlay {
       position: absolute; inset: 0;
-      background: linear-gradient(to right, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.2) 60%, transparent 100%);
+      background: linear-gradient(to right, rgba(5, 38, 38, 0.9) 0%, rgba(5, 38, 38, 0.4) 50%, transparent 100%);
       z-index: 1;
     }
-    .hero-content {
-      position: relative; z-index: 2; max-width: 800px; color: white;
-      transform: translateY(30px); opacity: 0; transition: 1s ease 0.3s;
-    }
-    .swiper-slide-active .hero-content { transform: translateY(0); opacity: 1; }
     
+    .hero-container {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      padding: 0 8%;
+    }
+
+    .glass-box {
+      background: rgba(255, 255, 255, 0.03);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 60px;
+      border-radius: var(--radius-lg);
+      max-width: 850px;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+    }
+
     .hero-eyebrow {
-      display: inline-block; padding: 8px 20px; background: rgba(192,160,112,0.2);
-      border: 1px solid rgba(255,255,255,0.2); border-radius: 100px;
-      margin-bottom: 25px; font-size: 0.8rem; letter-spacing: 0.2em; text-transform: uppercase;
-      backdrop-filter: blur(5px);
+      display: inline-flex; align-items: center; gap: 12px;
+      color: var(--accent-light); font-weight: 800; font-size: 0.85rem;
+      text-transform: uppercase; letter-spacing: 0.3em; margin-bottom: 25px;
     }
+    .hero-eyebrow::before { content: ''; width: 30px; height: 1.5px; background: var(--accent); }
+
     .hero-title {
-      font-family: var(--ff-serif); font-size: clamp(3rem, 8vw, 6rem);
-      line-height: 1; margin-bottom: 30px; font-weight: 400;
+      color: var(--white);
+      font-size: clamp(3.5rem, 8vw, 6.5rem);
+      margin-bottom: 30px;
+      font-weight: 700;
+      line-height: 1.05;
+      letter-spacing: -0.02em;
     }
-    .hero-title em { font-style: italic; color: var(--gold-light); }
-    .hero-desc { font-size: 1.25rem; opacity: 0.9; margin-bottom: 45px; max-width: 600px; }
+    .hero-title em { font-style: italic; color: var(--accent); font-weight: 400; }
+    
+    .hero-desc {
+      color: rgba(255, 255, 255, 0.85);
+      font-size: 1.35rem;
+      max-width: 650px;
+      margin-bottom: 50px;
+      line-height: 1.6;
+    }
+
+    .hero-btns { display: flex; gap: 20px; align-items: center; }
+
+    .hero-trust-badges {
+      display: flex; gap: 40px; margin-top: 60px;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 40px;
+    }
+    .trust-badge { display: flex; align-items: center; gap: 12px; color: var(--white); font-size: 0.9rem; font-weight: 600; }
+    .trust-badge i { color: var(--accent); width: 22px; height: 22px; }
 
     .hero-stats {
       background: var(--primary);
@@ -304,53 +347,112 @@
     .logo:hover { background: transparent !important; opacity: 0.8; }
 
     /* ============================================================
-       ABOUT GRID
+       ASYMMETRIC ABOUT (ELITE)
     ============================================================ */
-    .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
-    .about-visual { position: relative; }
-    .main-img { border-radius: var(--radius-lg); box-shadow: var(--shadow-lg); width: 100%; }
-    .sub-img {
-      position: absolute; bottom: -40px; right: -40px; width: 60%;
-      border: 10px solid var(--white); border-radius: var(--radius-md);
-      box-shadow: var(--shadow-md);
+    .about-grid { 
+      display: grid; 
+      grid-template-columns: 1.1fr 0.9fr; 
+      gap: 100px; 
+      align-items: center; 
     }
-    .about-points { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; margin-top: 40px; }
-    .point { display: flex; align-items: center; gap: 15px; font-weight: 600; color: var(--teal-dark); }
-    .point i { color: var(--gold); font-size: 1.2rem; }
+    .about-visual { position: relative; padding-right: 40px; }
+    .about-main-img { 
+      width: 100%; 
+      border-radius: var(--radius-lg); 
+      box-shadow: var(--shadow-premium); 
+      position: relative;
+      z-index: 2;
+    }
+    .about-sub-img {
+      position: absolute; 
+      bottom: -60px; 
+      right: -20px; 
+      width: 65%;
+      border: 15px solid var(--white); 
+      border-radius: var(--radius-md);
+      box-shadow: var(--shadow-premium);
+      z-index: 3;
+      transition: var(--transition);
+    }
+    .about-visual:hover .about-sub-img { transform: translate(-20px, -20px); }
+    
+    .about-points { 
+      display: grid; 
+      grid-template-columns: 1fr 1fr; 
+      gap: 40px; 
+      margin-top: 50px; 
+    }
+    .point { display: flex; flex-direction: column; gap: 15px; }
+    .point i { 
+      color: var(--accent); 
+      background: var(--bg-layered); 
+      width: 50px; height: 50px; 
+      display: flex; align-items: center; justify-content: center; 
+      border-radius: 12px;
+      font-size: 1.4rem;
+    }
+    .point h4 { font-size: 1.1rem; color: var(--primary); }
 
     /* ============================================================
-       PROCESS STEPS
+       THERAPY UPGRADE (ELITE CARDS)
     ============================================================ */
-    .steps-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px; margin-top: 50px; }
-    .step-card { text-align: center; }
-    .step-icon {
-      width: 90px; height: 90px; background: var(--white); border: 1px solid var(--border);
-      border-radius: 50%; display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 25px; font-size: 1.8rem; color: var(--teal); position: relative;
+    .therapy-grid { 
+      display: grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap: 40px; 
+      margin-top: 60px; 
     }
-    .step-number {
-      position: absolute; top: 0; right: 0; width: 30px; height: 30px;
-      background: var(--gold); color: white; border-radius: 50%;
-      display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700;
-    }
-    .step-card h3 { font-family: var(--ff-serif); font-size: 1.4rem; margin-bottom: 12px; }
-    .step-card p { font-size: 0.9rem; color: var(--text-mid); }
-
-    /* ============================================================
-       THERAPY CARDS
-    ============================================================ */
-    .therapy-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; }
     .therapy-card { 
-      background: var(--white); border-radius: var(--radius-lg); overflow: hidden;
-      box-shadow: var(--shadow-sm); border: 1px solid var(--border); transition: var(--transition);
+      background: var(--white); 
+      border-radius: var(--radius-md); 
+      overflow: hidden; 
+      box-shadow: var(--shadow-sm); 
+      transition: var(--transition); 
+      position: relative;
+      border: 1px solid rgba(10, 61, 61, 0.05);
     }
-    .th-img { height: 260px; overflow: hidden; }
-    .th-img img { width: 100%; height: 100%; object-fit: cover; }
-    .th-content { padding: 35px; }
-    .th-title { font-family: var(--ff-serif); font-size: 1.75rem; margin-bottom: 12px; }
-    .th-desc { font-size: 0.95rem; color: var(--text-mid); margin-bottom: 20px; }
-    .th-link { font-weight: 700; color: var(--gold); display: flex; align-items: center; gap: 8px; font-size: 0.85rem; }
-    .therapy-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-lg); border-color: var(--gold-light); }
+    .therapy-card:hover { 
+      transform: translateY(-15px) scale(1.03); 
+      box-shadow: var(--shadow-premium); 
+    }
+    .th-img-box { height: 320px; position: relative; overflow: hidden; }
+    .th-img-box img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s ease; }
+    .therapy-card:hover .th-img-box img { transform: scale(1.15); }
+    
+    .th-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10, 61, 61, 0.95), rgba(10, 61, 61, 0.4) 40%, transparent 100%);
+      padding: 40px; 
+      display: flex; 
+      flex-direction: column; 
+      justify-content: flex-end;
+      opacity: 0;
+      transition: var(--transition);
+    }
+    .therapy-card:hover .th-overlay { opacity: 1; }
+    
+    .th-tag { 
+      position: absolute; top: 30px; left: 30px; 
+      background: var(--accent); color: white;
+      padding: 8px 20px; border-radius: 100px; 
+      font-size: 0.75rem; font-weight: 800; text-transform: uppercase;
+      letter-spacing: 0.1em;
+      z-index: 10;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    
+    .th-content { padding: 40px; }
+    .th-content h3 { font-size: 1.8rem; margin-bottom: 20px; letter-spacing: -0.01em; }
+    .th-content p { color: var(--text-muted); font-size: 1.05rem; margin-bottom: 30px; line-height: 1.6; }
+    
+    .th-link { 
+      font-weight: 800; color: var(--accent); 
+      display: flex; align-items: center; gap: 10px; 
+      font-size: 0.9rem; text-decoration: none;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      transition: var(--transition);
+    }
+    .th-link:hover { gap: 15px; color: var(--primary); }
 
     /* ============================================================
        DIRECTOR & VISION
@@ -414,46 +516,70 @@
     .journey-point h3 { font-size: 1.35rem; margin-bottom: 12px; }
     .journey-point p { font-size: 0.85rem; color: var(--text-mid); line-height: 1.5; padding: 0 10px; }
     
-    /* 🟤 Doctor Profiling */
-    .doctor-grid { display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 80px; align-items: center; }
-    .doc-img-wrap { position: relative; border-radius: var(--radius-lg); overflow: hidden; box-shadow: var(--shadow-premium); }
-    .doc-check-list { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-top: 30px; }
-    .doc-check { display: flex; align-items: center; gap: 10px; font-weight: 600; color: var(--primary); font-size: 0.9rem; }
-    .doc-check i { color: var(--accent); width: 18px; }
-
-    /* Luxury Packages */
-    .package-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; margin-top: 50px; }
-    .package-card { 
-      background: white; border-radius: var(--radius-md); padding: 50px 40px;
-      box-shadow: var(--shadow-soft); border: 1px solid rgba(10, 61, 61, 0.05);
-      position: relative; transition: var(--transition); text-align: center;
+    /* ============================================================
+       DOCTOR & MASONRY (ELITE)
+    ============================================================ */
+    .doctor-section { background: var(--bg-layered); position: relative; overflow: hidden; }
+    .doctor-grid { display: grid; grid-template-columns: 0.85fr 1.15fr; gap: 100px; align-items: center; }
+    
+    .doc-visual { position: relative; }
+    .doc-img { 
+      width: 100%; border-radius: var(--radius-lg); 
+      box-shadow: var(--shadow-premium); 
+      position: relative; z-index: 2;
     }
-    .package-card.featured { border: 2px solid var(--accent); transform: scale(1.05); }
-    .pkg-pop { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--accent); color: white; padding: 6px 20px; border-radius: 100px; font-size: 0.75rem; font-weight: 700; }
-    .pkg-price { font-family: var(--ff-serif); font-size: 3.5rem; color: var(--primary); margin: 20px 0; }
-    .pkg-price span { font-size: 1rem; color: var(--text-muted); font-family: var(--ff-sans); }
-
-    /* Missing Sections Styling */
-    .why-grid, .conditions-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 30px; margin-top: 60px; }
-    .condition-card { 
-      padding: 40px; background: white; border-radius: var(--radius-md); 
-      text-align: center; transition: var(--transition); border: 1px solid rgba(10, 61, 61, 0.05);
+    .doc-quote {
+      position: absolute; bottom: 40px; right: -30px; 
+      background: var(--primary); color: var(--white);
+      padding: 30px 40px; border-radius: var(--radius-md);
+      font-family: var(--ff-serif); font-style: italic; font-size: 1.35rem;
+      max-width: 320px; z-index: 3;
+      box-shadow: var(--shadow-premium);
     }
-    .condition-card:hover { background: var(--primary); color: white; }
-    .condition-card:hover h3 { color: white; }
-    .condition-card i { font-size: 2.5rem; color: var(--accent); margin-bottom: 25px; display: block; }
 
-    /* FAQ Accordion */
-    .faq-item { background: white; margin-bottom: 15px; border-radius: 12px; border: 1px solid rgba(10, 61, 61, 0.05); overflow: hidden; }
-    .faq-trigger { padding: 25px 30px; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-family: var(--ff-serif); font-size: 1.25rem; color: var(--primary); }
-    .faq-content { padding: 0 30px 25px; color: var(--text-mid); display: none; }
-    .faq-item.active .faq-content { display: block; }
-    .faq-item.active .faq-trigger i { transform: rotate(180deg); }
+    .doc-stats { display: flex; gap: 50px; margin-top: 50px; border-top: 1px solid rgba(10,61,61,0.1); padding-top: 40px; }
+    .doc-stat-item h4 { font-size: 2.2rem; margin-bottom: 5px; color: var(--accent); }
+    .doc-stat-item p { font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--text-muted); }
+
+    /* Masonry Gallery */
+    .gallery-masonry {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-template-rows: repeat(2, 300px);
+      gap: 20px;
+      margin-top: 60px;
+    }
+    .gallery-item { position: relative; overflow: hidden; border-radius: var(--radius-md); cursor: pointer; }
+    .gallery-item img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.5s ease; }
+    .gallery-item:hover img { transform: scale(1.1); }
+    
+    .gallery-item:first-child { grid-column: span 2; grid-row: span 2; }
+    .gallery-item:nth-child(2) { grid-column: span 2; }
+    
+    .gallery-caption {
+      position: absolute; inset: 0;
+      background: rgba(10, 61, 61, 0.4);
+      backdrop-filter: blur(5px);
+      display: flex; align-items: center; justify-content: center;
+      opacity: 0; transition: var(--transition);
+    }
+    .gallery-item:hover .gallery-caption { opacity: 1; }
+    .gallery-caption span { 
+      color: white; font-family: var(--ff-serif); font-size: 1.5rem; 
+      transform: translateY(20px); transition: var(--transition);
+    }
+    .gallery-item:hover .gallery-caption span { transform: translateY(0); }
 
     @media (max-width: 1024px) {
-      .hero-grid, .doctor-grid, .facilities-grid, .journey-flow, .therapy-grid, .package-grid { grid-template-columns: 1fr; gap: 40px; }
+      .hero-grid, .doctor-grid, .facilities-grid, .journey-flow, .therapy-grid, .package-grid, .about-grid, .gallery-masonry { 
+        grid-template-columns: 1fr !important; gap: 40px; 
+      }
+      .gallery-masonry { grid-template-rows: auto; }
+      .gallery-item { grid-column: span 1 !important; grid-row: span 1 !important; height: 300px; }
       .journey-flow { flex-direction: column; }
       .journey-flow::before { display: none; }
+      .hero-title { font-size: 3rem; }
+      .glass-box { padding: 30px; }
     }
   </style>
 </head>
@@ -570,30 +696,32 @@
   </header>
 
   <main>
-    <!-- 🟢 HERO SECTION -->
+    <!-- 🟢 ELITE HERO SECTION -->
     <section id="hero">
-      <div class="container hero-grid">
-        <div class="hero-content">
-          <span class="hero-tag">Best Ayurveda Medical Centre in Dubai</span>
-          <h1 class="hero-title">Step into a Life of <br><em>Lasting Wellness</em></h1>
-          <p class="hero-desc">Experience authentic clinical Ayurveda tailored for your unique body. We treat the root cause of your conditions—not just the symptoms—using 5,000 years of medical wisdom.</p>
+      <div class="hero-bg">
+        <img src="Images/premium_center.png" alt="Ayur Health Premium Clinic">
+        <div class="hero-overlay"></div>
+      </div>
+      
+      <div class="hero-container">
+        <div class="glass-box reveal-item">
+          <span class="hero-eyebrow">Excellence in Clinical Ayurveda</span>
+          <h1 class="hero-title">Heal the <em>Root</em>,<br>Not Just the Symptoms</h1>
+          <p class="hero-desc">Dubai's premier medical centre specializing in authentic Kerala Ayurveda. We blend 5,000 years of clinical wisdom with modern diagnostic precision to restore your lasting vitality.</p>
           
           <div class="hero-btns">
-            <a href="#cta-banner" class="btn-gold">Book Consultation <i data-lucide="calendar"></i></a>
-            <a href="#therapies" class="btn-outline">View Treatments</a>
+            <a href="#cta-banner" class="btn-gold">Start Healing <i data-lucide="calendar"></i></a>
+            <a href="#therapies" class="btn-outline" style="border-color: rgba(255,255,255,0.4); color: white;">View Treatments</a>
           </div>
 
-          <div class="hero-trust">
-            <div class="trust-item"><i data-lucide="award"></i> Certified Doctors</div>
-            <div class="trust-item"><i data-lucide="shield-check"></i> Panchakarma Experts</div>
-            <div class="trust-item"><i data-lucide="map-pin"></i> UAE Local Clinic</div>
+          <div class="hero-trust-badges">
+            <div class="trust-badge"><i data-lucide="award"></i> BAMS Practitioners</div>
+            <div class="trust-badge"><i data-lucide="shield-check"></i> DHA Licensed</div>
+            <div class="trust-badge"><i data-lucide="map-pin"></i> Jumeirah Road, Dubai</div>
           </div>
-        </div>
-
-        <div class="hero-visual">
-          <img src="Images/premium_center.png" alt="Ayur Health Premium Clinic" class="hero-img-main">
         </div>
       </div>
+    </section>
 
       <!-- Netflix Style Cards -->
       <div class="hero-cards-section">
@@ -654,36 +782,97 @@
 
 
 
-    <!-- ABOUT SECTION -->
-    <!-- 🟡 MODERN CLINICAL CARE -->
-    <section id="about" style="background: white;">
+    <!-- 🟡临床 EXCELLENCE (ASYMMETRIC) -->
+    <section id="about" style="background: var(--bg-warm);">
       <div class="container reveal-item">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto;">
-          <span class="section-label">Beyond Basic Wellness</span>
-          <h2 class="section-title">The Excellence of <em>Clinical Ayurveda</em></h2>
-          <p class="section-body" style="margin-inline: auto;">Our medical approach focuses on your body's specific constitution, or Prakriti, ensuring a scientific path to recovery.</p>
+        <div class="about-grid">
+          <div class="about-visual">
+            <img src="Images/premium_center.png" alt="Clinical Center" class="about-main-img">
+            <img src="Images/kerala_herbs.png" alt="Herbal Wisdom" class="about-sub-img">
+          </div>
+          <div class="about-content">
+            <span class="section-label">Clinical Excellence</span>
+            <h2 class="section-title">Heal at the <em>Foundation</em> of Your Health</h2>
+            <p class="section-body">At Ayur Health, we don't just treat symptoms. We specialized in identifying the complex metabolic root causes of illness through Nadi Pariksha, delivering authentic Kerala medical protocols in a world-class Dubai setting.</p>
+            
+            <div class="about-points">
+              <div class="point">
+                <i data-lucide="target"></i>
+                <h4>Root Diagnosis</h4>
+                <p>Decoding your unique Prakriti to identify precise imbalances.</p>
+              </div>
+              <div class="point">
+                <i data-lucide="shield-check"></i>
+                <h4>Kerala Protocols</h4>
+                <p>100% authentic medical grade therapies and organic oils.</p>
+              </div>
+            </div>
+
+            <div style="margin-top: 60px;">
+              <a href="#journey" class="btn-gold">Start Healing <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 🟡 TREATMENT CARDS ELITE -->
+    <section id="therapies" style="background: var(--white);">
+      <div class="container reveal-item">
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 80px;">
+          <div>
+            <span class="section-label">Medical Focus</span>
+            <h2 class="section-title">Specialized <em>Care Programs</em></h2>
+            <p class="section-body">Treating chronic pain, systemic stress, and complex conditions with DHA-licensed expertise.</p>
+          </div>
+          <a href="#cta-banner" class="btn-outline">View Full Menu</a>
         </div>
 
-        <div class="feature-grid">
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="target"></i></div>
-            <h3>Root Cause Treatment</h3>
-            <p>We don't just mask the pain. We identify and heal the metabolic foundation of your illness.</p>
+        <div class="therapy-grid">
+          <div class="therapy-card">
+            <span class="th-tag">Detox & Vitality</span>
+            <div class="th-img-box">
+              <img src="Images/kerala_abhyangam.png" alt="Abhyangam">
+              <div class="th-overlay">
+                <p style="color: white; font-size: 0.95rem;">Full body medicated oil therapy to reset your metabolic fire and restore circulation.</p>
+              </div>
+            </div>
+            <div class="th-content">
+              <h3>Abhyangam</h3>
+              <p>Rhythmic full-body clinical massage with warm medicated oils matched to your Dosha.</p>
+              <a href="#cta-banner" class="th-link">View Treatment <i data-lucide="arrow-right"></i></a>
+            </div>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="user-check"></i></div>
-            <h3>Personalized Care</h3>
-            <p>Your Prakriti is unique. Every oil, herb, and therapy is matched to your specific needs.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="leaf"></i></div>
-            <h3>Panchakarma Detox</h3>
-            <p>Cleanse deep-seated toxins and reset your internal system for long-term health.</p>
-          </div>
-        </div>
 
-        <div style="text-align: center; margin-top: 60px;">
-          <a href="#journey" class="btn-gold">Start Your Healing Journey <i data-lucide="arrow-right"></i></a>
+          <div class="therapy-card">
+            <span class="th-tag">Neurological Rest</span>
+            <div class="th-img-box">
+              <img src="Images/shirodhara.jpeg" alt="Shirodhara">
+              <div class="th-overlay">
+                <p style="color: white; font-size: 0.95rem;">Neurological rest focused on calming the central nervous system through herbal oil flow.</p>
+              </div>
+            </div>
+            <div class="th-content">
+              <h3>Shirodhara</h3>
+              <p>A continuous stream of warm oil on the forehead to treat insomnia, anxiety, and migraines.</p>
+              <a href="#cta-banner" class="th-link">View Treatment <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+
+          <div class="therapy-card">
+            <span class="th-tag">Pain Recovery</span>
+            <div class="th-img-box">
+              <img src="Images/therapies_1.png" alt="Kati Vasti">
+              <div class="th-overlay">
+                <p style="color: white; font-size: 0.95rem;">Localised treatment for spinal disorders, back pain, and deep tissue inflammation.</p>
+              </div>
+            </div>
+            <div class="th-content">
+              <h3>Kati Vasti</h3>
+              <p>Specialized clinical care for chronic back issues, slipped discs, and lumbar stiffness.</p>
+              <a href="#cta-banner" class="th-link">View Treatment <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -852,121 +1041,141 @@
       </div>
     </section>
 
-    <!-- 🟤 DOCTOR SECTION -->
-    <section id="director" style="background: var(--white);">
+    <!-- 🟤 ELITE DOCTOR SECTION -->
+    <section id="director" class="doctor-section">
       <div class="container reveal-item">
         <div class="doctor-grid">
-          <div class="doc-img-wrap">
-            <img src="Images/Dr Chitra.png" alt="Dr. Chitra Menon">
+          <div class="doc-visual">
+            <img src="Images/Dr Chitra.png" alt="Dr. Chitra Menon" class="doc-img">
+            <div class="doc-quote">
+              “Healing begins with a deep clinical understanding of your body's silence.”
+            </div>
           </div>
           <div class="doc-info">
-            <span class="section-label">Your Healing Expert</span>
-            <h2 class="section-title">Dr. Chitra <em>Menon</em> <br><small style="font-size: 1.5rem; color: var(--accent);">(BAMS) Ayurvedic Practitioner</small></h2>
-            <p class="section-body">Dr. Chitra Menon is a senior Ayurvedic Physician with decades of experience in clinical restoration. Her patient-first approach blends rigorous medical diagnosis with traditional Kerala wisdom to treat root-cause issues.</p>
+            <span class="section-label">Master practitioner</span>
+            <h2 class="section-title">Dr. Chitra <em>Menon</em></h2>
+            <p class="section-body">A DHA-licensed BAMS practitioner with over two decades of experience in chronic disease reversal. Dr. Chitra blends Kerala’s medical heritage with systemic Western diagnostic values.</p>
             
-            <div class="doc-check-list">
-              <div class="doc-check"><i data-lucide="check-circle"></i> Root-cause Healing Expert</div>
-              <div class="doc-check"><i data-lucide="check-circle"></i> Clinical Ayurveda Specialist</div>
-              <div class="doc-check"><i data-lucide="check-circle"></i> Personalized care expert</div>
-              <div class="doc-check"><i data-lucide="check-circle"></i> Women’s health specialist</div>
+            <div class="doc-stats">
+              <div class="doc-stat-item">
+                <h4>20+</h4>
+                <p>Years Experience</p>
+              </div>
+              <div class="doc-stat-item">
+                <h4>15k+</h4>
+                <p>Patients Healed</p>
+              </div>
+              <div class="doc-stat-item">
+                <h4>100%</h4>
+                <p>Natural Protocols</p>
+              </div>
             </div>
 
             <div style="margin-top: 50px;">
-              <a href="#cta-banner" class="btn-gold">Consult with Doctor <i data-lucide="message-square"></i></a>
+              <a href="#cta-banner" class="btn-gold">Book Your Consultation <i data-lucide="message-square"></i></a>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- 🟢 FACILITIES SECTION -->
-    <section id="facilities" style="background: var(--bg-warm);">
+    <!-- 🟢 LUXURY FACILITIES (MASONRY) -->
+    <section id="facilities" style="background: var(--white);">
       <div class="container reveal-item">
-        <div style="text-align: center; max-width: 800px; margin: 0 auto 60px;">
-          <span class="section-label">The Healing Environment</span>
-          <h2 class="section-title">A Peaceful, <em>Resort-Like Retreat</em></h2>
-          <p class="section-body" style="margin-inline: auto;">Step into an environment designed for absolute tranquility. We offer the highest medical cleanliness mixed with true luxury comfort.</p>
-        </div>
-
-        <div class="therapy-grid" style="grid-template-columns: repeat(4, 1fr);">
-          <div class="therapy-card" style="height: 300px;">
-            <img src="Images/premium_center.png" alt="Treatment Rooms" style="height: 100%; object-fit: cover;">
-            <div class="card-shade"><h4>Clinical Rooms</h4></div>
-          </div>
-          <div class="therapy-card" style="height: 300px;">
-            <img src="Images/kerala_herbs.png" alt="Pharmacy" style="height: 100%; object-fit: cover;">
-            <div class="card-shade"><h4>Herbal Dispensary</h4></div>
-          </div>
-          <div class="therapy-card" style="height: 300px;">
-            <img src="Images/therapies_1.png" alt="Waiting Area" style="height: 100%; object-fit: cover;">
-            <div class="card-shade"><h4>Ladies Waiting</h4></div>
-          </div>
-          <div class="therapy-card" style="height: 300px;">
-            <img src="Images/premium_center.png" alt="Consultation" style="height: 100%; object-fit: cover;">
-            <div class="card-shade"><h4>Private Consult</h4></div>
+        <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 60px;">
+          <div>
+            <span class="section-label">A Sanctuary of Restoration</span>
+            <h2 class="section-title">Designed for <em>Silence & Healing</em></h2>
+            <p class="section-body">Step into an environment meticulously crafted for your absolute comfort, privacy, and clinical focus.</p>
           </div>
         </div>
-      </div>
-    </section>
 
-    <!-- ✅ WHY CHOOSE US -->
+        <div class="gallery-masonry">
+          <div class="gallery-item">
+            <img src="Images/premium_center.png" alt="Clinical Room">
+            <div class="gallery-caption"><span>Healing Rooms</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/kerala_herbs.png" alt="Pharmacy">
+            <div class="gallery-caption"><span>Herbal Dispensary</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/therapies_1.png" alt="Treatment">
+            <div class="gallery-caption"><span>Ayurvedic Droni</span></div>
+          </div>
+          <div class="gallery-item">
+            <img src="Images/premium_center.png" alt="Waiting Area">
+            <div class="gallery-caption"><span>Private Sanctuary</span></div>
+          </div>
+     <!-- 🟡临床 AUTHORITY (ELITE) -->
     <section id="why" style="background: var(--white);">
       <div class="container reveal-item">
-        <div style="text-align: center; margin-bottom: 60px;">
-          <span class="section-label">Our Difference</span>
-          <h2 class="section-title">Why Choose <em>Ayur Health?</em></h2>
-        </div>
-        <div class="why-grid">
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="target"></i></div>
-            <h3>Root-Cause Diagnostic</h3>
-            <p>We don't just treat symptoms. We identify and solve the internal metabolic imbalance that caused your illness.</p>
+        <div class="about-grid" style="grid-template-columns: 0.9fr 1.1fr;">
+          <div class="about-content">
+            <span class="section-label">Medical Trust</span>
+            <h2 class="section-title">Why Patients Choose <em>Ayur Health</em></h2>
+            <p class="section-body">In the heart of Dubai, we have established a sanctuary where ancient Kerala healing meets clinical precision. Our center is designed for patients who seek more than just comfort—they seek permanent restoration.</p>
+            
+            <div style="display: grid; gap: 30px; margin-top: 40px;">
+              <div style="display: flex; gap: 20px;">
+                <div style="color: var(--accent);"><i data-lucide="award" style="width: 32px; height: 32px;"></i></div>
+                <div>
+                  <h4 style="font-size: 1.25rem; margin-bottom: 5px;">DHA Licensed Excellence</h4>
+                  <p style="font-size: 0.95rem; color: var(--text-muted);">Strict medical protocols following Dubai Health Authority standards.</p>
+                </div>
+              </div>
+              <div style="display: flex; gap: 20px;">
+                <div style="color: var(--accent);"><i data-lucide="leaf" style="width: 32px; height: 32px;"></i></div>
+                <div>
+                  <h4 style="font-size: 1.25rem; margin-bottom: 5px;">The Kerala Heritage</h4>
+                  <p style="font-size: 0.95rem; color: var(--text-muted);">Traditional healing oils and herbs sourced directly from organic Kerala farms.</p>
+                </div>
+              </div>
+            </div>
           </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="shield-check"></i></div>
-            <h3>Safe & Natural</h3>
-            <p>100% organic herbal therapies rooted in traditional Kerala wisdom with zero clinical side effects.</p>
-          </div>
-          <div class="feature-card">
-            <div class="feature-icon"><i data-lucide="award"></i></div>
-            <h3>Expert Doctors</h3>
-            <p>Healed by highly qualified practitioners (BAMS) with 20+ years in clinical Ayurvedic restoration.</p>
+          <div class="about-visual" style="padding-left: 40px; padding-right: 0;">
+            <img src="Images/kerala_abhyangam.png" alt="Clinical Excellence" class="about-main-img">
+            <!-- Asymmetric Overlap Element -->
+            <div style="position: absolute; top: -30px; left: -30px; width: 150px; height: 150px; border: 2px solid var(--accent); border-radius: 20px; z-index: 1;"></div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- ✅ CONDITIONS WE TREAT -->
-    <section id="conditions" style="background: var(--bg-warm);">
+    <!-- 🟡 CONDITIONS (ELITE CARDS) -->
+    <section id="conditions" style="background: var(--bg-layered);">
       <div class="container reveal-item">
-        <div style="text-align: center; margin-bottom: 60px;">
-          <span class="section-label">Medical Focus</span>
-          <h2 class="section-title">Specialized <em>Conditions We Treat</em></h2>
+        <div style="text-align: center; margin-bottom: 80px;">
+          <span class="section-label">Clinical Specialities</span>
+          <h2 class="section-title">Systemic <em>Disease Recovery</em></h2>
+          <p class="section-body" style="margin-inline: auto;">Personalized medical journeys for metabolic, neurological, and systemic disorders.</p>
         </div>
-        <div class="conditions-grid">
-          <div class="condition-card">
-            <i data-lucide="activity"></i>
-            <h3>Pain Management</h3>
-            <p>Arthritis, Slipped Disc, Sciatica</p>
+        
+        <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px;">
+          <div class="therapy-card" style="padding: 50px 40px; text-align: center; background: white; border: none; border-radius: var(--radius-md);">
+            <i data-lucide="activity" style="width: 48px; height: 48px; color: var(--accent); margin: 0 auto 30px; display: block;"></i>
+            <h3>Chronic Pain</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">Sciatica, Arthritis, and Slipped Disc restoration.</p>
           </div>
-          <div class="condition-card">
-            <i data-lucide="sparkles"></i>
-            <h3>Skin Disorders</h3>
-            <p>Psoriasis, Eczema, Dermatitis</p>
+          <div class="therapy-card" style="padding: 50px 40px; text-align: center; background: white; border: none; border-radius: var(--radius-md);">
+            <i data-lucide="sparkles" style="width: 48px; height: 48px; color: var(--accent); margin: 0 auto 30px; display: block;"></i>
+            <h3>Skin Health</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">Psoriasis, Eczema, and clinical dermatology.</p>
           </div>
-          <div class="condition-card">
-            <i data-lucide="moon"></i>
-            <h3>Stress Management</h3>
-            <p>Sleep Disorders, Anxiety, Migraine</p>
+          <div class="therapy-card" style="padding: 50px 40px; text-align: center; background: white; border: none; border-radius: var(--radius-md);">
+            <i data-lucide="moon" style="width: 48px; height: 48px; color: var(--accent); margin: 0 auto 30px; display: block;"></i>
+            <h3>Mental Balance</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">Insomnia, Anxiety, and Stress management.</p>
           </div>
-          <div class="condition-card">
-            <i data-lucide="heart"></i>
-            <h3>Women’s Health</h3>
-            <p>Hormonal Balance, PCOD, Recovery</p>
+          <div class="therapy-card" style="padding: 50px 40px; text-align: center; background: white; border: none; border-radius: var(--radius-md);">
+            <i data-lucide="heart" style="width: 48px; height: 48px; color: var(--accent); margin: 0 auto 30px; display: block;"></i>
+            <h3>Women's Care</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); margin-top: 15px;">Hormonal restoration and prenatal wellness.</p>
           </div>
         </div>
       </div>
     </section>
+
 
     <!-- ✅ BLOG SECTION -->
     <section id="blogs" style="background: var(--white);">
@@ -1025,16 +1234,24 @@
       </div>
     </section>
 
-    <!-- ✅ FINAL CTA -->
-    <section id="cta-banner" style="background: var(--primary); color: white; border-radius: 40px; margin: 40px 5% 120px; text-align: center; padding: 100px 5%;">
-      <div class="container reveal-item">
-        <span class="section-label" style="color: var(--accent);">Your Healing Awaits</span>
-        <h2 class="section-title" style="color: white; font-size: clamp(2.5rem, 5vw, 4rem);">Start Your Journey to <br><em>Natural Healing Today</em></h2>
-        <p class="section-body" style="color: rgba(255,255,255,0.8); margin-inline: auto;">Consult our expert Ayurvedic doctors and begin your personalized treatment in Dubai's most trusted medical centre.</p>
+    <!-- ✅ FINAL ELITE CTA -->
+    <section id="cta-banner" style="padding: 160px 5%; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%); position: relative; overflow: hidden; margin-top: 60px;">
+      <!-- Subtle Layering Shapes -->
+      <div style="position: absolute; top: -100px; right: -100px; width: 400px; height: 400px; background: rgba(192, 160, 112, 0.05); border-radius: 50%;"></div>
+      <div style="position: absolute; bottom: -50px; left: -50px; width: 250px; height: 250px; background: rgba(192, 160, 112, 0.03); border-radius: 50%;"></div>
+
+      <div class="container reveal-item" style="text-align: center; position: relative; z-index: 2;">
+        <span class="section-label" style="color: var(--accent-light);">Begin Your Journey</span>
+        <h2 class="section-title" style="color: white; font-size: clamp(3.5rem, 8vw, 6.5rem);">Experience the <em>Art of Clinical Healing</em></h2>
+        <p class="section-body" style="color: rgba(255,255,255,0.8); margin-inline: auto; font-size: 1.4rem;">Join Dubai's most trusted sanctuary for authentic Kerala Ayurveda. Our practitioners are ready to decode your body's silence.</p>
         
-        <div style="display: flex; gap: 20px; justify-content: center; margin-top: 40px;">
-          <a href="#" class="btn-gold" style="background: var(--accent);">Book Appointment <i data-lucide="calendar"></i></a>
-          <a href="https://wa.me/971551292579" class="btn-outline" style="border-color: white; color: white;">WhatsApp Us</a>
+        <div style="background: rgba(192, 160, 112, 0.1); border: 1px solid rgba(192, 160, 112, 0.2); backdrop-filter: blur(10px); padding: 15px 30px; border-radius: 100px; display: inline-block; margin-bottom: 50px; color: var(--accent-light); font-weight: 700; letter-spacing: 0.1em; font-size: 0.9rem;">
+          <i data-lucide="bell" style="width: 16px; margin-right: 10px;"></i> LIMITED CONSULTATION SLOTS AVAILABLE THIS WEEK
+        </div>
+
+        <div style="display: flex; gap: 25px; justify-content: center; align-items: center;">
+          <a href="#" class="btn-gold" style="background: var(--accent); color: white;">Book Your Consultation <i data-lucide="arrow-right"></i></a>
+          <a href="https://wa.me/971551292579" class="btn-outline" style="border-color: white; color: white;">WhatsApp Expert</a>
         </div>
       </div>
     </section>
