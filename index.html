@@ -260,11 +260,11 @@ h1,h2,h3,h4 {
 }
 /* default: full colour webp (shows over hero bg) */
 .nav-logo .logo-default {
-  height: 80px;
+  height: 70px;
   width: auto;
   object-fit: contain;
   display: block;
-  filter: brightness(0) invert(1); /* invert to white on dark hero */
+  /* NO filter — show original logo colours on transparent header */
 }
 /* sticky: SVG icon (compact, transparent) */
 .nav-logo .logo-sticky {
@@ -272,7 +272,7 @@ h1,h2,h3,h4 {
   width: auto;
   object-fit: contain;
   display: none;
-  filter: brightness(0) invert(1);
+  filter: brightness(0) invert(1); /* white on dark green sticky bg */
 }
 /* swap when scrolled */
 .site-header.scrolled .logo-default { display: none; }
@@ -289,6 +289,9 @@ h1,h2,h3,h4 {
   margin-left: auto;
 }
 .ham-btn i { width: 26px; height: 26px; }
+
+/* nav-close-btn: hidden by default (shown only via JS on mobile) */
+.nav-close-btn { display: none; }
 
 /* Nav — centred via margin auto on both sides */
 nav[aria-label="Primary"] {
@@ -724,25 +727,8 @@ nav[aria-label="Primary"] {
   cursor: not-allowed;
   transform: none;
 }
-/* Carousel dots */
-.carousel-dots {
-  display: flex;
-  justify-content: center;
-  gap: 8px;
-  margin-top: 20px;
-}
-.c-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: rgba(10,61,48,.18);
-  cursor: pointer;
-  transition: background var(--dur) var(--ease), transform var(--dur) var(--ease);
-}
-.c-dot.active {
-  background: var(--gold);
-  transform: scale(1.35);
-}
+/* Carousel dots — hidden/removed per design */
+.carousel-dots { display: none; }
 
 /* Mobile: show 1 card */
 @media (max-width: 900px) {
@@ -1521,7 +1507,7 @@ footer {
   /* hide mega menus on mobile */
   .mega { display: none !important; }
 
-  /* mobile close button inside nav */
+  /* mobile close button — only visible on mobile when drawer open */
   .nav-close-btn {
     position: fixed;
     top: 24px; right: 24px;
@@ -1529,7 +1515,6 @@ footer {
     border: none;
     border-radius: 50%;
     width: 44px; height: 44px;
-    display: none;
     align-items: center;
     justify-content: center;
     color: white;
@@ -1799,10 +1784,10 @@ footer {
 <section id="about" class="about-section">
   <div class="container">
     <div class="about-grid reveal">
-      <!-- Left: image collage — using clean clinical images only -->
+      <!-- Left: image collage — premium clinical photography -->
       <div class="about-images">
         <div class="img-tall">
-          <img src="Images/abhyangam.jpeg" alt="Abhyangam — warm oil therapy" />
+          <img src="Images/pizhichil.jpeg" alt="Pizhichil — Kerala oil bath therapy" />
         </div>
         <div class="img-sq">
           <img src="Images/kerala_herbs.png" alt="Medicinal herbs" />
@@ -1970,7 +1955,7 @@ footer {
         </div><!-- /cards-grid -->
       </div><!-- /carousel-track-outer -->
 
-      <!-- Carousel controls -->
+      <!-- Carousel arrows only (no dots) -->
       <div class="carousel-nav">
         <button class="carousel-btn" id="therapy-prev" aria-label="Previous treatments" disabled>
           <i data-lucide="arrow-left"></i>
@@ -1979,7 +1964,6 @@ footer {
           <i data-lucide="arrow-right"></i>
         </button>
       </div>
-      <div class="carousel-dots" id="therapy-dots"></div>
     </div><!-- /carousel-wrap -->
   </div>
 </section>
@@ -2578,42 +2562,29 @@ document.addEventListener('DOMContentLoaded', () => {
     const outer   = document.getElementById('therapy-outer');
     const prevBtn = document.getElementById('therapy-prev');
     const nextBtn = document.getElementById('therapy-next');
-    const dotsWrap = document.getElementById('therapy-dots');
     if (!track || !outer) return;
 
-    const cards      = Array.from(track.querySelectorAll('.t-card'));
-    const visibleCnt = window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
-    const totalSlides = Math.ceil(cards.length / visibleCnt);
-    let   current    = 0;
-
-    /* build dots */
-    for (let i = 0; i < totalSlides; i++) {
-      const dot = document.createElement('span');
-      dot.className = 'c-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => goTo(i));
-      dotsWrap.appendChild(dot);
-    }
+    const cards       = Array.from(track.querySelectorAll('.t-card'));
+    const getVisible  = () => window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+    const totalSlides = () => Math.ceil(cards.length / getVisible());
+    let current = 0;
 
     function cardWidth() {
-      const gap  = 28;
-      const vis  = window.innerWidth <= 640 ? 1 : window.innerWidth <= 900 ? 2 : 3;
+      const gap = 28;
+      const vis = getVisible();
       return (outer.offsetWidth + gap) / vis;
     }
 
     function goTo(idx) {
-      current = Math.max(0, Math.min(idx, totalSlides - 1));
-      track.style.transform = `translateX(-${current * cardWidth() * visibleCnt}px)`;
+      const slides = totalSlides();
+      current = Math.max(0, Math.min(idx, slides - 1));
+      track.style.transform = `translateX(-${current * cardWidth() * getVisible()}px)`;
       prevBtn.disabled = current === 0;
-      nextBtn.disabled = current === totalSlides - 1;
-      dotsWrap.querySelectorAll('.c-dot').forEach((d, i) => {
-        d.classList.toggle('active', i === current);
-      });
+      nextBtn.disabled = current === slides - 1;
     }
 
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
-
-    /* recalc on resize */
     window.addEventListener('resize', () => goTo(current), { passive: true });
     lucide.createIcons();
   })();
