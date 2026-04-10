@@ -1116,7 +1116,6 @@ nav[aria-label="Primary"] {
   cursor: pointer;
   transition: all 0.5s var(--ease);
   border: 1px solid rgba(10,61,48,0.06);
-  overflow: hidden;
   z-index: 1;
 }
 .trust-box::before {
@@ -1127,6 +1126,7 @@ nav[aria-label="Primary"] {
   background: var(--fill-color, var(--green-800));
   transition: height 0.5s var(--ease);
   z-index: -1;
+  border-radius: inherit;
 }
 .trust-box:hover::before { height: 100%; }
 .trust-box:hover { transform: translateY(-10px); }
