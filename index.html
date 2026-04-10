@@ -735,7 +735,12 @@ nav[aria-label="Primary"] {
   justify-content: center;
   color: var(--white) !important;
 }
-.apoint-icon i { width:20px; height:20px; color: var(--white) !important; }
+.apoint-icon i, .apoint-icon i svg { 
+  width:20px !important; 
+  height:20px !important; 
+  color: #ffffff !important; 
+  stroke: #ffffff !important; 
+}
 .apoint h4 { font-size:.93rem; margin-bottom:4px; color:var(--green-900); }
 .apoint p  { font-size:.83rem; color:var(--ink-muted); line-height:1.5; }
 
@@ -1151,20 +1156,22 @@ nav[aria-label="Primary"] {
   z-index: 2;
   transition: background 0.4s var(--ease);
 }
-.trust-icon i { 
-  width: 24px; 
-  height: 24px; 
+.trust-icon i, .trust-icon i svg { 
+  width: 24px !important; 
+  height: 24px !important; 
   color: #ffffff !important; 
-  transition: color 0.4s; 
+  stroke: #ffffff !important;
+  transition: color 0.4s, stroke 0.4s; 
 }
 .trust-box:nth-child(1) .trust-icon { background: var(--green-800); }
 .trust-box:nth-child(2) .trust-icon { background: var(--gold); }
 .trust-box:nth-child(3) .trust-icon { background: var(--green-900); }
 
-.trust-box:hover .trust-icon { background: var(--white); }
-.trust-box:hover:nth-child(1) .trust-icon i { color: var(--green-800); }
-.trust-box:hover:nth-child(2) .trust-icon i { color: var(--gold); }
-.trust-box:hover:nth-child(3) .trust-icon i { color: var(--green-900); }
+.trust-box:hover .trust-icon i, 
+.trust-box:hover .trust-icon i svg { color: inherit !important; stroke: currentColor !important; }
+.trust-box:hover:nth-child(1) .trust-icon i { color: var(--green-800) !important; }
+.trust-box:hover:nth-child(2) .trust-icon i { color: var(--gold) !important; }
+.trust-box:hover:nth-child(3) .trust-icon i { color: var(--green-900) !important; }
 
 @keyframes fastDrop {
   0% { transform: translateY(0); opacity: 1; }
