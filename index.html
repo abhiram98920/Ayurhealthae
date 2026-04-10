@@ -249,10 +249,10 @@ h1,h2,h3,h4 {
 /* ── 3-zone nav: logo | menu-center | actions ── */
 .nav-inner {
   display: grid;
-  grid-template-columns: 240px 1fr auto;
+  grid-template-columns: 280px 1fr auto; /* ample space for logo */
   align-items: center;
   height: 130px;
-  max-width: 1400px;
+  max-width: 1440px;
   margin: 0 auto;
   padding: 0 40px;
 }
@@ -303,8 +303,8 @@ h1,h2,h3,h4 {
 /* Nav — centred via margin auto on both sides */
 nav[aria-label="Primary"] {
   display: flex;
-  justify-content: flex-start;
-  padding-left: 20px;
+  justify-content: center; /* optically centers between logo and actions */
+  padding: 0 40px;
 }
 .nav-links {
   display: inline-flex;
