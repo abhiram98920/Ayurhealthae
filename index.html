@@ -62,7 +62,23 @@ body {
   line-height: 1.7;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
+  position: relative;
 }
+/* Organic Grain Texture Overlay */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background-image: url("https://www.transparenttextures.com/patterns/asfalt-light.png");
+  opacity: 0.03;
+  pointer-events: none;
+  z-index: 9999;
+}
+/* Custom Minimalist Scrollbar */
+::-webkit-scrollbar { width: 8px; }
+::-webkit-scrollbar-track { background: var(--green-900); }
+::-webkit-scrollbar-thumb { background: var(--gold); border: 2px solid var(--green-900); }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-light); }
 img { width:100%; height:auto; display:block; object-fit:cover; }
 a   { text-decoration:none; color:inherit; }
 ul  { list-style:none; }
@@ -87,6 +103,7 @@ h1,h2,h3,h4 {
   font-weight: 700;
   color: var(--green-900);
   line-height: 1.15;
+  letter-spacing: -0.015em;
 }
 
 .label {
@@ -240,8 +257,9 @@ h1,h2,h3,h4 {
   -webkit-backdrop-filter: blur(25px);
   height: 100px !important;
   box-shadow: 0 4px 40px rgba(0,0,0,0.25);
-  border-bottom: 1px solid rgba(255,255,255,0.1);
+  border-bottom: 2px solid var(--gold);
   z-index: 1000;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
 }
 
 /* CRITICAL: removing backdrop-filter when nav is open prevents it from
@@ -531,6 +549,13 @@ nav[aria-label="Primary"] {
     rgba(5,40,32,.72) 45%,
     rgba(5,40,32,.18) 100%
   );
+}
+.hero-gradient::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(5,40,32,0.4) 100%);
+  pointer-events: none;
 }
 
 .hero-inner {
@@ -2263,6 +2288,25 @@ footer {
   .ticker-item { font-size: .62rem; padding: 0 28px; }
 }
 
+/* ── Scroll-reveal ── */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px) scale(0.98);
+  transition: opacity 0.8s var(--ease), transform 0.8s var(--ease);
+}
+.reveal.up {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.stagger {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s var(--ease), transform 0.6s var(--ease);
+}
+.stagger.up {
+  opacity: 1;
+  transform: translateY(0);
+}
 </style>
 </head>
 
