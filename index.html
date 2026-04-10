@@ -239,6 +239,14 @@ h1,h2,h3,h4 {
   border-bottom: 1px solid rgba(255,255,255,0.1);
   z-index: 1000;
 }
+
+/* CRITICAL: removing backdrop-filter when nav is open prevents it from
+   trapping position:fixed children inside the header bounds */
+body.nav-open .site-header,
+body.nav-open .site-header.sticky {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
 .site-header.sticky .nav-inner { height: 100px !important; position: relative; }
 .site-header.sticky .logo-default { display: none; }
 .site-header.sticky .logo-sticky { 
@@ -1820,8 +1828,10 @@ footer {
     flex-direction: column;
     position: fixed;
     top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
     background: var(--green-900);
-    z-index: 200;
+    z-index: 9999;
     padding: 90px 32px 40px;
     overflow-y: auto;
   }
@@ -1860,9 +1870,9 @@ footer {
     justify-content: center;
     color: white;
     cursor: pointer;
-    z-index: 201;
+    z-index: 10000;
   }
-  .nav-close-btn.show { display: flex !important; }
+  .nav-close-btn.show { display: flex !important; z-index: 10000; }
   .nav-close-btn i { width: 22px; height: 22px; }
 
   /* ── MOBILE BOOK NOW ── */
@@ -3084,6 +3094,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navClose.classList.add('show');
     hamBtn.setAttribute('aria-expanded', 'true');
     document.body.style.overflow = 'hidden';
+    document.body.classList.add('nav-open');
     lucide.createIcons(); // re-render icons inside drawer
   }
   function closeNav() {
@@ -3091,6 +3102,7 @@ document.addEventListener('DOMContentLoaded', () => {
     navClose.classList.remove('show');
     hamBtn.setAttribute('aria-expanded', 'false');
     document.body.style.overflow = '';
+    document.body.classList.remove('nav-open');
   }
 
   if (hamBtn)   hamBtn.addEventListener('click', openNav);
