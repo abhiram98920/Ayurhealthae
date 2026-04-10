@@ -225,8 +225,10 @@ h1,h2,h3,h4 {
 .site-header {
   position: absolute;
   top: 0; left: 0; right: 0;
-  z-index: 100;
-  transition: all 0.4s var(--ease);
+  z-index: 250;
+  /* Only transition properties that are actually animatable — avoids
+     the visual snap caused by backdrop-filter and position changes */
+  transition: background 0.4s var(--ease), box-shadow 0.4s var(--ease), height 0.3s var(--ease);
   background: transparent;
 }
 .site-header.sticky {
@@ -1794,6 +1796,7 @@ footer {
 @media (max-width: 1024px) {
 
   /* ── HEADER HEIGHT ── */
+  /* ── HEADER ── */
   .site-header         { height: 70px !important; }
   .site-header.sticky  { height: 70px !important; }
   .nav-inner {
@@ -1805,13 +1808,13 @@ footer {
 
   /* ── LOGO ── */
   .logo-default, .logo-sticky {
-    height: 56px !important;
+    height: 80px !important;
     position: static !important;
     transform: none !important;
     margin: 0 !important;
   }
   .site-header.sticky .logo-sticky {
-    height: 56px !important;
+    height: 80px !important;
     position: static !important;
     top: auto !important;
     left: auto !important;
