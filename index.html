@@ -231,16 +231,16 @@ h1,h2,h3,h4 {
 }
 .site-header.sticky {
   position: fixed;
-  background: rgba(10, 61, 48, 0.96) !important;
+  background: rgba(10, 61, 48, 0.98) !important;
   backdrop-filter: blur(25px);
   -webkit-backdrop-filter: blur(25px);
-  height: 140px !important;
-  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.25);
+  height: 90px !important;
+  box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.site-header.sticky .nav-inner { height: 140px !important; }
+.site-header.sticky .nav-inner { height: 90px !important; }
 .site-header.sticky .logo-default { display: none; }
-.site-header.sticky .logo-sticky { display: block; height: 120px !important; }
+.site-header.sticky .logo-sticky { display: block; height: 75px !important; }
 .site-header.sticky .nav-links {
   background: rgba(255, 255, 255, 0.05); /* very faint glass pill in sticky */
   border-color: rgba(255, 255, 255, 0.1);
@@ -359,10 +359,10 @@ nav[aria-label="Primary"] {
 .mega::before {
   content: '';
   position: absolute;
-  top: -80px;
+  top: -60px;
   left: 0;
   right: 0;
-  height: 80px;
+  height: 60px;
   background: transparent;
 }
 .has-mega:hover .mega {
@@ -933,19 +933,21 @@ nav[aria-label="Primary"] {
   box-shadow: var(--shadow-xs);
 }
 /* Lucide icons in circle: use stroke via currentColor */
-.tl-circle i {
-  width: 26px;
-  height: 26px;
-  color: var(--gold);
-  transition: color var(--dur) var(--ease);
+.tl-circle i, .tl-circle i svg {
+  width: 26px !important;
+  height: 26px !important;
+  color: #000000 !important;
+  stroke: #000000 !important;
+  transition: color var(--dur) var(--ease), stroke var(--dur) var(--ease);
 }
 .tl-step:hover .tl-circle {
   background: var(--green-800);
   border-color: var(--green-800);
 }
-.tl-step:hover .tl-circle i {
-  color: var(--white) !important;
-  stroke: var(--white);
+.tl-step:hover .tl-circle i,
+.tl-step:hover .tl-circle i svg {
+  color: #ffffff !important;
+  stroke: #ffffff !important;
 }
 .tl-step h4 { font-size:1rem; margin-bottom:8px; }
 .tl-step p  { font-size:.82rem; color:var(--ink-muted); line-height:1.5; padding:0 6px; }
@@ -1168,10 +1170,10 @@ nav[aria-label="Primary"] {
 .trust-box:nth-child(3) .trust-icon { background: var(--green-900); }
 
 .trust-box:hover .trust-icon i, 
-.trust-box:hover .trust-icon i svg { color: inherit !important; stroke: currentColor !important; }
-.trust-box:hover:nth-child(1) .trust-icon i { color: var(--green-800) !important; }
-.trust-box:hover:nth-child(2) .trust-icon i { color: var(--gold) !important; }
-.trust-box:hover:nth-child(3) .trust-icon i { color: var(--green-900) !important; }
+.trust-box:hover .trust-icon i svg { 
+  color: #000000 !important; 
+  stroke: #000000 !important; 
+}
 
 @keyframes fastDrop {
   0% { transform: translateY(0); opacity: 1; }
