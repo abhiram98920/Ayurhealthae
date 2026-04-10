@@ -2349,6 +2349,36 @@ footer {
 }
 .hero-h1 { animation: softFloat 5s ease-in-out infinite; }
 
+/* Parallax Footer Reveal (Desktop only for performance and visibility) */
+@media (min-width: 1025px) {
+  main {
+    position: relative;
+    z-index: 2;
+    background: var(--cream);
+    box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+  }
+  footer {
+    position: fixed;
+    bottom: 0; left: 0; width: 100%;
+    z-index: 1;
+  }
+}
+
+@keyframes goldDust {
+  0% { transform: translateY(0) translateX(0) opacity: 0; }
+  50% { opacity: 0.4; }
+  100% { transform: translateY(-100vh) translateX(20px) opacity: 0; }
+}
+.gold-dust {
+  position: absolute;
+  width: 2px; height: 2px;
+  background: var(--gold);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+  animation: goldDust 10s linear infinite;
+}
+
 </style>
 </head>
 
@@ -3390,6 +3420,33 @@ document.addEventListener('DOMContentLoaded', () => {
     const scrolled = (winScroll / height) * 100;
     document.getElementById('scroll-progress').style.width = scrolled + "%";
   }, { passive: true });
+
+  // Hero Gold Dust
+  const hero = document.getElementById('hero');
+  for(let i=0; i<30; i++) {
+    const dust = document.createElement('div');
+    dust.className = 'gold-dust';
+    dust.style.left = Math.random() * 100 + '%';
+    dust.style.bottom = '-10px';
+    dust.style.animationDelay = Math.random() * 10 + 's';
+    dust.style.opacity = Math.random();
+    hero.appendChild(dust);
+  }
+
+  // Adjust content margin to match dynamic footer height
+  const footer = document.querySelector('footer');
+  const main = document.querySelector('main');
+  const adjustFooter = () => {
+    if(window.innerWidth > 1024) {
+      main.style.marginBottom = footer.offsetHeight + 'px';
+    } else {
+      main.style.marginBottom = '0';
+    }
+  };
+  window.addEventListener('resize', adjustFooter);
+  setTimeout(adjustFooter, 200);
+  window.addEventListener('load', adjustFooter);
+
 
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
