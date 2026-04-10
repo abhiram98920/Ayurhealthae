@@ -10,7 +10,7 @@
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap" rel="stylesheet" />
 
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
@@ -47,7 +47,7 @@
   --dur: .45s;
 
   --ff-serif: 'Playfair Display', serif;
-  --ff-sans:  'DM Sans', sans-serif;
+  --ff-sans:  'Lato', sans-serif;
 }
 
 /* =========================================================
@@ -77,7 +77,7 @@ button,input { font-family:var(--ff-sans); }
   padding: 0 24px;
   width: 100%;
 }
-section { padding: 96px 0; overflow: hidden; }
+section { padding: 96px 0; overflow: hidden; position: relative; }
 
 /* =========================================================
    TYPOGRAPHY
@@ -223,32 +223,38 @@ h1,h2,h3,h4 {
    HEADER / NAV
 ========================================================= */
 .site-header {
-  position: fixed;
-  top: 40px;              /* sits below ticker initially */
-  left: 0; right: 0;
+  position: absolute;
+  top: 0; left: 0; right: 0;
   z-index: 100;
-  transition: top var(--dur) var(--ease),
-              background var(--dur) var(--ease),
-              box-shadow var(--dur) var(--ease),
-              backdrop-filter var(--dur) var(--ease);
+  transition: all 0.4s var(--ease);
+  background: transparent;
 }
-.site-header.scrolled {
-  top: 0;
-  background: rgba(5,40,32,.92);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 2px 32px rgba(0,0,0,.25);
+.site-header.sticky {
+  position: fixed;
+  background: rgba(10, 61, 48, 0.92) !important;
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+  height: 80px !important;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+.site-header.sticky .nav-inner { height: 80px !important; }
+.site-header.sticky .logo-default { display: none; }
+.site-header.sticky .logo-sticky { display: block; height: 60px !important; }
+.site-header.sticky .nav-links {
+  background: rgba(255, 255, 255, 0.05); /* very faint glass pill in sticky */
+  border-color: rgba(255, 255, 255, 0.1);
 }
 
 /* ── 3-zone nav: logo | menu-center | actions ── */
 .nav-inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: 240px 1fr auto;
   align-items: center;
-  height: 80px;
-  max-width: 1200px;
+  height: 130px;
+  max-width: 1400px;
   margin: 0 auto;
-  padding: 0 24px;
-  gap: 0;
+  padding: 0 40px;
 }
 
 /* Logo — fixed left zone */
@@ -256,19 +262,17 @@ h1,h2,h3,h4 {
   flex-shrink: 0;
   display: flex;
   align-items: center;
-  margin-right: auto;
 }
 /* default: full colour webp (shows over hero bg) */
 .nav-logo .logo-default {
-  height: 46px; /* Made smaller as requested */
+  height: 150px;
   width: auto;
   object-fit: contain;
   display: block;
-  /* NO filter — show original logo colours on transparent header */
 }
 /* sticky: SVG icon (compact, transparent) */
 .nav-logo .logo-sticky {
-  height: 44px;
+  height: 100px;
   width: auto;
   object-fit: contain;
   display: none;
@@ -298,23 +302,30 @@ h1,h2,h3,h4 {
 
 /* Nav — centred via margin auto on both sides */
 nav[aria-label="Primary"] {
-  flex: 1;
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  padding-left: 20px;
 }
 .nav-links {
-  display: flex;
+  display: inline-flex;
   align-items: center;
   gap: 32px;
   white-space: nowrap;
+  background: rgba(255,255,255,0.15);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.2);
+  padding: 10px 36px;
+  border-radius: 100px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
 .nav-links > li { position: static; }
 .nav-links a {
-  font-size: .80rem;
+  font-size: .75rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: .07em;
-  color: rgba(255,255,255,.88);
+  color: var(--white);
   padding: 4px 0;
   position: relative;
   white-space: nowrap;
@@ -323,24 +334,15 @@ nav[aria-label="Primary"] {
   gap: 4px;
   transition: color var(--dur) var(--ease);
 }
-.nav-links a::after {
-  content: '';
-  position: absolute;
-  bottom: -2px;
-  left: 0; right: 100%;
-  height: 1.5px;
-  background: var(--gold);
-  transition: right var(--dur) var(--ease);
-}
-.nav-links a:hover         { color: var(--gold-light); }
-.nav-links a:hover::after  { right: 0; }
+.nav-links a::after { display: none; }
+.nav-links a:hover { color: var(--gold); }
 .nav-links i { width:12px; height:12px; flex-shrink:0; }
 
 /* Mega Menu */
 .has-mega { position: static; }
 .mega {
   position: fixed;
-  top: 120px;
+  top: 130px;
   left: 50%;
   transform: translateX(-50%);
   width: min(1200px, 96vw);
@@ -353,6 +355,15 @@ nav[aria-label="Primary"] {
   transform: translateX(-50%) translateY(12px);
   transition: opacity .3s var(--ease), transform .3s var(--ease);
   z-index: 150;
+}
+.mega::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: transparent;
 }
 .has-mega:hover .mega {
   opacity: 1;
@@ -400,22 +411,24 @@ nav[aria-label="Primary"] {
 
 /* Actions — fixed right zone */
 .nav-actions {
-  flex-shrink: 0;
   display: flex;
   align-items: center;
-  gap: 20px;
-  margin-left: auto;   /* pushes to far right */
+  gap: 32px;
+}
+.nav-actions .btn {
+  white-space: nowrap !important;
+  min-width: max-content;
 }
 .nav-phone {
   display: flex;
   align-items: center;
-  gap: 8px;
-  color: rgba(255,255,255,.88);
+  gap: 10px;
+  color: var(--white);
   font-weight: 700;
-  font-size: .85rem;
+  font-size: .9rem;
   white-space: nowrap;
 }
-.nav-phone i { width:14px; height:14px; color:var(--gold); }
+.nav-phone i { width:16px; height:16px; color:var(--gold); }
 
 /* =========================================================
    HERO
@@ -428,6 +441,46 @@ nav[aria-label="Primary"] {
   background: var(--green-900);
   display: flex;
   align-items: center;
+}
+@keyframes verticalTicker {
+  0% { transform: translateY(0); }
+  100% { transform: translateY(-50%); }
+}
+.hero-vertical-text {
+  position: absolute;
+  top: 0;
+  left: -1vw;
+  height: max-content;
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  font-family: var(--ff-serif);
+  font-size: 25vh;
+  font-weight: 300;
+  text-transform: uppercase;
+  letter-spacing: -0.05em;
+  color: var(--white);
+  opacity: 0.08;
+  z-index: 10;
+  pointer-events: none;
+  white-space: nowrap;
+  animation: verticalTicker 25s linear infinite;
+}
+.section-watermark {
+  position: absolute;
+  top: 5%;
+  width: 350px;
+  height: 350px;
+  opacity: 0.04;
+  pointer-events: none;
+  z-index: 0;
+  filter: grayscale(1);
+  animation: rotateWatermark 60s linear infinite;
+}
+.section-watermark.left { left: 5%; }
+.section-watermark.right { right: 5%; }
+@keyframes rotateWatermark {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 .hero-bg-img {
   position: absolute;
@@ -612,19 +665,53 @@ nav[aria-label="Primary"] {
   grid-template-rows: 280px 200px;
   gap: 14px;
 }
+.about-images .img-tall, .about-images .img-sq {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+}
 .about-images .img-tall {
   grid-row: span 2;
   border-radius: var(--r-lg);
-  overflow: hidden;
   box-shadow: var(--shadow-md);
 }
-.about-images .img-tall img { height:100%; }
+.about-images .img-tall img { height:100%; width:100%; object-fit:cover; transition: transform 0.6s var(--ease); }
 .about-images .img-sq {
   border-radius: var(--r-md);
-  overflow: hidden;
   box-shadow: var(--shadow-sm);
 }
-.about-images .img-sq img { height:100%; }
+.about-images .img-sq img { height:100%; width:100%; object-fit:cover; transition: transform 0.6s var(--ease); }
+
+/* Hover Overlay */
+.img-overlay-fill {
+  position: absolute;
+  inset: 0;
+  background: var(--green-900);
+  transform: translateY(100%);
+  transition: transform 0.5s var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  opacity: .85;
+}
+.img-overlay-fill .btn-overlay {
+  background: var(--gold);
+  color: var(--green-900);
+  border: none;
+  padding: 10px 22px;
+  border-radius: 100px;
+  font-weight: 700;
+  font-size: .8rem;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: all 0.4s var(--ease);
+}
+.about-images div:hover .img-overlay-fill, 
+.why-img:hover .img-overlay-fill { transform: translateY(0); }
+.about-images div:hover .img-overlay-fill .btn-overlay, 
+.why-img:hover .img-overlay-fill .btn-overlay { transform: translateY(0); opacity: 1; }
+.about-images div:hover img, .why-img:hover img { transform: scale(1.05); }
 
 .about-points {
   display: grid;
@@ -852,8 +939,8 @@ nav[aria-label="Primary"] {
   border-color: var(--green-800);
 }
 .tl-step:hover .tl-circle i {
-  color: var(--gold) !important;    /* gold on dark bg = premium look */
-  stroke: var(--gold);              /* belt + suspenders for SVG */
+  color: var(--white) !important;
+  stroke: var(--white);
 }
 .tl-step h4 { font-size:1rem; margin-bottom:8px; }
 .tl-step p  { font-size:.82rem; color:var(--ink-muted); line-height:1.5; padding:0 6px; }
@@ -971,89 +1058,221 @@ nav[aria-label="Primary"] {
 /* =========================================================
    WHY CHOOSE US
 ========================================================= */
-.why-section { background: var(--sand); }
-.why-grid {
+.why-top-split {
   display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 72px;
+  grid-template-columns: 1fr 340px; /* even narrower image column */
+  gap: 60px;
   align-items: center;
+  margin-bottom: 48px;
 }
-.why-img { border-radius: var(--r-lg); overflow:hidden; box-shadow:var(--shadow-lg); }
-.why-img img { height:520px; }
+.why-hero-text { max-width: 800px; }
+.why-mini-image {
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-md);
+  height: 280px;
+}
+.why-mini-image img { width: 100%; height: 100%; object-fit: cover; }
 
-.why-features { margin-top:32px; display:grid; gap:24px; }
-.why-feature {
-  display: flex;
-  gap: 18px;
-  align-items: flex-start;
-  padding: 20px 22px;
-  background: var(--white);
-  border-radius: var(--r-sm);
-  border: 1px solid rgba(10,61,48,.06);
-  box-shadow: var(--shadow-xs);
-  transition: box-shadow var(--dur) var(--ease), transform var(--dur) var(--ease);
+.why-points-area {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  margin-bottom: 80px;
 }
-.why-feature:hover { transform: translateY(-4px); box-shadow: var(--shadow-sm); }
-.wf-icon {
-  width: 42px;
-  height: 42px;
-  flex-shrink: 0;
-  background: var(--sand);
-  border-radius: 10px;
+.why-check-item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 24px;
+  background: var(--white);
+  border: 1px solid rgba(10,61,48,0.06);
+  border-radius: 12px;
+  font-size: .88rem;
+  font-weight: 700;
+  color: var(--green-900);
+  transition: all 0.3s var(--ease);
+  box-shadow: var(--shadow-xs);
+}
+.why-check-item:hover {
+  border-color: var(--gold);
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-sm);
+}
+.why-check-item i { width: 18px; height: 18px; color: var(--gold); }
+
+.why-trust-row {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+  margin-top: 40px;
+}
+.trust-box {
+  padding: 60px 40px 48px;
+  position: relative;
+  background: #f4f9fb;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s var(--ease);
+  border: 1px solid rgba(0,0,0,0.03);
+}
+.trust-box:hover { transform: translateY(-10px); box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+.trust-box:nth-child(2) { background: #f6f5fa; }
+.trust-box:nth-child(3) { background: #f5f9f6; }
+
+.trust-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--white);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: var(--gold);
+  position: absolute;
+  top: -30px;
+  left: 40px;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.1);
 }
-.wf-icon i { width:20px; height:20px; }
-.why-feature h4 { font-size:.95rem; margin-bottom:5px; color:var(--green-900); }
-.why-feature p  { font-size:.85rem; color:var(--ink-muted); line-height:1.5; margin:0; }
+.trust-icon i { width: 24px; height: 24px; color: var(--white); }
+.trust-box:nth-child(1) .trust-icon { background: #00A3E0; color: white; }
+.trust-box:nth-child(2) .trust-icon { background: #6D68AF; color: white; }
+.trust-box:nth-child(3) .trust-icon { background: #76C043; color: white; }
+.trust-box:nth-child(1) .trust-icon i,
+.trust-box:nth-child(2) .trust-icon i,
+.trust-box:nth-child(3) .trust-icon i { color: white; }
+
+@keyframes fastDrop {
+  0% { transform: translateY(0); opacity: 1; }
+  35% { transform: translateY(20px); opacity: 0; }
+  36% { transform: translateY(-20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+.trust-box:hover .trust-icon i {
+  animation: fastDrop 0.4s var(--ease) forwards;
+}
+
+.trust-box h3 { font-size: 1.15rem; margin-bottom: 12px; font-weight: 700; color: var(--green-900); }
+.trust-box p { font-size: .9rem; color: var(--ink-mid); line-height: 1.6; }ink-muted); line-height:1.5; margin:0; }
 
 /* =========================================================
    CONDITIONS
 ========================================================= */
 .cond-section { background: var(--cream); }
-.cond-grid {
+.cond-layout {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
-  gap: 22px;
-  margin-top: 48px;
+  grid-template-columns: 1fr 1.6fr;
+  gap: 60px;
+  align-items: flex-start;
 }
-.cond-card {
+.cond-intro { position: sticky; top: 120px; }
+.cond-intro .h2 { margin-bottom: 24px; }
+.cond-carousel-wrap { position: relative; }
+.cond-nav {
+  position: absolute;
+  top: -60px;
+  right: 0;
+  display: flex;
+  gap: 12px;
+  z-index: 10;
+}
+.cond-nav button {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 1px solid var(--sand-dark);
   background: var(--white);
-  border-radius: var(--r-md);
-  padding: 36px 24px;
-  text-align: center;
-  border: 1px solid rgba(10,61,48,.06);
-  box-shadow: var(--shadow-xs);
+  color: var(--green-900);
   cursor: pointer;
-  transition: transform var(--dur) var(--ease),
-              background var(--dur) var(--ease),
-              box-shadow var(--dur) var(--ease);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .3s var(--ease);
 }
-.cond-card:hover {
-  transform: translateY(-8px);
+.cond-nav button:hover:not(:disabled) {
+  background: var(--green-900);
+  color: var(--white);
+  border-color: var(--green-900);
+}
+.cond-carousel {
+  display: grid;
+  grid-auto-flow: column;
+  grid-auto-columns: calc((100% - 40px) / 2.2); /* larger cards */
+  gap: 20px;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  padding: 10px 0 30px; /* space at bottom */
+  scrollbar-width: none;
+}
+.cond-carousel::-webkit-scrollbar { display: none; }
+.cond-card {
+  aspect-ratio: 1 / 1;
+  background: var(--white);
+  border: 1px solid rgba(10,61,48,.1);
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  scroll-snap-align: start;
+  transition: transform .4s var(--ease);
+}
+.cond-card::before {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0; top: 0;
   background: var(--green-800);
-  box-shadow: var(--shadow-md);
+  transform: translateY(100%);
+  transition: transform .6s var(--ease);
+  z-index: 0;
 }
+.cond-card:hover::before { transform: translateY(0); }
+.cond-watermark {
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 140px; height: 140px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity .4s var(--ease);
+  filter: brightness(0) invert(1);
+}
+.cond-card:hover .cond-watermark { opacity: 0.1; }
 .cond-icon {
-  width: 56px;
-  height: 56px;
-  margin: 0 auto 20px;
+  width: 50px;
+  height: 50px;
   background: var(--sand);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--gold);
-  transition: background var(--dur) var(--ease);
+  margin-bottom: auto;
+  position: relative;
+  z-index: 2;
+  transition: all .4s var(--ease);
 }
-.cond-icon i { width:24px; height:24px; }
-.cond-card:hover .cond-icon { background: rgba(255,255,255,.15); }
-.cond-card h3 { font-size:1.1rem; margin-bottom:8px; transition: color var(--dur) var(--ease); }
-.cond-card p  { font-size:.82rem; color:var(--ink-muted); transition: color var(--dur) var(--ease); }
+.cond-card:hover .cond-icon { background: rgba(255,255,255,.2); color: var(--white); }
+.cond-card h3 {
+  font-size: 1.25rem;
+  margin-bottom: 12px;
+  position: relative;
+  z-index: 2;
+  transition: color .4s var(--ease);
+}
+.cond-card p {
+  font-size: .88rem;
+  color: var(--ink-muted);
+  position: relative;
+  z-index: 2;
+  transition: color .4s var(--ease);
+  line-height: 1.6;
+}
 .cond-card:hover h3, .cond-card:hover p { color: var(--white); }
-.cond-card:hover .cond-icon { color: var(--gold); }
 
 /* =========================================================
    BLOG
@@ -1094,24 +1313,71 @@ nav[aria-label="Primary"] {
 /* =========================================================
    FAQ
 ========================================================= */
-.faq-section { background: var(--cream); }
-.faq-wrap { max-width: 800px; margin: 56px auto 0; display:grid; gap:12px; }
-.faq-item {
+.faq-section { background: var(--cream); padding: 100px 0; }
+.faq-grid {
+  display: grid;
+  grid-template-columns: 1fr;
   background: var(--white);
-  border-radius: var(--r-sm);
-  border: 1px solid rgba(10,61,48,.07);
+  border-radius: var(--r-lg);
+  box-shadow: 0 10px 40px rgba(0,0,0,0.03);
   overflow: hidden;
+}
+@media (min-width: 900px) {
+  .faq-grid {
+    grid-template-columns: 0.8fr 1.2fr;
+  }
+}
+.faq-left {
+  padding: 40px 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(10,61,48,.07);
+}
+@media (min-width: 900px) {
+  .faq-left { 
+    padding: 60px; 
+    border-bottom: none; 
+    border-right: 1px solid rgba(10,61,48,.07); 
+  }
+}
+.faq-left h2 {
+  font-family: var(--ff-serif);
+  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-weight: 900;
+  color: var(--green-900);
+  margin-bottom: 16px;
+  line-height: 1.1;
+  text-transform: uppercase;
+  letter-spacing: -1px;
+}
+.faq-left p {
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  margin-bottom: 30px;
+}
+.faq-wrap {
+  display: flex;
+  flex-direction: column;
+}
+.faq-item {
+  border-bottom: 1px solid rgba(10,61,48,.07);
+  overflow: hidden;
+}
+.faq-item:last-child {
+  border-bottom: none;
 }
 .faq-trigger {
   width: 100%;
   background: none;
   border: none;
-  padding: 20px 26px;
+  padding: 24px 30px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   cursor: pointer;
-  font-family: var(--ff-serif);
+  font-family: var(--ff-sans);
   font-size: 1.05rem;
   font-weight: 600;
   color: var(--green-900);
@@ -1125,7 +1391,7 @@ nav[aria-label="Primary"] {
   overflow: hidden;
   transition: max-height .45s var(--ease), padding .45s var(--ease);
 }
-.faq-body-inner { padding: 0 26px 22px; font-size:.93rem; color:var(--ink-mid); line-height:1.7; }
+.faq-body-inner { padding: 0 30px 24px; font-size:.93rem; color:var(--ink-mid); line-height:1.7; }
 .faq-item.open .faq-body { max-height: 300px; }
 
 /* =========================================================
@@ -1179,28 +1445,32 @@ footer {
 }
 .footer-top {
   display: grid;
-  grid-template-columns: 1.8fr 1fr 1fr 1.5fr;
-  gap: 48px;
-  padding-bottom: 52px;
+  grid-template-columns: 2fr 1fr 1fr 1.5fr;
+  gap: 60px;
+  padding-bottom: 60px;
   border-bottom: 1px solid rgba(255,255,255,.1);
 }
+.footer-brand { text-align: left; }
 .footer-brand img {
-  height: 52px;
+  height: 250px;
   width: auto;
-  margin-bottom: 18px;
+  margin-bottom: 24px;
+  margin-left: -15px;
+  object-fit: contain;
 }
-.footer-brand p { font-size:.88rem; line-height:1.7; margin-bottom:22px; }
-.social-row { display:flex; gap:12px; }
+.footer-brand p { font-size:.95rem; line-height:1.8; margin-bottom:42px; color: rgba(255,255,255,.7); max-width: 480px; }
+.social-row { display:flex; gap:20px; align-items: center; margin-left: 0; }
 .social-row a {
-  width:36px; height:36px;
+  width:44px; height:44px;
   border-radius:50%;
-  border: 1px solid rgba(255,255,255,.2);
+  background: rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,.15);
   display:flex; align-items:center; justify-content:center;
-  color:rgba(255,255,255,.65);
-  transition: background var(--dur) var(--ease), border-color var(--dur) var(--ease);
+  color: var(--white);
+  transition: all .3s var(--ease);
 }
-.social-row a:hover { background:var(--gold); border-color:var(--gold); color:var(--white); }
-.social-row i { width:15px; height:15px; }
+.social-row a:hover { background:var(--gold); border-color:var(--gold); transform: translateY(-3px); color: var(--green-900); }
+.social-row i { width:20px; height:20px; display: block; opacity: 1 !important; visibility: visible !important; }
 .footer-col h5 {
   font-family:var(--ff-sans);
   font-size:.72rem;
@@ -1597,9 +1867,9 @@ footer {
 
     <a href="/" class="nav-logo" aria-label="Ayur Health Home">
       <!-- default: full webp logo (hero / transparent header) -->
-      <img src="Images/logo.webp" alt="Ayur Health" class="logo-default" />
+      <img src="Images/logo-02.png" alt="Ayur Health" class="logo-default" />
       <!-- sticky only: compact SVG icon -->
-      <img src="Images/logo.svg" alt="Ayur Health" class="logo-sticky" />
+      <img src="Images/logo-04.png" alt="Ayur Health" class="logo-sticky" />
     </a>
 
     <!-- Hamburger (mobile only) -->
@@ -1707,7 +1977,8 @@ footer {
 <!-- ══════════════════════════════════════════════
      HERO
 ══════════════════════════════════════════════ -->
-<section id="hero">
+<section id="hero" style="position: relative; overflow: hidden;">
+  <div class="hero-vertical-text">AYURHEALTH &nbsp;&nbsp;&nbsp; AYURHEALTH &nbsp;&nbsp;&nbsp; AYURHEALTH &nbsp;&nbsp;&nbsp; AYURHEALTH</div>
   <div class="hero-bg-img">
     <img src="Images/premium_center.png" alt="Ayur Health premium clinic interior" />
     <div class="hero-gradient"></div>
@@ -1784,18 +2055,28 @@ footer {
      ABOUT / EXCELLENCE
 ══════════════════════════════════════════════ -->
 <section id="about" class="about-section">
+  <img src="Images/logo.svg" class="section-watermark right" aria-hidden="true" />
   <div class="container">
     <div class="about-grid reveal">
       <!-- Left: image collage — premium clinical photography -->
       <div class="about-images">
         <div class="img-tall">
           <img src="Images/pizhichil.jpeg" alt="Pizhichil — Kerala oil bath therapy" />
+          <div class="img-overlay-fill">
+            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+          </div>
         </div>
         <div class="img-sq">
           <img src="Images/kerala_herbs.png" alt="Medicinal herbs" />
+          <div class="img-overlay-fill">
+            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+          </div>
         </div>
         <div class="img-sq">
           <img src="Images/shirodhara.jpeg" alt="Shirodhara therapy" />
+          <div class="img-overlay-fill">
+            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+          </div>
         </div>
       </div>
 
@@ -1850,6 +2131,7 @@ footer {
      THERAPIES
 ══════════════════════════════════════════════ -->
 <section id="therapies" class="therapies-section">
+  <img src="Images/logo.svg" class="section-watermark left" aria-hidden="true" />
   <div class="container">
     <div class="section-hdr reveal">
       <div>
@@ -2098,54 +2380,50 @@ footer {
 ══════════════════════════════════════════════ -->
 <section id="why" class="why-section">
   <div class="container">
-    <div class="why-grid reveal">
-
-      <!-- Left: features -->
-      <div>
+    
+    <div class="why-top-split reveal">
+      <div class="why-hero-text">
         <p class="label">Medical Trust</p>
-        <h2 class="h2">Why Patients Choose <em>Ayur Health</em></h2>
+        <h2 class="h2">Preserving <em>Ancient Wisdom</em>,<br>Restoring Pure Health</h2>
         <p class="body-text">
-          In the heart of Dubai, we've built a sanctuary where ancestral Kerala healing meets clinical precision — designed for patients who seek permanent restoration, not temporary relief.
+          In the heart of Dubai, Ayur Health is more than a clinic — it's a commitment to clinical excellence. We blend 5,000 years of Kerala heritage with modern medical standards to ensure your recovery is permanent.
         </p>
-
-        <div class="why-features stagger">
-          <div class="why-feature">
-            <div class="wf-icon"><i data-lucide="award"></i></div>
-            <div>
-              <h4>DHA Licensed Excellence</h4>
-              <p>Strict medical protocols approved by the Dubai Health Authority — your safety is non-negotiable.</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="wf-icon"><i data-lucide="leaf"></i></div>
-            <div>
-              <h4>Authentic Kerala Heritage</h4>
-              <p>Healing oils and herbs sourced directly from certified organic farms in Kerala, India.</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="wf-icon"><i data-lucide="target"></i></div>
-            <div>
-              <h4>Root-Cause Treatment</h4>
-              <p>We resolve the underlying metabolic imbalance, not just manage the surface-level symptoms.</p>
-            </div>
-          </div>
-          <div class="why-feature">
-            <div class="wf-icon"><i data-lucide="user-check"></i></div>
-            <div>
-              <h4>Fully Personalised Care</h4>
-              <p>No two bodies are alike. Every protocol is individually designed for your unique Prakriti.</p>
-            </div>
-          </div>
-        </div>
+        <a href="#about" class="link-gold">Clinical Association Standards <i data-lucide="arrow-right"></i></a>
       </div>
-
-      <!-- Right: image -->
-      <div class="why-img">
-        <img src="Images/kerala_pada_abhyangam.png" alt="Pada Abhyangam — foot therapy" />
+      
+      <div class="why-mini-image">
+        <img src="Images/kerala_pada_abhyangam.png" alt="Clinical excellence" />
       </div>
-
     </div>
+
+    <div class="why-points-area stagger">
+      <div class="why-check-item"><i data-lucide="check-circle-2"></i> Minimising systemic toxins</div>
+      <div class="why-check-item"><i data-lucide="check-circle-2"></i> Maximising deep cellular repair</div>
+      <div class="why-check-item"><i data-lucide="check-circle-2"></i> Optimising metabolic fire</div>
+      <div class="why-check-item"><i data-lucide="check-circle-2"></i> Individualised care protocols</div>
+    </div>
+
+    <div class="why-trust-row stagger">
+      <!-- Card 1 -->
+      <div class="trust-box">
+        <div class="trust-icon"><i data-lucide="shield-check"></i></div>
+        <h3>DHA Licensed</h3>
+        <p>Medical protocols approved by the Dubai Health Authority for your complete safety.</p>
+      </div>
+      <!-- Card 2 -->
+      <div class="trust-box">
+        <div class="trust-icon"><i data-lucide="award"></i></div>
+        <h3>Expert Clinicians</h3>
+        <p>Managed by BAMS-certified Vaidyas with decades of authentic Kerala clinical experience.</p>
+      </div>
+      <!-- Card 3 -->
+      <div class="trust-box">
+        <div class="trust-icon"><i data-lucide="leaf"></i></div>
+        <h3>Organic Sourcing</h3>
+        <p>All herbal oils and medicines are sourced from certified organic forests in Kerala.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -2153,34 +2431,65 @@ footer {
      CONDITIONS
 ══════════════════════════════════════════════ -->
 <section id="conditions" class="cond-section">
+  <img src="Images/logo.svg" class="section-watermark right" aria-hidden="true" />
   <div class="container">
-    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
-      <p class="label">Clinical Specialities</p>
-      <h2 class="h2">Systemic <em>Disease Recovery</em></h2>
-      <p class="body-text" style="max-width:100%; margin-inline:auto;">Personalised medical journeys for metabolic, neurological, dermatological, and systemic disorders.</p>
-    </div>
+    <div class="cond-layout reveal">
+      
+      <div class="cond-intro">
+        <p class="label">Clinical Specialities</p>
+        <h2 class="h2">Systemic <em>Disease Recovery</em></h2>
+        <p class="body-text">Treating chronic pain, systemic stress, and complex conditions with DHA-licensed expertise and time-tested Kerala protocols.</p>
+        <div style="margin-top:32px;">
+           <a href="#cta" class="btn btn-primary">Start Consultation</a>
+        </div>
+      </div>
 
-    <div class="cond-grid stagger">
-      <div class="cond-card">
-        <div class="cond-icon"><i data-lucide="activity"></i></div>
-        <h3>Chronic Pain</h3>
-        <p>Sciatica, Arthritis, Slipped Disc, and joint restoration.</p>
+      <div class="cond-carousel-wrap">
+        <div class="cond-nav">
+          <button id="cond-prev" aria-label="Previous"><i data-lucide="chevron-left"></i></button>
+          <button id="cond-next" aria-label="Next"><i data-lucide="chevron-right"></i></button>
+        </div>
+        
+        <div class="cond-carousel" id="cond-track">
+          
+          <div class="cond-card">
+            <img src="Images/logo.svg" class="cond-watermark" aria-hidden="true" />
+            <div class="cond-icon"><i data-lucide="activity"></i></div>
+            <h3>Chronic Pain</h3>
+            <p>Sciatica, Arthritis, Slipped Disc, and deep joint restoration protocols.</p>
+          </div>
+
+          <div class="cond-card">
+            <img src="Images/logo.svg" class="cond-watermark" aria-hidden="true" />
+            <div class="cond-icon"><i data-lucide="sparkles"></i></div>
+            <h3>Skin Health</h3>
+            <p>Psoriasis, Eczema, Dermatitis, and complex pigmentation disorders.</p>
+          </div>
+
+          <div class="cond-card">
+            <img src="Images/logo.svg" class="cond-watermark" aria-hidden="true" />
+            <div class="cond-icon"><i data-lucide="moon"></i></div>
+            <h3>Mental Balance</h3>
+            <p>Insomnia, chronic Anxiety, Burnout, and deep neurological stress management.</p>
+          </div>
+
+          <div class="cond-card">
+            <img src="Images/logo.svg" class="cond-watermark" aria-hidden="true" />
+            <div class="cond-icon"><i data-lucide="heart"></i></div>
+            <h3>Women's Care</h3>
+            <p>Hormonal balance, PCOD/PCOS, and prenatal holistic wellness.</p>
+          </div>
+
+          <div class="cond-card">
+            <img src="Images/logo.svg" class="cond-watermark" aria-hidden="true" />
+            <div class="cond-icon"><i data-lucide="shield-check"></i></div>
+            <h3>Immune Health</h3>
+            <p>Post-viral recovery, metabolic syndrome, and systemic immunity building.</p>
+          </div>
+
+        </div>
       </div>
-      <div class="cond-card">
-        <div class="cond-icon"><i data-lucide="sparkles"></i></div>
-        <h3>Skin Health</h3>
-        <p>Psoriasis, Eczema, Dermatitis, and pigmentation disorders.</p>
-      </div>
-      <div class="cond-card">
-        <div class="cond-icon"><i data-lucide="moon"></i></div>
-        <h3>Mental Balance</h3>
-        <p>Insomnia, Anxiety, Burnout, and Stress management.</p>
-      </div>
-      <div class="cond-card">
-        <div class="cond-icon"><i data-lucide="heart"></i></div>
-        <h3>Women's Care</h3>
-        <p>Hormonal balance, PCOD, and prenatal wellness.</p>
-      </div>
+
     </div>
   </div>
 </section>
@@ -2245,12 +2554,15 @@ footer {
 ══════════════════════════════════════════════ -->
 <section id="faq" class="faq-section">
   <div class="container">
-    <div class="reveal" style="text-align:center; max-width:640px; margin:0 auto;">
-      <p class="label">Common Questions</p>
-      <h2 class="h2">Your <em>Concerns, Answered</em></h2>
-    </div>
+    <div class="faq-grid reveal">
+      
+      <div class="faq-left">
+        <h2>FAQ</h2>
+        <p>Can't find the answer you need?</p>
+        <button class="btn btn-primary" onclick="openBooking()">Contact Us</button>
+      </div>
 
-    <div class="faq-wrap reveal">
+      <div class="faq-wrap">
 
       <div class="faq-item">
         <button class="faq-trigger">
@@ -2312,6 +2624,7 @@ footer {
         </div>
       </div>
 
+      </div>
     </div>
   </div>
 </section>
@@ -2349,12 +2662,13 @@ footer {
     <div class="footer-top">
 
       <div class="footer-brand">
-        <!-- Using SVG so there's no white box, filling it with white via filter since the logo emblem works perfectly here -->
-        <img src="Images/logo.svg" alt="Ayur Health" style="height:52px;width:auto;object-fit:contain;filter:brightness(0) invert(1);" />
+        <img src="Images/logo-04.png" alt="Ayur Health" style="height:190px;width:auto;object-fit:contain;" />
         <p>Leading Ayurvedic Medical Centre in Dubai. Authentic Kerala traditions, personalised clinical care, DHA-licensed excellence.</p>
         <div class="social-row">
           <a href="#" aria-label="Instagram"><i data-lucide="instagram"></i></a>
           <a href="#" aria-label="Facebook"><i data-lucide="facebook"></i></a>
+          <a href="#" aria-label="Twitter"><i data-lucide="twitter"></i></a>
+          <a href="#" aria-label="YouTube"><i data-lucide="youtube"></i></a>
           <a href="#" aria-label="LinkedIn"><i data-lucide="linkedin"></i></a>
         </div>
       </div>
@@ -2485,7 +2799,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   window.addEventListener('scroll', () => {
     const y = window.scrollY;
-    header.classList.toggle('scrolled', y > 60);
+    header.classList.toggle('sticky', y > 80);
     fabTop.classList.toggle('show',    y > 500);
   }, { passive: true });
 
@@ -2590,6 +2904,20 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('resize', () => goTo(current), { passive: true });
     lucide.createIcons();
   })();
+
+  /* ── Conditions carousel ── */
+  const condTrack = document.getElementById('cond-track');
+  const condNext  = document.getElementById('cond-next');
+  const condPrev  = document.getElementById('cond-prev');
+
+  if (condTrack) {
+    condNext.addEventListener('click', () => {
+      condTrack.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+    condPrev.addEventListener('click', () => {
+      condTrack.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+  }
 
   /* ── FAQ accordion ── */
   document.querySelectorAll('.faq-trigger').forEach(btn => {
