@@ -2307,10 +2307,53 @@ footer {
   opacity: 1;
   transform: translateY(0);
 }
+/* ── Phase 3: Ultra-Modern Additions ── */
+#scroll-progress {
+  position: fixed;
+  top: 0; left: 0; width: 0%; height: 3px;
+  background: linear-gradient(to right, var(--gold-light), var(--gold));
+  z-index: 10001;
+  transition: width 0.1s ease-out;
+}
+@keyframes goldAurora {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.btn-gold, .btn-primary {
+  background-size: 200% 200% !important;
+  animation: goldAurora 6s ease infinite;
+}
+.btn-gold {
+  background: linear-gradient(-45deg, #c9a96e, #e2c993, #b8935a, #d4b87d) !important;
+}
+.btn-primary {
+  background: linear-gradient(-45deg, #0a3d30, #145c48, #0a3d30, #082d24) !important;
+}
+.t-card { position: relative; }
+.t-card::before {
+  content: '';
+  position: absolute;
+  top: -100%; left: -100%; width: 50%; height: 300%;
+  background: rgba(255,255,255,0.1);
+  transform: rotate(45deg);
+  transition: all 0.6s var(--ease);
+  z-index: 3;
+  pointer-events: none;
+}
+.t-card:hover::before { left: 150%; }
+
+@keyframes softFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+.hero-h1 { animation: softFloat 5s ease-in-out infinite; }
+
 </style>
 </head>
 
-<body>
+<body class="reveal-ready">
+<div id="scroll-progress"></div>
 
 <!-- ── TICKER ── -->
 <div class="ticker-bar" aria-hidden="true">
@@ -3340,6 +3383,14 @@ document.addEventListener('DOMContentLoaded', () => {
   };
 
   /* ── Scroll-reveal ── */
+  // Update Scroll Progress
+  window.addEventListener('scroll', () => {
+    const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = (winScroll / height) * 100;
+    document.getElementById('scroll-progress').style.width = scrolled + "%";
+  }, { passive: true });
+
   const io = new IntersectionObserver((entries) => {
     entries.forEach(e => {
       if (e.isIntersecting) {
