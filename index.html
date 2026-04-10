@@ -381,8 +381,8 @@ nav[aria-label="Primary"] {
 /* Mega Menu */
 .has-mega { position: static; }
 .mega {
-  position: fixed;
-  top: 110px; /* aligns completely flush under the normal menu text */
+  position: absolute;
+  top: calc(100% + 40px); /* universally calculated perfect distance beneath the text */
   left: 50%;
   transform: translateX(-50%);
   width: min(1200px, 96vw);
@@ -399,16 +399,13 @@ nav[aria-label="Primary"] {
   transition: opacity .3s var(--ease), transform .3s var(--ease), top .3s var(--ease);
   z-index: 150;
 }
-.site-header.sticky .mega {
-  top: 65px; /* aligns completely flush under the sticky menu text */
-}
 .mega::before {
   content: '';
   position: absolute;
-  top: -60px;
+  top: -45px;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 45px;
   background: transparent;
 }
 .has-mega:hover .mega {
