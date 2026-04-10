@@ -1923,7 +1923,53 @@ footer {
     width: 100%;
     color: var(--white) !important;
   }
-  .mega { display: none !important; }
+  .mega {
+    display: none;
+    position: static;
+    transform: none;
+    width: 100%;
+    padding: 12px 0 12px 16px;
+    box-shadow: none;
+    opacity: 1;
+    pointer-events: auto;
+    border: none;
+    outline: none;
+    background: transparent;
+  }
+  .has-mega.open .mega {
+    display: block;
+  }
+  .has-mega > a {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .has-mega > a i {
+    transition: transform 0.3s var(--ease);
+  }
+  .has-mega.open > a i {
+    transform: rotate(180deg);
+  }
+  .mega-cols {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  .mega-brand, .mega-visual {
+    display: none;
+  }
+  .mega h5 {
+    color: var(--gold);
+    margin-bottom: 8px;
+    font-size: 0.95rem;
+  }
+  .mega-list a span {
+    font-size: 0.9rem;
+    color: var(--white) !important;
+  }
+  .mega-list a p {
+    display: none;
+  }
 
   /* ── CLOSE BUTTON ── */
   .nav-close-btn {
@@ -3175,9 +3221,17 @@ document.addEventListener('DOMContentLoaded', () => {
   if (hamBtn)   hamBtn.addEventListener('click', openNav);
   if (navClose) navClose.addEventListener('click', closeNav);
 
-  // Close drawer when any nav link is clicked
+  // Close drawer when a normal nav link is clicked (or toggle accordion if mega)
   primaryNav.querySelectorAll('a').forEach(a => {
-    a.addEventListener('click', closeNav);
+    a.addEventListener('click', (e) => {
+      const parentLi = a.parentElement;
+      if (parentLi.classList.contains('has-mega') && window.innerWidth <= 1024) {
+        e.preventDefault();
+        parentLi.classList.toggle('open');
+      } else {
+        closeNav();
+      }
+    });
   });
 
   /* ── Booking popup ── */
