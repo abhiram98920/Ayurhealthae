@@ -945,11 +945,11 @@ nav[aria-label="Primary"] {
   height: 26px !important;
   color: #000000 !important;
   stroke: #000000 !important;
-  transition: color var(--dur) var(--ease), stroke var(--dur) var(--ease);
+  transition: all var(--dur) var(--ease);
 }
 .tl-step:hover .tl-circle {
-  background: var(--green-800);
-  border-color: var(--green-800);
+  background: var(--green-800) !important;
+  border-color: var(--green-800) !important;
 }
 .tl-step:hover .tl-circle i,
 .tl-step:hover .tl-circle i svg {
@@ -1163,19 +1163,20 @@ nav[aria-label="Primary"] {
   left: 40px;
   box-shadow: 0 8px 24px rgba(0,0,0,0.1);
   z-index: 2;
-  transition: background 0.4s var(--ease);
+  transition: all 0.4s var(--ease);
 }
 .trust-icon i, .trust-icon i svg { 
   width: 24px !important; 
   height: 24px !important; 
   color: #ffffff !important; 
   stroke: #ffffff !important;
-  transition: color 0.4s, stroke 0.4s; 
+  transition: all 0.4s var(--ease); 
 }
 .trust-box:nth-child(1) .trust-icon { background: var(--green-800); }
 .trust-box:nth-child(2) .trust-icon { background: var(--gold); }
 .trust-box:nth-child(3) .trust-icon { background: var(--green-900); }
 
+.trust-box:hover .trust-icon { background: #ffffff !important; }
 .trust-box:hover .trust-icon i, 
 .trust-box:hover .trust-icon i svg { 
   color: #000000 !important; 
