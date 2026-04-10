@@ -1676,14 +1676,15 @@ footer {
   background: rgba(5,40,32,.72);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  z-index: 999;
+  z-index: 1500; /* Increased to stay above EVERYTHING */
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* Start from top to allow scrolling */
   justify-content: center;
-  padding: 20px;
+  padding: 40px 20px;
   opacity: 0;
   pointer-events: none;
   transition: opacity .4s var(--ease);
+  overflow-y: auto; /* Allow overlay to scroll */
 }
 .popup-overlay.open {
   opacity: 1;
@@ -1694,6 +1695,7 @@ footer {
   border-radius: 0;
   width: 100%;
   max-width: 580px;
+  margin: auto; /* Flex centering with scroll support */
   overflow: hidden;
   box-shadow: var(--shadow-lg);
   transform: translateY(32px) scale(.97);
@@ -2597,19 +2599,19 @@ footer {
         <div class="img-tall">
           <img src="Images/pizhichil.jpeg" alt="Pizhichil — Kerala oil bath therapy" />
           <div class="img-overlay-fill">
-            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+            <button class="btn-overlay" onclick="openBooking()">Book Now</button>
           </div>
         </div>
         <div class="img-sq">
           <img src="Images/kerala_herbs.png" alt="Medicinal herbs" />
           <div class="img-overlay-fill">
-            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+            <button class="btn-overlay" onclick="openBooking()">Book Now</button>
           </div>
         </div>
         <div class="img-sq">
           <img src="Images/shirodhara.jpeg" alt="Shirodhara therapy" />
           <div class="img-overlay-fill">
-            <button class="btn-overlay" onclick="window.location.href='#cta'">Book Now</button>
+            <button class="btn-overlay" onclick="openBooking()">Book Now</button>
           </div>
         </div>
       </div>
