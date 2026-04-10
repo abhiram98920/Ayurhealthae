@@ -2005,6 +2005,7 @@ footer {
   .hero-sub { margin: 0 auto 36px; }
   .hero-btns { justify-content: center; }
   .hero-trust { justify-content: center; }
+  .hero-vertical-text { display: none; }
 
   /* ── STATS ── */
   .stats-inner { grid-template-columns: repeat(2,1fr); }
@@ -2054,6 +2055,9 @@ footer {
 
 /* ── 768px: small tablets / large phones ── */
 @media (max-width: 768px) {
+
+  /* GLOBAL */
+  section { padding: 76px 0; }
 
   /* HERO */
   .hero-h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
