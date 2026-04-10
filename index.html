@@ -1541,7 +1541,16 @@ footer {
   transition: all .3s var(--ease);
 }
 .social-row a:hover { background:var(--gold); border-color:var(--gold); transform: translateY(-3px); color: var(--green-900); }
-.social-row i, .social-row svg { width:20px; height:20px; display: block; opacity: 1 !important; visibility: visible !important; }
+.social-row i, .social-row svg { 
+  width: 20px !important; 
+  height: 20px !important; 
+  display: block; 
+  opacity: 1 !important; 
+  visibility: visible !important; 
+  stroke: currentColor !important;
+  stroke-width: 2 !important;
+  fill: none !important;
+}
 .footer-col h5 {
   font-family:var(--ff-sans);
   font-size:.72rem;
