@@ -238,12 +238,15 @@ h1,h2,h3,h4 {
   box-shadow: 0 4px 40px rgba(0, 0, 0, 0.2);
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
-.site-header.sticky .nav-inner { height: 90px !important; overflow: visible; }
+.site-header.sticky .nav-inner { height: 90px !important; position: relative; }
 .site-header.sticky .logo-default { display: none; }
 .site-header.sticky .logo-sticky { 
   display: block; 
   height: 150px !important; 
-  transform: translateY(10px); /* elegant overflow below the bar */
+  position: absolute;
+  top: -20px; /* Aligns with the 150px height vs 90px header */
+  left: 40px;
+  z-index: 10;
 }
 .site-header.sticky .nav-links {
   background: rgba(255, 255, 255, 0.05); /* very faint glass pill in sticky */
