@@ -1209,6 +1209,14 @@ nav[aria-label="Primary"] {
   color: #000000 !important; 
   stroke: #000000 !important; 
 }
+.trust-box:hover .trust-icon svg path,
+.trust-box:hover .trust-icon svg circle,
+.trust-box:hover .trust-icon svg polyline,
+.trust-box:hover .trust-icon svg line,
+.trust-box:hover .trust-icon svg rect,
+.trust-box:hover .trust-icon svg ellipse {
+  stroke: #000000 !important;
+}
 
 @keyframes fastDrop {
   0% { transform: translateY(0); opacity: 1; }
@@ -1788,37 +1796,105 @@ footer {
 /* =========================================================
    RESPONSIVE
 ========================================================= */
+/* ==========================================================
+   RESPONSIVE — COMPLETE OVERHAUL
+   Breakpoints: 1024px | 900px | 768px | 640px | 480px
+========================================================== */
+
+/* ── 1024px: Tablet landscape ── */
 @media (max-width: 1024px) {
-  .hero-inner       { grid-template-columns: 1fr; }
-  .hero-visual      { display:none; }
-  .about-grid,
-  .doctor-grid,
-  .why-grid         { grid-template-columns: 1fr; gap:48px; }
-  .cards-grid,
-  .blog-grid        { grid-template-columns: 1fr 1fr; }
-  .cond-grid        { grid-template-columns: repeat(2,1fr); }
-  .stats-inner      { grid-template-columns: repeat(2,1fr); gap:0; }
-  .stat-cell:nth-child(2) { border-right:none; }
-  .stat-cell:nth-child(3) { border-top:1px solid rgba(255,255,255,.12); border-right:1px solid rgba(255,255,255,.12); }
-  .stat-cell:nth-child(4) { border-top:1px solid rgba(255,255,255,.12); border-right:none; }
-  .fac-grid         { grid-template-columns:1fr 1fr; grid-template-rows:auto; }
-  .fac-item:first-child { grid-row:span 1; }
-  .footer-top       { grid-template-columns:1fr 1fr; }
-  .timeline         { flex-wrap:wrap; justify-content:center; gap:32px; }
-  .timeline::before { display:none; }
-  .tl-step          { flex: 0 0 calc(33% - 16px); }
+
+  /* NAV */
+  .site-header { height: 80px !important; }
+  .site-header.sticky { height: 80px !important; }
+  .nav-inner {
+    height: 80px !important;
+    grid-template-columns: 1fr auto !important;
+    padding: 0 20px !important;
+  }
+  .site-header.sticky .nav-inner { height: 80px !important; }
+  .logo-default, .logo-sticky {
+    height: 60px !important;
+    position: static !important;
+    transform: none !important;
+    margin: 0 !important;
+  }
+
+  /* HERO */
+  .hero-inner { grid-template-columns: 1fr; gap: 0; }
+  .hero-visual { display: none; }
+  .hero-content { text-align: center; }
+  .hero-eyebrow { justify-content: center; }
+  .hero-sub { margin: 0 auto 40px; }
+  .hero-btns { justify-content: center; }
+  .hero-trust { justify-content: center; }
+
+  /* STATS */
+  .stats-inner { grid-template-columns: repeat(2,1fr); }
+  .stat-cell:nth-child(2) { border-right: none; }
+  .stat-cell:nth-child(3) {
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-right: 1px solid rgba(255,255,255,.12);
+  }
+  .stat-cell:nth-child(4) {
+    border-top: 1px solid rgba(255,255,255,.12);
+    border-right: none;
+  }
+
+  /* ABOUT */
+  .about-grid { grid-template-columns: 1fr; gap: 48px; }
+  .about-images {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 240px 180px;
+  }
+
+  /* THERAPIES — show 2 cards */
+  .t-card { flex: 0 0 calc((100% - 28px) / 2); }
+
+  /* JOURNEY */
+  .timeline { flex-wrap: wrap; justify-content: center; gap: 24px; }
+  .timeline::before { display: none; }
+  .tl-step { flex: 0 0 calc(33.333% - 16px); }
+
+  /* DOCTOR */
+  .doctor-grid { grid-template-columns: 1fr; gap: 40px; }
+  .doc-img-wrap img { max-height: 400px; object-fit: cover; }
+
+  /* FACILITIES */
+  .fac-grid {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: auto;
+  }
+  .fac-item:first-child { grid-row: span 1; }
+
+  /* WHY CHOOSE US */
+  .why-top-split { grid-template-columns: 1fr; gap: 32px; }
+  .why-mini-image { height: 220px; }
+  .why-points-area { grid-template-columns: repeat(2, 1fr); }
+  .why-trust-row { grid-template-columns: 1fr; gap: 48px; }
+
+  /* CONDITIONS */
+  .cond-layout { grid-template-columns: 1fr; gap: 40px; }
+  .cond-intro { position: static; }
+
+  /* BLOG */
+  .blog-grid { grid-template-columns: 1fr 1fr; gap: 20px; }
+
+  /* FOOTER */
+  .footer-top { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .footer-brand img { height: 180px; }
 }
 
-/* ── MOBILE NAV ── */
+/* ── 900px: Mobile nav kicks in ── */
 @media (max-width: 900px) {
-  /* show hamburger, hide desktop nav */
+
+  /* HAMBURGER / MOBILE NAV */
   .ham-btn { display: flex !important; }
   nav[aria-label="Primary"] { display: none; }
   .nav-phone { display: none; }
   .nav-actions .btn { display: none; }
   .nav-actions { margin-left: 0; }
 
-  /* Mobile nav drawer */
   nav[aria-label="Primary"].open {
     display: flex;
     flex-direction: column;
@@ -1833,7 +1909,12 @@ footer {
   nav[aria-label="Primary"].open .nav-links {
     flex-direction: column;
     align-items: flex-start;
+    background: transparent;
+    border: none;
+    box-shadow: none;
+    padding: 0;
     gap: 0;
+    width: 100%;
   }
   nav[aria-label="Primary"].open .nav-links > li {
     width: 100%;
@@ -1844,10 +1925,8 @@ footer {
     padding: 18px 0;
     width: 100%;
   }
-  /* hide mega menus on mobile */
   .mega { display: none !important; }
 
-  /* mobile close button — only visible on mobile when drawer open */
   .nav-close-btn {
     position: fixed;
     top: 24px; right: 24px;
@@ -1862,50 +1941,225 @@ footer {
     z-index: 201;
   }
   .nav-close-btn.show { display: flex !important; }
-  .nav-close-btn i { width:22px; height:22px; }
+  .nav-close-btn i { width: 22px; height: 22px; }
 
-  /* mobile Book Now at bottom of drawer */
   .mobile-book-btn {
     display: flex;
     margin-top: 32px;
     width: 100%;
     justify-content: center;
   }
-  .mobile-book-btn .btn {
-    width: 100%;
-    justify-content: center;
-  }
+  .mobile-book-btn .btn { width: 100%; justify-content: center; }
+
+  /* WHY TRUST ROW — single column */
+  .why-trust-row { grid-template-columns: 1fr; }
+  .trust-box { padding: 60px 28px 36px; }
+
+  /* JOURNEY — 2 per row */
+  .tl-step { flex: 0 0 calc(50% - 12px); }
+
+  /* BLOG — single column */
+  .blog-grid { grid-template-columns: 1fr; }
+
+  /* ABOUT points 2-col */
+  .about-points { grid-template-columns: 1fr; }
+
+  /* WHY POINTS */
+  .why-points-area { grid-template-columns: repeat(2, 1fr); }
+
+  /* DOCTOR stats row */
+  .doc-stats { gap: 20px; flex-wrap: wrap; }
+
+  /* SECTION HEADER stack */
+  .section-hdr { flex-direction: column; align-items: flex-start; }
 }
 
+/* ── 768px: Small tablets / large phones ── */
+@media (max-width: 768px) {
+
+  /* HERO */
+  .hero-h1 { font-size: clamp(2.2rem, 8vw, 3rem); }
+  .hero-sub { font-size: 1rem; }
+  #hero { min-height: 100svh; }
+
+  /* STATS */
+  .stat-num { font-size: 2.2rem; }
+
+  /* ABOUT grid single col images */
+  .about-images {
+    grid-template-columns: 1fr;
+    grid-template-rows: 260px 180px;
+  }
+  .about-images .img-tall { grid-row: span 1; border-radius: var(--r-md); }
+
+  /* THERAPIES — 1 card */
+  .t-card { flex: 0 0 calc(100% - 0px); }
+
+  /* FACILITIES */
+  .fac-grid { grid-template-columns: 1fr; }
+  .fac-item { aspect-ratio: 16/9; }
+  .fac-item:first-child { grid-row: span 1; }
+
+  /* WHY CHOOSE */
+  .why-top-split { grid-template-columns: 1fr; }
+  .why-mini-image { display: none; }
+  .why-points-area { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+
+  /* CONDITIONS */
+  .cond-carousel {
+    grid-auto-columns: calc(100% - 0px);
+  }
+
+  /* FOOTER */
+  .footer-top { grid-template-columns: 1fr; gap: 32px; }
+  .footer-brand img { height: 140px; }
+
+  /* FAQ */
+  .faq-grid { grid-template-columns: 1fr; }
+  .faq-left { border-right: none; border-bottom: 1px solid rgba(10,61,48,.07); }
+
+  /* DOCTOR */
+  .doc-img-wrap { display: none; }
+  .doctor-grid { grid-template-columns: 1fr; }
+  .doc-stats { grid-template-columns: repeat(3,1fr); display: grid; }
+
+  /* JOURNEY */
+  .tl-step { flex: 0 0 calc(50% - 12px); }
+  .tl-circle { width: 60px; height: 60px; }
+}
+
+/* ── 640px: Mobile ── */
 @media (max-width: 640px) {
-  section { padding: 72px 0; }
-  .container { padding: 0 18px; }
-  .hero-h1  { font-size: 2.4rem; }
-  /* Full-width CTAs on mobile */
-  .hero-btns {
-    flex-direction: column;
-    align-items: stretch;
-    width: 100%;
+
+  /* GLOBAL */
+  section { padding: 64px 0; }
+  .container { padding: 0 16px; }
+  .h2 { font-size: clamp(1.7rem, 7vw, 2.2rem); margin-bottom: 14px; }
+  .body-text { font-size: .95rem; }
+
+  /* HERO */
+  .hero-h1 { font-size: clamp(2rem, 9vw, 2.6rem); }
+  .hero-sub { font-size: .95rem; }
+  .hero-btns { flex-direction: column; align-items: stretch; width: 100%; }
+  .hero-btns .btn { width: 100%; justify-content: center; }
+  .hero-trust { gap: 12px; flex-direction: column; }
+  .hero-inner { padding-top: 100px; padding-bottom: 48px; }
+
+  /* STATS */
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 1.9rem; }
+  .stat-cell { padding: 20px 12px; }
+
+  /* ABOUT */
+  .about-grid { gap: 32px; }
+  .about-images {
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 160px 130px;
+    gap: 10px;
   }
-  .hero-btns .btn {
-    width: 100%;
-    justify-content: center;
-  }
-  .hero-trust { gap:14px; }
-  .cards-grid,
-  .blog-grid,
-  .cond-grid { grid-template-columns: 1fr; }
-  .footer-top { grid-template-columns:1fr; gap:32px; }
-  .fac-grid { grid-template-columns:1fr; grid-template-rows:auto; }
-  .why-img img { height:280px; }
-  .tl-step { flex: 0 0 calc(50% - 16px); }
-  /* Full-width CTA section buttons */
+  .about-images .img-tall { grid-row: span 2; }
+  .about-points { grid-template-columns: 1fr; gap: 14px; }
+  .apoint-icon { width: 40px; height: 40px; }
+
+  /* THERAPIES */
+  .t-card { flex: 0 0 100%; }
+  .carousel-nav { margin-top: 24px; }
+
+  /* JOURNEY */
+  .tl-step { flex: 0 0 calc(50% - 12px); }
+  .tl-step h4 { font-size: .88rem; }
+  .tl-step p  { font-size: .76rem; }
+
+  /* DOCTOR */
+  .doc-quote { margin: 0; font-size: .9rem; }
+  .doc-stats { gap: 16px; }
+  .doc-stat h4 { font-size: 1.5rem; }
+
+  /* FACILITIES */
+  .fac-grid { grid-template-columns: 1fr; }
+  .fac-item { aspect-ratio: 4/3; }
+
+  /* WHY CHOOSE US */
+  .why-top-split { grid-template-columns: 1fr; gap: 24px; }
+  .why-mini-image { display: none; }
+  .why-points-area { grid-template-columns: 1fr 1fr; gap: 12px; }
+  .why-check-item { padding: 16px; font-size: .82rem; }
+  .why-trust-row { grid-template-columns: 1fr; gap: 48px; }
+  .trust-box { padding: 56px 24px 32px; }
+
+  /* CONDITIONS */
+  .cond-layout { grid-template-columns: 1fr; }
+  .cond-carousel { grid-auto-columns: 100%; }
+  .cond-card { aspect-ratio: auto; min-height: 220px; padding: 28px 20px; }
+
+  /* BLOG */
+  .blog-grid { grid-template-columns: 1fr; gap: 20px; }
+  .blog-thumb { height: 180px; }
+
+  /* FAQ */
+  .faq-left { padding: 28px 20px; }
+  .faq-trigger { padding: 18px 20px; font-size: .95rem; }
+  .faq-body-inner { padding: 0 20px 20px; }
+  .faq-left h2 { font-size: 2rem; }
+
+  /* CTA */
   .cta-btns { flex-direction: column; align-items: stretch; }
-  .cta-btns .btn { width:100%; justify-content:center; }
-  /* Popup form row stacks on mobile */
+  .cta-btns .btn { width: 100%; justify-content: center; }
+  .cta-h2 { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+
+  /* FOOTER */
+  .footer-top { grid-template-columns: 1fr; gap: 28px; }
+  .footer-brand img { height: 120px; }
+  .footer-brand p { font-size: .88rem; }
+  .social-row { gap: 14px; }
+  .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+
+  /* POPUP */
   .form-row { grid-template-columns: 1fr; }
-  .popup-header { padding: 24px 24px 20px; }
-  .popup-body   { padding: 24px; }
+  .popup-header { padding: 24px 20px 18px; }
+  .popup-body   { padding: 20px; }
+
+  /* SECTION HEADER */
+  .section-hdr { gap: 14px; }
+  .section-hdr .body-text { font-size: .88rem; }
+}
+
+/* ── 480px: Tiny phones ── */
+@media (max-width: 480px) {
+
+  .h2 { font-size: 1.6rem; }
+  .hero-h1 { font-size: 1.9rem; }
+  .hero-eyebrow { font-size: .65rem; }
+
+  /* STATS full-width cells */
+  .stats-inner { grid-template-columns: 1fr 1fr; }
+  .stat-num { font-size: 1.7rem; }
+
+  /* JOURNEY — full width steps */
+  .tl-step { flex: 0 0 100%; }
+  .tl-circle { width: 52px; height: 52px; }
+
+  /* WHY POINTS — full width */
+  .why-points-area { grid-template-columns: 1fr; }
+
+  /* ABOUT images compact */
+  .about-images {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+  .about-images .img-tall { height: 220px; grid-row: span 1; }
+  .about-images .img-sq   { height: 150px; }
+
+  /* TRUST BOX full width */
+  .why-trust-row { gap: 40px; }
+
+  /* BLOG */
+  .blog-thumb { height: 160px; }
+
+  /* FOOTER */
+  .nl-form { flex-direction: column; border-radius: 8px; overflow: visible; gap: 8px; }
+  .nl-form input { border-radius: 8px; }
+  .nl-form button { border-radius: 8px; }
 }
 </style>
 </head>
