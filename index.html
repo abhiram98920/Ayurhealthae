@@ -1858,25 +1858,27 @@ footer {
   /* ── HEADER ── */
   .site-header {
     top: 0 !important;
-    height: 70px !important;
+    height: 80px !important;
+    background: var(--green-900) !important;
   }
-  .site-header.sticky  { height: 70px !important; }
+  .site-header.sticky  { height: 80px !important; }
   .nav-inner {
-    height: 70px !important;
+    height: 80px !important;
     grid-template-columns: 1fr auto !important;
     padding: 0 20px !important;
   }
-  .site-header.sticky .nav-inner { height: 70px !important; }
+  .site-header.sticky .nav-inner { height: 80px !important; }
 
   /* ── LOGO ── */
   .logo-default, .logo-sticky {
-    height: 80px !important;
+    height: 100px !important;
     position: static !important;
     transform: none !important;
     margin: 0 !important;
+    pointer-events: none;
   }
   .site-header.sticky .logo-sticky {
-    height: 80px !important;
+    height: 100px !important;
     position: static !important;
     top: auto !important;
     left: auto !important;
@@ -2017,12 +2019,20 @@ footer {
   .mobile-book-btn .btn { width: 100%; justify-content: center; }
 
   /* ── HERO ── */
-  .hero-inner { grid-template-columns: 1fr; gap: 0; padding-top: 90px; }
+  .hero-inner { grid-template-columns: 1fr; gap: 0; padding-top: 100px !important; }
   .hero-visual { display: none; }
   .hero-content { text-align: center; }
-  .hero-eyebrow { justify-content: center; }
-  .hero-sub { margin: 0 auto 36px; }
-  .hero-btns { justify-content: center; }
+  .slide-content { 
+    width: 100% !important; 
+    max-width: 100% !important;
+    left: 0 !important; 
+    padding: 0 20px !important; 
+    align-items: center !important; 
+    text-align: center !important;
+  }
+  .hero-eyebrow { justify-content: center; width: 100%; }
+  .hero-sub { margin: 0 auto 36px !important; max-width: 100%; }
+  .hero-btns { justify-content: center !important; }
   .hero-trust { justify-content: center; }
   .hero-vertical-text { display: none; }
 
@@ -2212,6 +2222,10 @@ footer {
   .footer-brand p { font-size: .87rem; }
   .social-row { gap: 12px; }
   .footer-bottom { flex-direction: column; text-align: center; gap: 8px; }
+
+  .nl-form { flex-direction: column !important; gap: 10px !important; background: transparent !important; }
+  .nl-form input { width: 100% !important; border-radius: 4px !important; height: 50px !important; background: rgba(255,255,255,0.1) !important; }
+  .nl-form button { width: 100% !important; border-radius: 4px !important; height: 50px !important; display: flex !important; align-items: center; justify-content: center; }
 
   /* POPUP */
   .form-row { grid-template-columns: 1fr; }
