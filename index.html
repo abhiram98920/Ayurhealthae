@@ -1967,22 +1967,40 @@ footer {
     display: none;
   }
 
+  /* ── HAMBURGER ── */
+  .ham-btn {
+    display: flex !important;
+    position: absolute;
+    right: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 1001;
+    color: var(--white);
+    background: rgba(255,255,255,0.1);
+    width: 44px; height: 44px;
+    align-items: center; justify-content: center;
+    border-radius: 4px;
+  }
+  .ham-btn i { width: 30px; height: 30px; }
+  body.nav-open .ham-btn { display: none !important; }
+
   /* ── CLOSE BUTTON ── */
   .nav-close-btn {
     position: fixed;
-    top: 16px; right: 20px;
-    background: rgba(255,255,255,.12);
+    top: 20px; right: 20px;
+    background: rgba(255,255,255,0.15);
     border: none;
-    border-radius: 0;
+    border-radius: 4px;
     width: 44px; height: 44px;
+    display: none;
     align-items: center;
     justify-content: center;
     color: white;
     cursor: pointer;
-    z-index: 10000;
+    z-index: 10002;
   }
-  .nav-close-btn.show { display: flex !important; z-index: 10000; }
-  .nav-close-btn i { width: 22px; height: 22px; }
+  .nav-close-btn.show { display: flex !important; }
+  .nav-close-btn i { width: 24px; height: 24px; }
 
   /* ── MOBILE BOOK NOW ── */
   .mobile-book-btn {
@@ -2119,6 +2137,7 @@ footer {
   .hero-btns .btn { width: 100%; justify-content: center; }
   .hero-trust { gap: 10px; flex-direction: column; align-items: flex-start; }
   .hero-eyebrow { font-size: .65rem; }
+  .slider-arrow { display: none !important; }
 
   /* STATS */
   .stat-num { font-size: 1.9rem; }
@@ -2378,14 +2397,14 @@ footer {
 <div class="ticker-bar" aria-hidden="true">
   <div class="ticker-track">
     <span class="ticker-item"><i data-lucide="award"></i>Certified Kerala Ayurvedic Medical Centre</span>
-    <span class="ticker-item"><i data-lucide="map-pin"></i>Shop no 12, Q2 Building, Al Qusais 2, Dubai</span>
-    <span class="ticker-item"><i data-lucide="phone"></i>Clinical Line: 055 129 2579</span>
+    <span class="ticker-item"><i data-lucide="map-pin"></i>Shop no 12, Q2 Building, Al Qusais 2, Dubai, UAE</span>
+    <span class="ticker-item"><i data-lucide="phone"></i>Clinical Line: +971 55 129 2579</span>
     <span class="ticker-item"><i data-lucide="shield-check"></i>DHA Licensed Practitioners</span>
     <span class="ticker-item"><i data-lucide="clock"></i>Mon–Sat · 9am–8pm</span>
     <!-- duplicate for seamless loop -->
     <span class="ticker-item"><i data-lucide="award"></i>Certified Kerala Ayurvedic Medical Centre</span>
-    <span class="ticker-item"><i data-lucide="map-pin"></i>Shop no 12, Q2 Building, Al Qusais 2, Dubai</span>
-    <span class="ticker-item"><i data-lucide="phone"></i>Clinical Line: 055 129 2579</span>
+    <span class="ticker-item"><i data-lucide="map-pin"></i>Shop no 12, Q2 Building, Al Qusais 2, Dubai, UAE</span>
+    <span class="ticker-item"><i data-lucide="phone"></i>Clinical Line: +971 55 129 2579</span>
     <span class="ticker-item"><i data-lucide="shield-check"></i>DHA Licensed Practitioners</span>
     <span class="ticker-item"><i data-lucide="clock"></i>Mon–Sat · 9am–8pm</span>
   </div>
@@ -3294,7 +3313,7 @@ footer {
 
       <div class="footer-brand">
         <img src="Images/logo-04.png" alt="Ayur Health" style="height:190px;width:auto;object-fit:contain;" />
-        <p>Leading Ayurvedic Medical Centre in Dubai. Authentic Kerala traditions, personalised clinical care, DHA-licensed excellence.</p>
+        <p>Leading Ayurvedic Medical Centre in Dubai. Authentic Kerala traditions, personalised clinical care.</p>
         <div class="social-row">
           <a href="#" aria-label="Instagram"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="20" x="2" y="2" rx="0" ry="0"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" x2="17.51" y1="6.5" y2="6.5"/></svg></a>
           <a href="#" aria-label="Facebook"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
@@ -3336,8 +3355,11 @@ footer {
     </div>
 
     <div class="footer-bottom">
-      <p>© 2026 Ayur Health Medical Centre LLC. All rights reserved.</p>
-      <p>DHA Licensed · Shop no 12, Q2 Building, Al Qusais 2, Dubai, UAE</p>
+      <div>
+        <p>© 2026 Ayur Health Medical Centre LLC. All rights reserved.</p>
+        <p style="opacity:0.6; font-size:0.8rem; margin-top:4px;">Designed By Bten.in</p>
+      </div>
+      <p>Shop no 12, Q2 Building, Al Qusais 2, Dubai, UAE | +971 551292579</p>
     </div>
   </div>
 </footer>
