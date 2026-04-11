@@ -2444,91 +2444,6 @@ footer {
     <button class="ham-btn" id="ham-btn" aria-label="Open menu" aria-expanded="false">
       <i data-lucide="menu"></i>
     </button>
-    <!-- Mobile close button (rendered outside nav for z-index) -->
-    <button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">
-      <i data-lucide="x"></i>
-    </button>
-
-    <nav aria-label="Primary">
-      <ul class="nav-links">
-        <li><a href="#">Home</a></li>
-
-        <li class="has-mega">
-          <a href="#about">The Clinic <i data-lucide="chevron-down"></i></a>
-          <div class="mega">
-            <div class="mega-cols">
-              <div>
-                <div class="mega-brand">
-                  <span class="label">Ayur Health</span>
-                  <h3>Excellence in <em>Clinical Ayurveda</em></h3>
-                  <p>Blending 5,000 years of Kerala healing with modern clinical rigour for sustained restoration.</p>
-                  <a href="specialists.html" class="btn btn-primary" style="padding:12px 24px;font-size:.8rem;">Director's Message</a>
-                </div>
-              </div>
-              <div>
-                <h5>Our Foundation</h5>
-                <ul class="mega-list">
-                  <li><a href="about.html"><span>Our Story</span><p>Traditional Kerala medical care.</p></a></li>
-                  <li><a href="about.html"><span>Mission & Vision</span><p>Excellence in the GCC.</p></a></li>
-                  <li><a href="about.html#values"><span>Core Values</span><p>Authority & Precision.</p></a></li>
-                </ul>
-              </div>
-              <div>
-                <h5>Patient Care</h5>
-                <ul class="mega-list">
-                  <li><a href="treatments.html"><span>Healing Journey</span><p>Step-by-step pathway.</p></a></li>
-                  <li><a href="facilities.html"><span>Our Facilities</span><p>World-class healing spaces.</p></a></li>
-                  <li><a href="#faq"><span>Care FAQ</span><p>Common questions answered.</p></a></li>
-                </ul>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li class="has-mega">
-          <a href="therapies.html">Therapies <i data-lucide="chevron-down"></i></a>
-          <div class="mega">
-            <div class="mega-cols">
-              <div>
-                <h5>Core Healing</h5>
-                <ul class="mega-list">
-                  <li><a href="#therapies"><span>Panchakarma</span><p>Deep clinical detox.</p></a></li>
-                  <li><a href="#therapies"><span>Abhyanga</span><p>Warm medicated massage.</p></a></li>
-                  <li><a href="#therapies"><span>Shirodhara</span><p>Nervous System Balance.</p></a></li>
-                  <li><a href="#therapies"><span>Nadi Pariksha</span><p>Pulse diagnosis expertise.</p></a></li>
-                </ul>
-              </div>
-              <div>
-                <h5>Specialized</h5>
-                <ul class="mega-list">
-                  <li><a href="#conditions"><span>Pain Management</span><p>Back, joint & muscle relief.</p></a></li>
-                  <li><a href="#conditions"><span>Women's Health</span><p>Pre & postnatal support.</p></a></li>
-                  <li><a href="#conditions"><span>Skin & Hair</span><p>Psoriasis & hair loss therapy.</p></a></li>
-                  <li><a href="#conditions"><span>Stress & Sleep</span><p>Healing the restless mind.</p></a></li>
-                </ul>
-              </div>
-              <div>
-                <h5>Explore</h5>
-                <div class="mega-visual">
-                  <img src="Images/kerala_herbs.png" alt="Ayurveda herbs" />
-                  <p>Explore our 30+ authentic Kerala therapies.</p>
-                  <a href="#therapies" class="link-gold">View All <i data-lucide="arrow-right"></i></a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </li>
-
-        <li><a href="#conditions">Conditions</a></li>
-        <li><a href="blog.html">Journal</a></li>
-        <li><a href="contact.html">Contact</a></li>
-      </ul>
-
-      <!-- Mobile Book Now (inside drawer) -->
-      <div class="mobile-book-btn">
-        <button class="btn btn-gold" onclick="openBooking()">Book Appointment <i data-lucide="calendar"></i></button>
-      </div>
-    </nav>
 
     <div class="nav-actions">
       <a href="tel:0551292579" class="nav-phone" style="padding: 10px; cursor: pointer;">
@@ -2537,8 +2452,95 @@ footer {
       <button class="btn btn-gold" onclick="openBooking()">Book Appointment</button>
     </div>
 
+  </div><!-- /nav-inner -->
+</header><!-- /site-header -->
+
+<!-- Mobile Navigation Drawer -->
+<nav aria-label="Primary">
+  <ul class="nav-links">
+    <li><a href="#">Home</a></li>
+
+    <li class="has-mega">
+      <a href="#about">The Clinic <i data-lucide="chevron-down"></i></a>
+      <div class="mega">
+        <div class="mega-cols">
+          <div>
+            <div class="mega-brand">
+              <span class="label">Ayur Health</span>
+              <h3>Excellence in <em>Clinical Ayurveda</em></h3>
+              <p>Blending 5,000 years of Kerala healing with modern clinical rigour for sustained restoration.</p>
+              <a href="specialists.html" class="btn btn-primary" style="padding:12px 24px;font-size:.8rem;">Director's Message</a>
+            </div>
+          </div>
+          <div>
+            <h5>Our Foundation</h5>
+            <ul class="mega-list">
+              <li><a href="about.html"><span>Our Story</span><p>Traditional Kerala medical care.</p></a></li>
+              <li><a href="about.html"><span>Mission & Vision</span><p>Excellence in the GCC.</p></a></li>
+              <li><a href="about.html#values"><span>Core Values</span><p>Authority & Precision.</p></a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Patient Care</h5>
+            <ul class="mega-list">
+              <li><a href="treatments.html"><span>Healing Journey</span><p>Step-by-step pathway.</p></a></li>
+              <li><a href="facilities.html"><span>Our Facilities</span><p>World-class healing spaces.</p></a></li>
+              <li><a href="#faq"><span>Care FAQ</span><p>Common questions answered.</p></a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li class="has-mega">
+      <a href="therapies.html">Therapies <i data-lucide="chevron-down"></i></a>
+      <div class="mega">
+        <div class="mega-cols">
+          <div>
+            <h5>Core Healing</h5>
+            <ul class="mega-list">
+              <li><a href="#therapies"><span>Panchakarma</span><p>Deep clinical detox.</p></a></li>
+              <li><a href="#therapies"><span>Abhyanga</span><p>Warm medicated massage.</p></a></li>
+              <li><a href="#therapies"><span>Shirodhara</span><p>Nervous System Balance.</p></a></li>
+              <li><a href="#therapies"><span>Nadi Pariksha</span><p>Pulse diagnosis expertise.</p></a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Specialized</h5>
+            <ul class="mega-list">
+              <li><a href="#conditions"><span>Pain Management</span><p>Back, joint & muscle relief.</p></a></li>
+              <li><a href="#conditions"><span>Women's Health</span><p>Pre & postnatal support.</p></a></li>
+              <li><a href="#conditions"><span>Skin & Hair</span><p>Psoriasis & hair loss therapy.</p></a></li>
+              <li><a href="#conditions"><span>Stress & Sleep</span><p>Healing the restless mind.</p></a></li>
+            </ul>
+          </div>
+          <div>
+            <h5>Explore</h5>
+            <div class="mega-visual">
+              <img src="Images/kerala_herbs.png" alt="Ayurveda herbs" />
+              <p>Explore our 30+ authentic Kerala therapies.</p>
+              <a href="#therapies" class="link-gold">View All <i data-lucide="arrow-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </li>
+
+    <li><a href="#conditions">Conditions</a></li>
+    <li><a href="blog.html">Journal</a></li>
+    <li><a href="contact.html">Contact</a></li>
+  </ul>
+
+  <!-- Mobile Book Now (inside drawer) -->
+  <div class="mobile-book-btn">
+    <button class="btn btn-gold" onclick="openBooking()">Book Appointment <i data-lucide="calendar"></i></button>
   </div>
-</header>
+</nav>
+
+<!-- Mobile close button (floating, outside header bounds) -->
+<button class="nav-close-btn" id="nav-close-btn" aria-label="Close menu">
+  <i data-lucide="x"></i>
+</button>
 
 <main>
 
